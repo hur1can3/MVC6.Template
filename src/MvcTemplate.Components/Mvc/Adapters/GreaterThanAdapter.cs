@@ -16,7 +16,7 @@ namespace MvcTemplate.Components.Mvc
         {
             context.Attributes["data-val"] = "true";
             context.Attributes["data-val-greater"] = GetErrorMessage(context);
-            context.Attributes["data-val-greater-min"] = Attribute.Minimum.ToString(CultureInfo.InvariantCulture);
+            context.Attributes["data-val-greater-than"] = Attribute.Minimum.ToString(CultureInfo.InvariantCulture);
         }
         public override String GetErrorMessage(ModelValidationContextBase context)
         {

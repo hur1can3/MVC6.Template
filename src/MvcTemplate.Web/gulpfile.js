@@ -108,6 +108,7 @@ gulp.task('vendor.private.js', () => {
             './wwwroot/scripts/mvcgrid/**/*.js',
             './wwwroot/scripts/mvctree/*.js',
             './wwwroot/scripts/bootstrap/*.js',
+            './wwwroot/scripts/wellidate/*.js',
             './wwwroot/scripts/shared/widgets/*.js'
         ])
         .pipe(concat('./wwwroot/scripts/Private/vendor.min.js'))
@@ -139,6 +140,7 @@ gulp.task('vendor.public.js', () => {
             './wwwroot/scripts/jquery/jquery.js',
             './wwwroot/scripts/jquery/**/*.js',
             './wwwroot/scripts/bootstrap/*.js',
+            './wwwroot/scripts/wellidate/*.js',
             './wwwroot/scripts/shared/widgets/validator.js',
             './wwwroot/scripts/shared/widgets/alerts.js'
         ])

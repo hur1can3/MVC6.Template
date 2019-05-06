@@ -33,8 +33,8 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Equal(3, attributes.Count);
             Assert.Equal("true", attributes["data-val"]);
-            Assert.Equal(".docx,.rtf", attributes["data-val-acceptfiles-extensions"]);
-            Assert.Equal(Validation.For("AcceptFiles", context.ModelMetadata.PropertyName, ".docx,.rtf"), attributes["data-val-acceptfiles"]);
+            Assert.Equal(".docx,.rtf", attributes["data-val-accept-types"]);
+            Assert.Equal(Validation.For("AcceptFiles", context.ModelMetadata.PropertyName, ".docx,.rtf"), attributes["data-val-accept"]);
         }
 
         #endregion

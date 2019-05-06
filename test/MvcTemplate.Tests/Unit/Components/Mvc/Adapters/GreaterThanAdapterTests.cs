@@ -33,7 +33,7 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Equal(3, attributes.Count);
             Assert.Equal("true", attributes["data-val"]);
-            Assert.Equal("128", attributes["data-val-greater-min"]);
+            Assert.Equal("128", attributes["data-val-greater-than"]);
             Assert.Equal(Validation.For("GreaterThan", context.ModelMetadata.PropertyName, 128), attributes["data-val-greater"]);
         }
 

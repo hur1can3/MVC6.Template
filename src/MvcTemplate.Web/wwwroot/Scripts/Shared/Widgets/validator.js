@@ -2,117 +2,64 @@ Validator = {
     init: function () {
         var lang = document.documentElement.lang;
 
-        $.validator.methods.date = function (value, element) {
-            return this.optional(element) || Globalize.parseDate(value);
+        Wellidate.prototype.rules.date.isValid = function () {
+            return !this.element.value || Globalize.parseDate(this.element.value);
         };
 
-        $.validator.methods.number = function (value, element) {
-            return this.optional(element) || !isNaN(Globalize.parseFloat(value));
+        Wellidate.prototype.rules.number.isValid = function () {
+            return !this.element.value || !isNaN(Globalize.parseFloat(this.element.value));
         };
 
-        $.validator.methods.min = function (value, element, param) {
-            return this.optional(element) || Globalize.parseFloat(value) >= parseFloat(param);
+        Wellidate.prototype.rules.min.isValid = function () {
+            return !this.element.value || this.min <= Globalize.parseFloat(this.element.value);
         };
 
-        $.validator.methods.max = function (value, element, param) {
-            return this.optional(element) || Globalize.parseFloat(value) <= parseFloat(param);
+        Wellidate.prototype.rules.max.isValid = function () {
+            return !this.element.value || Globalize.parseFloat(this.element.value) <= this.max;
         };
 
-        $.validator.methods.range = function (value, element, param) {
-            return this.optional(element) || (Globalize.parseFloat(value) >= parseFloat(param[0]) && Globalize.parseFloat(value) <= parseFloat(param[1]));
+        Wellidate.prototype.rules.range.isValid = function () {
+            var value = Globalize.parseFloat(this.element.value);
+
+            return !this.element.value || this.min <= value && value <= this.max;
         };
 
-        $.validator.addMethod('greater', function (value, element, param) {
-            return this.optional(element) || Globalize.parseFloat(value) > parseFloat(param);
-        });
-        $.validator.unobtrusive.adapters.add('greater', ['min'], function (options) {
-            options.rules['greater'] = options.params.min;
-            options.messages['greater'] = options.message;
-        });
+        Wellidate.prototype.rules.greater.isValid = function () {
+            var value = Globalize.parseFloat(this.element.value);
 
-        $.validator.addMethod('integer', function (value, element) {
-            return this.optional(element) || /^[+-]?\d+$/.test(value);
-        });
-        $.validator.unobtrusive.adapters.addBool('integer');
+            return !this.element.value || this.min <= value && value <= this.max;
+        };
 
-        $.validator.addMethod('filesize', function (value, element, param) {
-            if (this.optional(element) || !element.files)
-                return true;
+        document.addEventListener('wellidate-error', function (e) {
+            if (event.target.classList.contains('mvc-lookup-value')) {
+                var wellidate = e.detail.validatable.wellidate;
+                var control = new MvcLookup(event.target).control;
 
-            var bytes = 0;
-            for (var i = 0; i < element.files.length; i++) {
-                bytes += element.files[i].size;
+                control.classList.add(wellidate.inputErrorClass);
+                control.classList.remove(wellidate.inputValidClass);
+                control.classList.remove(wellidate.inputPendingClass);
             }
-
-            return bytes <= parseFloat(param);
-        });
-        $.validator.unobtrusive.adapters.add('filesize', ['max'], function (options) {
-            options.rules['filesize'] = options.params.max;
-            options.messages['filesize'] = options.message;
-        });
-        $(document).on('change', '[type="file"]', function () {
-            this.blur();
         });
 
-        $.validator.addMethod('acceptfiles', function (value, element, param) {
-            if (this.optional(element))
-                return true;
+        document.addEventListener('wellidate-success', function (e) {
+            if (event.target.classList.contains('mvc-lookup-value')) {
+                var wellidate = e.detail.validatable.wellidate;
+                var control = new MvcLookup(event.target).control;
 
-            var params = param.split(',');
-            var extensions = [].map.call(element.files, function (file) {
-                var extension = file.name.split('.').pop();
+                control.classList.add(wellidate.inputValidClass);
+                control.classList.remove(wellidate.inputErrorClass);
+                control.classList.remove(wellidate.inputPendingClass);
+            }
+        });
 
-                return extension == file.name ? null : '.' + extension;
+        [].forEach.call(document.querySelectorAll('.mvc-lookup-value.input-validation-error'), function (value) {
+            new MvcLookup(value).control.classList.add('input-validation-error');
+        });
+
+        [].forEach.call(document.querySelectorAll('form'), function (form) {
+            new Wellidate(form, {
+                wasValidatedClass: 'validated'
             });
-
-            for (var i = 0; i < extensions.length; i++) {
-                if (params.indexOf(extensions[i]) < 0) {
-                    return false;
-                }
-            }
-
-            return true;
-        });
-        $.validator.unobtrusive.adapters.add('acceptfiles', ['extensions'], function (options) {
-            options.rules['acceptfiles'] = options.params.extensions;
-            options.messages['acceptfiles'] = options.message;
-        });
-
-        $('.mvc-lookup-value').on('change', function () {
-            var validator = $(this).parents('form').validate();
-            var control = new MvcLookup(this).control;
-
-            if (validator.element(this)) {
-                control.classList.remove('input-validation-error');
-            } else {
-                control.classList.add('input-validation-error');
-            }
-        });
-
-        $('form').on('invalid-form', function (e, validator) {
-            $(this).find('.mvc-lookup-values').each(function (i, values) {
-                [].forEach.call(values.children, function (value) {
-                    var control = new MvcLookup(values).control;
-                    if (validator.invalid[value.name]) {
-                        control.classList.add('input-validation-error');
-
-                        return;
-                    } else {
-                        control.classList.remove('input-validation-error');
-                    }
-                });
-            });
-        });
-
-        $('.mvc-lookup-value.input-validation-error').each(function (i, element) {
-            new MvcLookup(element).control.classList.add('input-validation-error');
-        });
-
-        var currentIgnore = $.validator.defaults.ignore;
-        $.validator.setDefaults({
-            ignore: function () {
-                return $(this).is(currentIgnore) && !this.classList.contains('mvc-lookup-value');
-            }
         });
 
         Globalize.cultures.en = null;
