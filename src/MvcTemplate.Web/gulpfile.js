@@ -101,7 +101,8 @@ gulp.task('vendor.private.js', () => {
     return gulp
         .src([
             './wwwroot/scripts/jquery/jquery.js',
-            './wwwroot/scripts/jquery/**/*.js',
+            './wwwroot/scripts/numbro/numbro.js',
+            './wwwroot/scripts/numbro/**/*.js',
             './wwwroot/scripts/moment/moment.js',
             './wwwroot/scripts/moment/**/*.js',
             './wwwroot/scripts/rome/*.js',
@@ -139,7 +140,6 @@ gulp.task('vendor.public.js', () => {
     return gulp
         .src([
             './wwwroot/scripts/jquery/jquery.js',
-            './wwwroot/scripts/jquery/**/*.js',
             './wwwroot/scripts/bootstrap/*.js',
             './wwwroot/scripts/wellidate/*.js',
             './wwwroot/scripts/shared/widgets/validator.js',

@@ -5,7 +5,7 @@ Grid = {
             MvcGrid.prototype.lang = window.cultures.grid[lang];
 
             MvcGridNumberFilter.prototype.isValid = function (value) {
-                return value == '' || !isNaN(Globalize.parseFloat(value));
+                return value == '' || !isNaN(numbro(value).value());
             };
 
             [].forEach.call(document.querySelectorAll('.mvc-grid'), function (element) {

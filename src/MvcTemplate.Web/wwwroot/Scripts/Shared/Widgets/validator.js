@@ -1,31 +1,33 @@
 Validator = {
     init: function () {
-        var lang = document.documentElement.lang;
+        if (window.numbro) {
+            numbro.setLanguage(document.documentElement.lang);
+        }
 
         Wellidate.prototype.rules.date.isValid = function () {
-            return !this.element.value || Globalize.parseDate(this.element.value);
+            return !this.element.value || moment(this.element.value).isValid();
         };
 
         Wellidate.prototype.rules.number.isValid = function () {
-            return !this.element.value || !isNaN(Globalize.parseFloat(this.element.value));
+            return !this.element.value || !isNaN(numbro(this.element.value).value());
         };
 
         Wellidate.prototype.rules.min.isValid = function () {
-            return !this.element.value || this.min <= Globalize.parseFloat(this.element.value);
+            return !this.element.value || this.min <= numbro(this.element.value).value();
         };
 
         Wellidate.prototype.rules.max.isValid = function () {
-            return !this.element.value || Globalize.parseFloat(this.element.value) <= this.max;
+            return !this.element.value || numbro(this.element.value).value() <= this.max;
         };
 
         Wellidate.prototype.rules.range.isValid = function () {
-            var value = Globalize.parseFloat(this.element.value);
+            var value = numbro(this.element.value).value();
 
             return !this.element.value || this.min <= value && value <= this.max;
         };
 
         Wellidate.prototype.rules.greater.isValid = function () {
-            var value = Globalize.parseFloat(this.element.value);
+            var value = numbro(this.element.value).value();
 
             return !this.element.value || this.min <= value && value <= this.max;
         };
@@ -61,9 +63,5 @@ Validator = {
                 wasValidatedClass: 'validated'
             });
         });
-
-        Globalize.cultures.en = null;
-        Globalize.addCultureInfo(lang, window.cultures.globalize[lang]);
-        Globalize.culture(lang);
     }
 };
