@@ -6,12 +6,11 @@
 
 # Features
 - Model-View-ViewModel architectural design.
-- Latest technologies and frameworks.
-- Lowercase or normal ASP.NET urls.
-- Protection from CSRF, XSS, etc.
+- Secure default configuration.
 - Easy project renaming.
 - Dependency injection.
 - Custom error pages.
+- Code scaffolding.
 - Globalization.
 - Audit log.
 - Site map.
