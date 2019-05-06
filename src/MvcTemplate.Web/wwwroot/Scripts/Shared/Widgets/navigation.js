@@ -1,66 +1,61 @@
 Navigation = {
     init: function () {
-        this.element = document.querySelector('.navigation');
+        var navigation = this;
+        navigation.element = document.querySelector('.navigation');
+        navigation.nodes = [].map.call(navigation.element.querySelectorAll('li'), function (node) {
+            return node;
+        });
+        navigation.activeNodes = [].map.call(navigation.element.querySelectorAll('.has-active'), function (node) {
+            return node;
+        });
 
-        if (this.element) {
-            this.search = this.element.querySelector('.menu-search > input');
+        if (navigation.element) {
+            navigation.search = navigation.element.querySelector('input');
 
-            this.search.addEventListener('input', function () {
-                Navigation.filter(this.value);
+            navigation.search.addEventListener('input', function () {
+                navigation.filter(this.value);
             });
 
-            [].forEach.call(this.element.querySelectorAll('.navigation > ul'), function (menu) {
-                menu.addEventListener('mouseleave', function () {
-                    if (Navigation.element.clientWidth < 100) {
-                        var submenu = $('.menu li.open');
-                        submenu.children('ul').fadeOut();
-                        submenu.toggleClass('open');
-                    }
-                });
-            });
-
-            [].forEach.call(this.element.querySelectorAll('.submenu > a'), function (action) {
-                action.addEventListener('click', function (e) {
+            navigation.nodes.filter(function (node) {
+                return node.classList.contains('submenu');
+            }).forEach(function (submenu) {
+                submenu.firstElementChild.addEventListener('click', function (e) {
                     e.preventDefault();
 
-                    var action = $(this);
-                    var submenu = action.parent();
-                    var openSiblings = submenu.siblings('.open');
+                    submenu.classList.toggle('open');
 
-                    if (Navigation.element.clientWidth >= 100) {
-                        openSiblings.toggleClass('changing');
-                        openSiblings.children('ul').slideUp(function () {
-                            openSiblings.removeClass('changing open');
-                        });
-
-                        submenu.toggleClass('changing');
-                        action.next('ul').slideToggle(function () {
-                            submenu.toggleClass('changing open');
-                        });
-                    } else {
-                        openSiblings.children('ul').fadeOut(function () {
-                            openSiblings.removeClass('open');
-                        });
-
-                        action.next('ul').fadeToggle(function () {
-                            submenu.toggleClass('open');
+                    if (navigation.element.clientWidth < 100) {
+                        [].forEach.call(submenu.parentElement.children, function (sibling) {
+                            if (sibling != submenu) {
+                                sibling.classList.remove('open');
+                            }
                         });
                     }
                 });
             });
 
             window.addEventListener('resize', function () {
-                if (Navigation.element.clientWidth < 100) {
-                    $('.navigation .open').removeClass('open').children('ul').hide();
-
-                    Navigation.filter('');
+                if (navigation.element.clientWidth < 100) {
+                    navigation.closeAll();
                 }
             });
 
-            if (this.element.clientWidth < 100) {
-                [].forEach.call(this.element.querySelectorAll('li.open'), function (submenu) {
-                    submenu.classList.remove('open');
-                });
+            window.addEventListener('click', function (e) {
+                if (navigation.element.clientWidth < 100) {
+                    var target = e && e.target;
+
+                    while (target && !/navigation/.test(target.className)) {
+                        target = target.parentElement;
+                    }
+
+                    if (!target && target != window) {
+                        navigation.closeAll();
+                    }
+                }
+            });
+
+            if (navigation.element.clientWidth < 100) {
+                navigation.closeAll();
             }
         }
     },
@@ -69,20 +64,46 @@ Navigation = {
         this.search.value = term;
         term = term.toLowerCase();
 
-        [].forEach.call(this.element.querySelectorAll('li'), function (node) {
-            if (node.textContent.toLowerCase().indexOf(term) >= 0) {
-                if (node.classList.contains('submenu')) {
-                    if ($(node).find('li:not(.submenu)').text().toLowerCase().indexOf(term) >= 0) {
-                        $(node).show(500);
-                    } else {
-                        $(node).hide(500);
+        this.nodes.forEach(function (node) {
+            node.classList.remove('open');
+            node.style.display = '';
+        });
+
+        if (term) {
+            [].forEach.call(this.element.lastElementChild.children, function (node) {
+                filterNode(node, term);
+            });
+        } else {
+            this.activeNodes.forEach(function (node) {
+                node.classList.add('open');
+            });
+        }
+
+        function filterNode(element, term) {
+            var text = element.firstElementChild.querySelector('.text').textContent.toLowerCase();
+            var matches = text.indexOf(term) >= 0;
+
+            if (element.classList.contains('submenu')) {
+                var children = element.lastElementChild.children;
+
+                for (var i = 0; i < children.length; i++) {
+                    if (filterNode(children[i], term)) {
+                        element.classList.add('open');
                     }
-                } else {
-                    $(node).show(500);
                 }
-            } else {
-                $(node).hide(500);
             }
+
+            if (!matches && !element.classList.contains('open')) {
+                element.style.display = 'none';
+            }
+
+            return matches;
+        }
+    },
+
+    closeAll: function () {
+        this.nodes.forEach(function (node) {
+            node.classList.remove('open');
         });
     }
 };

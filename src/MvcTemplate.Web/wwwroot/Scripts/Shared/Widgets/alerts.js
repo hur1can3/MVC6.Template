@@ -50,26 +50,18 @@ Alerts = {
         }
     },
     bind: function (alert) {
-        alert.lastElementChild.onclick = function () {
-            Alerts.close(this.parentNode);
-        };
-
         if (alert.dataset.timeout > 0) {
-            setTimeout(this.close, alert.dataset.timeout, alert);
+            setTimeout(function () {
+                alert.querySelector('.close').click();
+            }, alert.dataset.timeout);
         }
     },
-    close: function (alert) {
-        if (typeof alert == 'string') {
-            alert = document.getElementById(alert);
-        }
-
-        $(alert).fadeTo(300, 0).slideUp(300, function () {
-            this.parentNode.removeChild(this);
-        });
+    close: function (id) {
+        document.querySelector('#' + id + ' .close').click();
     },
     closeAll: function () {
-        $(this.element).children().fadeTo(300, 0).slideUp(300, function () {
-            this.parentNode.removeChild(this);
+        [].forEach.call(this.element.querySelectorAll('.close'), function (close) {
+            close.click();
         });
     },
 

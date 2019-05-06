@@ -77,8 +77,8 @@
 
     <div class="content">
         <div class="navigation">
-            <div class="menu-search">
-                <input placeholder="@(Resource.ForAction("Search"))..." />
+            <div class="navigation-search">
+                <input type="search" placeholder="@(Resource.ForAction("Search"))..." />
             </div>
             @{ ISiteMap siteMap = Context.RequestServices.GetRequiredService<ISiteMap>(); }
             <partial name="_SiteMap" model="@siteMap.For(ViewContext)" />
@@ -117,8 +117,9 @@
                         {
                             foreach (Alert alert in JsonConvert.DeserializeObject<Alerts>(alerts))
                             {
-                                <div id="@alert.Id" class="alert alert-@alert.Type.ToString().ToLowerInvariant()" data-timeout="@alert.Timeout">
-                                    <span>@alert.Message</span><span class="close">×</span>
+                                <div id="@alert.Id" class="alert alert-@alert.Type.ToString().ToLowerInvariant() fade show" data-timeout="@alert.Timeout">
+                                    <span>@alert.Message</span>
+                                    <span class="close" data-dismiss="alert">×</span>
                                 </div>
                             }
                         }
@@ -135,7 +136,6 @@
     </div>
 
     <environment names="Development">
-        <script src="~/Scripts/JQuery/jquery.js"></script>
         <script src="~/Scripts/Numbro/numbro.js"></script>
         <script src="~/Scripts/Numbro/Cultures/numbro.en.js"></script>
         <script src="~/Scripts/Numbro/Cultures/numbro.lt.js"></script>
