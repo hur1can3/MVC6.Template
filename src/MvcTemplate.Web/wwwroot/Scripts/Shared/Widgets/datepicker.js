@@ -1,32 +1,33 @@
 Datepicker = {
     init: function () {
-        var lang = document.documentElement.lang;
+        var lang = moment.locale(document.documentElement.lang);
 
-        if ($.fn.datepicker) {
-            $.datepicker.setDefaults(window.cultures.datepicker[lang]);
-            $('.datepicker').datepicker({
-                beforeShow: function (element) {
-                    return !element.readOnly;
-                },
-                onSelect: function (value, data) {
-                    this.blur();
+        if (window.rome) {
+            var dateFormat = moment().locale(lang)._locale._longDateFormat.L;
 
-                    if (value != data.lastVal) {
-                        $(this).change();
-                    }
-                }
+            [].forEach.call(document.querySelectorAll('.datepicker'), function (date) {
+                rome(date, {
+                    styles: {
+                        container: 'rd-container date-container'
+                    },
+                    monthFormat: 'YYYY MMMM',
+                    inputFormat: dateFormat,
+                    dayFormat: 'D',
+                    time: false
+                });
             });
-        }
 
-        if ($.fn.timepicker) {
-            $.timepicker.setDefaults(window.cultures.timepicker[lang]);
-            $('.datetimepicker').datetimepicker({
-                beforeShow: function (element) {
-                    return !element.readOnly;
-                },
-                onSelect: function () {
-                    this.blur();
-                }
+            [].forEach.call(document.querySelectorAll('.datetimepicker'), function (date) {
+                rome(date, {
+                    styles: {
+                        container: 'rd-container datetime-container'
+                    },
+                    inputFormat: dateFormat + ' HH:mm',
+                    monthFormat: 'YYYY MMMM',
+                    timeInterval: 900,
+                    autoClose: false,
+                    dayFormat: 'D'
+                });
             });
         }
     }

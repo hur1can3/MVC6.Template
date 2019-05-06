@@ -30,7 +30,7 @@ gulp.task('less', () => {
 gulp.task('vendor.private.css', () => {
     return gulp
         .src([
-            './wwwroot/content/jqueryui/*.css',
+            './wwwroot/content/rome/*.css',
             './wwwroot/content/bootstrap/*.css',
             './wwwroot/content/fontawesome/*.css',
             './wwwroot/content/mvcgrid/*.css',
@@ -102,8 +102,9 @@ gulp.task('vendor.private.js', () => {
         .src([
             './wwwroot/scripts/jquery/jquery.js',
             './wwwroot/scripts/jquery/**/*.js',
-            './wwwroot/scripts/jqueryui/jquery-ui.js',
-            './wwwroot/scripts/jqueryui/**/*.js',
+            './wwwroot/scripts/moment/moment.js',
+            './wwwroot/scripts/moment/**/*.js',
+            './wwwroot/scripts/rome/*.js',
             './wwwroot/scripts/mvclookup/**/*.js',
             './wwwroot/scripts/mvcgrid/**/*.js',
             './wwwroot/scripts/mvctree/*.js',
