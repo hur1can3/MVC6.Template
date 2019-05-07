@@ -55,11 +55,11 @@ Validator = {
         });
 
         [].forEach.call(document.querySelectorAll('.mvc-lookup-value.input-validation-error'), function (value) {
-            new MvcLookup(value).control.classList.add('input-validation-error');
+            return new MvcLookup(value).control.classList.add('input-validation-error');
         });
 
         [].forEach.call(document.querySelectorAll('form'), function (form) {
-            new Wellidate(form, {
+            return new Wellidate(form, {
                 wasValidatedClass: 'validated'
             });
         });

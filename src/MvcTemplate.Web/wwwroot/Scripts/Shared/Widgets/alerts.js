@@ -11,6 +11,7 @@ Alerts = {
         alerts = [].concat(alerts);
         for (var i = 0; i < alerts.length; i++) {
             var alert = document.getElementById(alerts[i].id) || emptyAlert();
+
             alert.setAttribute('data-timeout', alerts[i].timeout || 0);
             alert.className = 'alert alert-' + getType(alerts[i].type);
             alert.children[0].innerText = alerts[i].message || '';

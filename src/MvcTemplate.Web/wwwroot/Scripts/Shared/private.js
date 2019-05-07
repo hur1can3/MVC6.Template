@@ -14,11 +14,11 @@
 (function () {
     [].forEach.call(document.querySelectorAll('.widget-box.readonly'), function (widget) {
         [].forEach.call(widget.querySelectorAll('.mvc-lookup'), function (element) {
-            new MvcLookup(element, { readonly: true });
+            return new MvcLookup(element, { readonly: true });
         });
 
         [].forEach.call(widget.querySelectorAll('.mvc-tree'), function (element) {
-            new MvcTree(element, { readonly: true });
+            return new MvcTree(element, { readonly: true });
         });
 
         [].forEach.call(widget.querySelectorAll('textarea'), function (textarea) {
@@ -42,11 +42,13 @@
 // Input focus binding
 (function () {
     var invalidInput = document.querySelector('.input-validation-error[type=text]:not([readonly]):not(.datepicker):not(.datetimepicker)');
+
     if (invalidInput) {
         invalidInput.setSelectionRange(invalidInput.value.length, invalidInput.value.length);
         invalidInput.focus();
     } else {
         var input = document.querySelector('input[type=text]:not([readonly]):not(.datepicker):not(.datetimepicker)');
+
         if (input) {
             input.setSelectionRange(input.value.length, input.value.length);
             input.focus();

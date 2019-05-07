@@ -1,6 +1,7 @@
 Navigation = {
     init: function () {
         var navigation = this;
+
         navigation.element = document.querySelector('.navigation');
         navigation.nodes = [].map.call(navigation.element.querySelectorAll('li'), function (node) {
             return node;
