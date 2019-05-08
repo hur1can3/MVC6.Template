@@ -1,12 +1,10 @@
-;(function (global, factory) {
+(function (global, factory) {
    typeof exports === 'object' && typeof module !== 'undefined'
        && typeof require === 'function' ? factory(require('../moment')) :
    typeof define === 'function' && define.amd ? define(['../moment'], factory) :
    factory(global.moment)
 }(this, (function (moment) { 'use strict';
-
-
-    var enGb = moment.updateLocale('en', {
+    var en = moment.updateLocale('en', {
         months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
         monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
         weekdays : 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_'),
@@ -59,6 +57,9 @@
         }
     });
 
-    return enGb;
+    if (document.documentElement.lang == 'en') {
+        moment.locale('en');
+    }
 
+    return en;
 })));

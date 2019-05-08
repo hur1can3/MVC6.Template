@@ -49,3 +49,7 @@ numbro.registerLanguage({
         }
     }
 });
+
+if (document.documentElement.lang == 'en') {
+    numbro.setLanguage('en');
+}

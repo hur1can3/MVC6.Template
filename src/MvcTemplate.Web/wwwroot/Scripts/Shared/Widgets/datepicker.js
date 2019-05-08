@@ -1,8 +1,6 @@
 Datepicker = {
     init: function () {
-        var lang = moment.locale(document.documentElement.lang);
-
-        if (window.rome) {
+        if (typeof rome == 'function') {
             var dateFormat = moment().locale(lang)._locale._longDateFormat.L;
 
             [].forEach.call(document.querySelectorAll('.datepicker'), function (date) {

@@ -48,3 +48,7 @@ numbro.registerLanguage({
         }
     }
 });
+
+if (document.documentElement.lang == 'lt') {
+    numbro.setLanguage('lt');
+}

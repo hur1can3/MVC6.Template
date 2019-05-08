@@ -1,9 +1,5 @@
 Validator = {
     init: function () {
-        if (window.numbro) {
-            numbro.setLanguage(document.documentElement.lang);
-        }
-
         Wellidate.prototype.rules.date.isValid = function () {
             return !this.element.value || moment(this.element.value).isValid();
         };
