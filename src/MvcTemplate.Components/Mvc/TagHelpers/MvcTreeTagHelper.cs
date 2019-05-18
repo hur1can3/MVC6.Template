@@ -30,13 +30,13 @@ namespace MvcTemplate.Components.Mvc
             output.Content.AppendHtml(IdsFor(tree));
             output.Content.AppendHtml(ViewFor(tree));
 
-            output.Attributes.SetAttribute("data-for", For.Name + ".SelectedIds");
-            output.Attributes.SetAttribute("class", (treeClasses + " " + output.Attributes["class"]?.Value).Trim());
+            output.Attributes.SetAttribute("data-for", $"{For.Name}.SelectedIds");
+            output.Attributes.SetAttribute("class", $"{treeClasses} {output.Attributes["class"]?.Value}".Trim());
         }
 
         private TagBuilder IdsFor(MvcTree model)
         {
-            String name = For.Name + ".SelectedIds";
+            String name = $"{For.Name}.SelectedIds";
             TagBuilder ids = new TagBuilder("div");
             ids.AddCssClass("mvc-tree-ids");
 

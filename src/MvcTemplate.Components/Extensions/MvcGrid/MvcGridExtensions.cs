@@ -23,7 +23,7 @@ namespace MvcTemplate.Components.Extensions
 
             return columns
                 .Add(model => GenerateLink(columns.Grid.ViewContext, model, action, iconClass))
-                .Css("action-cell " + action.ToLower());
+                .Css($"action-cell {action.ToLower()}");
         }
 
         public static IGridColumn<T, DateTime> AddDate<T>(this IGridColumnsOf<T> columns, Expression<Func<T, DateTime>> expression)
@@ -86,7 +86,7 @@ namespace MvcTemplate.Components.Extensions
         private static IHtmlContent GenerateLink<T>(ViewContext context, T model, String action, String iconClass)
         {
             TagBuilder link = new TagBuilder("a");
-            link.AddCssClass(iconClass + " " + action.ToLower() + "-action");
+            link.AddCssClass($"{iconClass} {action.ToLower()}-action");
             link.Attributes["href"] = new UrlHelper(context).Action(action, RouteFor(model));
 
             return link;
@@ -105,7 +105,7 @@ namespace MvcTemplate.Components.Extensions
         }
         private static IDictionary<String, Object> RouteFor<T>(T model)
         {
-            PropertyInfo id = typeof(T).GetProperty("Id") ?? throw new Exception(typeof(T).Name + " type does not have an id.");
+            PropertyInfo id = typeof(T).GetProperty("Id") ?? throw new Exception($"{typeof(T).Name} type does not have an id.");
 
             return new Dictionary<String, Object> { ["id"] = id.GetValue(model) };
         }

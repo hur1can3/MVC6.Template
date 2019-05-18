@@ -15,11 +15,11 @@ namespace MvcTemplate.Rename
 
         public static void Main()
         {
+            Console.Write("Enter root namespace name: ");
+            while ((Project = Console.ReadLine().Trim()) == "") { }
+
             Console.Write("Enter new site admin user password (32 symbols max): ");
             while ((Password = Console.ReadLine().Trim()) == "") { }
-
-            Console.WriteLine("Enter root namespace name: ");
-            while ((Project = Console.ReadLine().Trim()) == "") { }
 
             Int32 port = new Random().Next(1000, 19175);
             Int32 sslPort = new Random().Next(44300, 44400);
@@ -34,11 +34,12 @@ namespace MvcTemplate.Rename
             Regex newLine = new Regex("\\r?\\n");
 
             Console.WriteLine();
+            Console.WriteLine();
 
             for (Int32 i = 0; i < files.Length; i++)
             {
                 Console.CursorTop -= 1;
-                Console.WriteLine(String.Format("Renaming content...     {0}%", ((Int32)(((i + 1) / files.Length) * 100)).ToString().PadLeft(3)));
+                Console.WriteLine($"Renaming content...     {((i + 1) * 100 / files.Length).ToString().PadLeft(3)}%");
 
                 String extension = Path.GetExtension(files[i]);
                 if (extension == ".cs" ||
@@ -52,25 +53,23 @@ namespace MvcTemplate.Rename
                     String content = File.ReadAllText(files[i]);
                     content = content.Replace(TemplateName, Project);
                     content = content.Replace(TemplateDbName, Project);
-                    content = sslConfig.Replace(content, "${1}" + sslPort);
+                    content = sslConfig.Replace(content, $"${{1}}{sslPort}");
                     content = newLine.Replace(content, Environment.NewLine);
                     content = version.Replace(content, "<Version>0.1.0</Version>");
-                    content = applicationUrl.Replace(content, "${1}" + port + "${2}");
-                    content = aspNetSslConfig.Replace(content, "${1}\"" + sslPort + "\"");
-                    content = adminPassword.Replace(content, "Passhash = \"" + passhash + "\",");
+                    content = applicationUrl.Replace(content, $"${{1}}{port}${{2}}");
+                    content = aspNetSslConfig.Replace(content, $"${{1}}\"{sslPort}\"");
+                    content = adminPassword.Replace(content, $"Passhash = \"{passhash}\",");
 
                     File.WriteAllText(files[i], content, Encoding.UTF8);
                 }
             }
 
-            Console.WriteLine();
-
-            String[] directories = Directory.GetDirectories(Directory.GetCurrentDirectory(), "*" + TemplateName + "*", SearchOption.AllDirectories);
+            String[] directories = Directory.GetDirectories(Directory.GetCurrentDirectory(), $"*{TemplateName}*", SearchOption.AllDirectories);
             directories = directories.Where(directory => !directory.StartsWith(Path.Combine(Directory.GetCurrentDirectory(), "tools"))).ToArray();
             for (Int32 i = 0; i < directories.Length; i++)
             {
                 Console.CursorLeft = 0;
-                Console.Write(String.Format("Renaming directories... {0}%", ((Int32)(((i + 1) / directories.Length) * 100)).ToString().PadLeft(3)));
+                Console.Write($"Renaming directories... {((i + 1) * 100 / directories.Length).ToString().PadLeft(3)}%");
 
                 String projectDir = Path.Combine(Directory.GetParent(directories[i]).FullName, directories[i].Split('\\').Last().Replace(TemplateName, Project));
                 Directory.Move(directories[i], projectDir);
@@ -78,17 +77,18 @@ namespace MvcTemplate.Rename
 
             Console.WriteLine();
 
-            files = Directory.GetFiles(Directory.GetCurrentDirectory(), "*" + TemplateName + "*", SearchOption.AllDirectories);
+            files = Directory.GetFiles(Directory.GetCurrentDirectory(), $"*{TemplateName}*", SearchOption.AllDirectories);
             files = files.Where(file => !file.Contains($"{TemplateName}.Rename.cmd")).ToArray();
             for (Int32 i = 0; i < files.Length; i++)
             {
                 Console.CursorLeft = 0;
-                Console.Write(String.Format("Renaming files...       {0}%", ((Int32)(((i + 1) / files.Length) * 100)).ToString().PadLeft(3)));
+                Console.Write($"Renaming files...       {((i + 1) * 100  / files.Length).ToString().PadLeft(3)}%");
 
                 String projectFile = Path.Combine(Directory.GetParent(files[i]).FullName, files[i].Split('\\').Last().Replace(TemplateName, Project));
                 File.Move(files[i], projectFile);
             }
 
+            Console.WriteLine();
             Console.WriteLine();
         }
     }

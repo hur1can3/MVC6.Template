@@ -38,7 +38,7 @@ namespace MvcTemplate.Components.Security
 
         public Boolean IsGrantedFor(Int32? accountId, String area, String controller, String action)
         {
-            String permission = (area + "/" + controller + "/" + action).ToLower();
+            String permission = $"{area}/{controller}/{action}".ToLower();
             if (!Required.ContainsKey(permission))
                 return true;
 

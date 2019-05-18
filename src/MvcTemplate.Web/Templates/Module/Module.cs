@@ -24,7 +24,7 @@ namespace MvcTemplate.Web.Templates
 
         public override void Run()
         {
-            String path = (Area != null ? Area + "/" : "") + Controller;
+            String path = $"{(Area != null ? $"{Area}/" : "")}{Controller}";
             Dictionary<String, GennyScaffoldingResult> results = new Dictionary<String, GennyScaffoldingResult>();
 
             results.Add($"../MvcTemplate.Resources/Resources/Views/{path}/{Model}View.json", Scaffold("Resources/View"));
@@ -79,7 +79,7 @@ namespace MvcTemplate.Web.Templates
 
         private GennyScaffoldingResult Scaffold(String path)
         {
-            return Scaffolder.Scaffold("Templates/Module/" + path, new ModuleModel(Model, Controller, Area));
+            return Scaffolder.Scaffold($"Templates/Module/{path}", new ModuleModel(Model, Controller, Area));
         }
     }
 }

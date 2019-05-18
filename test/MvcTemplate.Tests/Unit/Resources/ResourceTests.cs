@@ -322,7 +322,7 @@ namespace MvcTemplate.Resources.Tests
         [Fact]
         public void ForProperty_FromRelation()
         {
-            String actual = Resource.ForProperty(typeof(Object), nameof(Account) + nameof(Account.Username));
+            String actual = Resource.ForProperty(typeof(Object), $"{nameof(Account)}{nameof(Account.Username)}");
             String expected = "Username";
 
             Assert.Equal(expected, actual);
@@ -331,7 +331,7 @@ namespace MvcTemplate.Resources.Tests
         [Fact]
         public void ForProperty_FromMultipleRelations()
         {
-            String actual = Resource.ForProperty(typeof(RoleView), nameof(Account) + nameof(Role) + nameof(Account) + nameof(Account.Username));
+            String actual = Resource.ForProperty(typeof(RoleView), $"{nameof(Account)}{nameof(Role)}{nameof(Account)}{nameof(Account.Username)}");
             String expected = "Username";
 
             Assert.Equal(expected, actual);

@@ -12,14 +12,14 @@ namespace MvcTemplate.Tests
         {
             return new Account
             {
-                Username = "Username" + id,
-                Passhash = "Passhash" + id,
+                Username = $"Username{id}",
+                Passhash = $"Passhash{id}",
 
-                Email = id + "@tests.com",
+                Email = $"{id}@tests.com",
 
                 IsLocked = false,
 
-                RecoveryToken = "Token" + id,
+                RecoveryToken = $"Token{id}",
                 RecoveryTokenExpirationDate = DateTime.Now.AddMinutes(5),
 
                 Role = CreateRole(id)
@@ -31,12 +31,12 @@ namespace MvcTemplate.Tests
             {
                 Id = id,
 
-                Username = "Username" + id,
-                Email = id + "@tests.com",
+                Username = $"Username{id}",
+                Email = $"{id}@tests.com",
 
                 IsLocked = true,
 
-                RoleTitle = "Title" + id
+                RoleTitle = $"Title{id}"
             };
         }
         public static AccountEditView CreateAccountEditView(Int32 id = 0)
@@ -45,8 +45,8 @@ namespace MvcTemplate.Tests
             {
                 Id = id,
 
-                Username = "Username" + id,
-                Email = id + "@tests.com",
+                Username = $"Username{id}",
+                Email = $"{id}@tests.com",
 
                 IsLocked = true,
 
@@ -57,10 +57,10 @@ namespace MvcTemplate.Tests
         {
             return new AccountCreateView
             {
-                Username = "Username" + id,
-                Password = "Password" + id,
+                Username = $"Username{id}",
+                Password = $"Password{id}",
 
-                Email = id + "@tests.com",
+                Email = $"{id}@tests.com",
 
                 RoleId = id
             };
@@ -70,23 +70,23 @@ namespace MvcTemplate.Tests
         {
             return new AccountLoginView
             {
-                Username = "Username" + id,
-                Password = "Password" + id
+                Username = $"Username{id}",
+                Password = $"Password{id}"
             };
         }
         public static AccountResetView CreateAccountResetView(Int32 id = 0)
         {
             return new AccountResetView
             {
-                Token = "Token" + id,
-                NewPassword = "NewPassword" + id
+                Token = $"Token{id}",
+                NewPassword = $"NewPassword{id}"
             };
         }
         public static AccountRecoveryView CreateAccountRecoveryView(Int32 id = 0)
         {
             return new AccountRecoveryView
             {
-                Email = id + "@tests.com"
+                Email = $"{id}@tests.com"
             };
         }
 
@@ -96,11 +96,11 @@ namespace MvcTemplate.Tests
             {
                 Id = id,
 
-                Email = id + "@tests.com",
-                Username = "Username" + id,
+                Email = $"{id}@tests.com",
+                Username = $"Username{id}",
 
-                Password = "Password" + id,
-                NewPassword = "NewPassword" + id
+                Password = $"Password{id}",
+                NewPassword = $"NewPassword{id}"
 
             };
         }
@@ -110,7 +110,7 @@ namespace MvcTemplate.Tests
             {
                 Id = id,
 
-                Password = "Password" + id
+                Password = $"Password{id}"
             };
         }
 
@@ -118,7 +118,7 @@ namespace MvcTemplate.Tests
         {
             return new Role
             {
-                Title = "Title" + id,
+                Title = $"Title{id}",
 
                 Accounts = new List<Account>(),
                 Permissions = new List<RolePermission>()
@@ -130,7 +130,7 @@ namespace MvcTemplate.Tests
             {
                 Id = id,
 
-                Title = "Title" + id
+                Title = $"Title{id}"
             };
         }
 
@@ -140,9 +140,9 @@ namespace MvcTemplate.Tests
             {
                 Id = id,
 
-                Area = "Area" + id,
-                Action = "Action" + id,
-                Controller = "Controller" + id
+                Area = $"Area{id}",
+                Action = $"Action{id}",
+                Controller = $"Controller{id}"
             };
         }
         public static RolePermission CreateRolePermission(Int32 id = 0)
@@ -165,7 +165,7 @@ namespace MvcTemplate.Tests
         {
             return new TestModel
             {
-                Title = "Title" + id
+                Title = $"Title{id}"
             };
         }
 

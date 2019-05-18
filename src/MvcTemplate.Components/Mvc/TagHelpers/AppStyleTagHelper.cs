@@ -43,7 +43,7 @@ namespace MvcTemplate.Components.Mvc
                 Styles[path] = null;
 
                 if (ScriptsAvailable(path))
-                    Styles[path] = new UrlHelper(ViewContext).Content("~/content/application/" + path);
+                    Styles[path] = new UrlHelper(ViewContext).Content($"~/content/application/{path}");
             }
 
             if (Styles[path] == null)
@@ -54,14 +54,14 @@ namespace MvcTemplate.Components.Mvc
 
         private Boolean ScriptsAvailable(String path)
         {
-            return File.Exists(Path.Combine(Environment.WebRootPath, "content/application/" + path));
+            return File.Exists(Path.Combine(Environment.WebRootPath, $"content/application/{path}"));
         }
         private String FormPath()
         {
             RouteValueDictionary route = ViewContext.RouteData.Values;
             String extension = Environment.IsDevelopment() ? ".css" : ".min.css";
 
-            return ((route["Area"] == null ? null : route["Area"] + "/") + route["controller"] + "/" + Action + extension).ToLower();
+            return $"{(route["Area"] == null ? null : $"{route["Area"]}/")}{route["controller"]}/{Action}{extension}".ToLower();
         }
     }
 }

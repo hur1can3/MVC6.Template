@@ -56,7 +56,7 @@ namespace MvcTemplate.Components.Logging
             {
                 log.AppendLine($"    {exception.GetType()}: {exception.Message}");
                 foreach (String line in exception.StackTrace.Split('\n'))
-                    log.AppendLine("     " + line.TrimEnd('\r'));
+                    log.AppendLine($"     {line.TrimEnd('\r')}");
 
                 exception = exception.InnerException;
             }

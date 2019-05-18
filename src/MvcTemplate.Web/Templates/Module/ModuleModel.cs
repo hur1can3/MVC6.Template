@@ -54,13 +54,13 @@ namespace MvcTemplate.Web.Templates
             Validator = $"{Model}Validator";
 
             ControllerTestsNamespace = $"MvcTemplate.Controllers.{(!String.IsNullOrWhiteSpace(area) ? $"{area}." : "")}Tests";
-            ControllerNamespace = "MvcTemplate.Controllers" + (!String.IsNullOrWhiteSpace(area) ? $".{area}" : "");
+            ControllerNamespace = $"MvcTemplate.Controllers{(!String.IsNullOrWhiteSpace(area) ? $".{area}" : "")}";
             ControllerTests = $"{controller}ControllerTests";
             Controller = $"{controller}Controller";
 
             Area = area;
 
-            Type type = typeof(BaseModel).Assembly.GetType("MvcTemplate.Objects." + model) ?? typeof(BaseModel);
+            Type type = typeof(BaseModel).Assembly.GetType($"MvcTemplate.Objects.{model}") ?? typeof(BaseModel);
             PropertyInfo[] properties = type.GetProperties();
 
             AllProperties = properties.Where(property => property.PropertyType.Namespace == "System").ToArray();

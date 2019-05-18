@@ -21,7 +21,7 @@ namespace MvcTemplate.Components.Mvc
             if (output.Attributes["class"] == null)
                 output.Attributes.Insert(0, new TagHelperAttribute("class", "form-control"));
             else
-                output.Attributes.SetAttribute("class", "form-control " + output.Attributes["class"].Value);
+                output.Attributes.SetAttribute("class", $"form-control {output.Attributes["class"].Value}");
         }
     }
 }

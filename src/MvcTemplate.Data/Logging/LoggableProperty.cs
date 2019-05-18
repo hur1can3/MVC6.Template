@@ -22,9 +22,9 @@ namespace MvcTemplate.Data.Logging
         public override String ToString()
         {
             if (IsModified)
-                return Property + ": " + Format(NewValue) + " => " + Format(OldValue);
+                return $"{Property}: {Format(NewValue)} => {Format(OldValue)}";
 
-            return Property + ": " + Format(NewValue);
+            return $"{Property}: {Format(NewValue)}";
         }
 
         private String Format(Object value)
@@ -33,7 +33,7 @@ namespace MvcTemplate.Data.Logging
                 return "null";
 
             if (value is DateTime date)
-                return "\"" + date.ToString("yyyy-MM-dd HH:mm:ss") + "\"";
+                return $"\"{date:yyyy-MM-dd HH:mm:ss}\"";
 
             return JsonConvert.ToString(value);
         }

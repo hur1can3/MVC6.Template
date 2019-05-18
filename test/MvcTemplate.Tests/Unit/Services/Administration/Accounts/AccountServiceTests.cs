@@ -31,7 +31,7 @@ namespace MvcTemplate.Services.Tests
             hasher = Substitute.For<IHasher>();
             httpContext = new DefaultHttpContext();
             service = new AccountService(new UnitOfWork(new TestingContext(context)), hasher);
-            hasher.HashPassword(Arg.Any<String>()).Returns(info => info.Arg<String>() + "Hashed");
+            hasher.HashPassword(Arg.Any<String>()).Returns(info => $"{info.Arg<String>()}Hashed");
 
             context.Add(account = ObjectsFactory.CreateAccount());
             context.SaveChanges();
@@ -230,9 +230,9 @@ namespace MvcTemplate.Services.Tests
         {
             AccountEditView view = ObjectsFactory.CreateAccountEditView(account.Id);
             view.IsLocked = account.IsLocked = !account.IsLocked;
-            view.Username = account.Username + "Test";
+            view.Username = $"{account.Username}Test";
             view.RoleId = account.RoleId = null;
-            view.Email = account.Email + "s";
+            view.Email = $"{account.Email}s";
 
             service.Edit(view);
 

@@ -17,7 +17,7 @@ namespace MvcTemplate.Resources
         static Resource()
         {
             Resources = new ConcurrentDictionary<String, ResourceSet>();
-            String path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/Resources";
+            String path = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}/Resources";
 
             foreach (String resource in Directory.GetFiles(path, "*.json", SearchOption.AllDirectories))
             {
@@ -67,12 +67,12 @@ namespace MvcTemplate.Resources
             String action = path["action"] as String;
             String controller = path["controller"] as String;
 
-            return ForPage(area + controller + action);
+            return ForPage($"{area}{controller}{action}");
         }
 
         public static String ForSiteMap(String area, String controller, String action)
         {
-            return Localized("SiteMap", "Titles", area + controller + action);
+            return Localized("SiteMap", "Titles", $"{area}{controller}{action}");
         }
 
         public static String ForPermission(String area)
@@ -81,11 +81,11 @@ namespace MvcTemplate.Resources
         }
         public static String ForPermission(String area, String controller)
         {
-            return Localized("Permission", "Controllers", area + controller);
+            return Localized("Permission", "Controllers", $"{area}{controller}");
         }
         public static String ForPermission(String area, String controller, String action)
         {
-            return Localized("Permission", "Actions", area + controller + action);
+            return Localized("Permission", "Actions", $"{area}{controller}{action}");
         }
 
         public static String ForProperty<TView, TProperty>(Expression<Func<TView, TProperty>> expression)
@@ -104,7 +104,7 @@ namespace MvcTemplate.Resources
             {
                 for (Int32 viewSize = 1; viewSize < properties.Length - skipped; viewSize++)
                 {
-                    String relation = String.Concat(properties.Skip(skipped).Take(viewSize)) + "View";
+                    String relation = $"{String.Concat(properties.Skip(skipped).Take(viewSize))}View";
                     String property = String.Concat(properties.Skip(viewSize + skipped));
 
                     if (Localized(relation, "Titles", property) is String relationTitle)
