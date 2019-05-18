@@ -25,11 +25,6 @@
         "name": "English",
         "culture": "en-GB",
         "abbreviation": "en"
-      },
-      {
-        "name": "Lietuvių",
-        "culture": "lt-LT",
-        "abbreviation": "lt"
       }
     ]
   },
