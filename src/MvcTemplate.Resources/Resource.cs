@@ -19,13 +19,16 @@ namespace MvcTemplate.Resources
             Resources = new ConcurrentDictionary<String, ResourceSet>();
             String path = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}/Resources";
 
-            foreach (String resource in Directory.GetFiles(path, "*.json", SearchOption.AllDirectories))
+            if (Directory.Exists(path))
             {
-                String type = Path.GetFileNameWithoutExtension(resource);
-                String language = Path.GetExtension(type).TrimStart('.');
-                type = Path.GetFileNameWithoutExtension(type);
+                foreach (String resource in Directory.GetFiles(path, "*.json", SearchOption.AllDirectories))
+                {
+                    String type = Path.GetFileNameWithoutExtension(resource);
+                    String language = Path.GetExtension(type).TrimStart('.');
+                    type = Path.GetFileNameWithoutExtension(type);
 
-                Set(type).Override(language, File.ReadAllText(resource));
+                    Set(type).Override(language, File.ReadAllText(resource));
+                }
             }
         }
 
