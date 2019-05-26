@@ -20,8 +20,8 @@ namespace MvcTemplate.Components.Mvc
             }
             set
             {
-                Thread.CurrentThread.CurrentCulture = value.Culture;
-                Thread.CurrentThread.CurrentUICulture = value.Culture;
+                CultureInfo.CurrentCulture = value.Culture;
+                CultureInfo.CurrentUICulture = value.Culture;
             }
         }
         public Language[] Supported

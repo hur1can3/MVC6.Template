@@ -33,7 +33,7 @@ namespace MvcTemplate.Components.Mvc.Tests
         [Fact]
         public void Default_Language()
         {
-            Thread.CurrentThread.CurrentUICulture = languages["lt"].Culture;
+            CultureInfo.CurrentUICulture = languages["lt"].Culture;
 
             Language actual = languages.Default;
             Language expected = languages["en"];
@@ -48,7 +48,7 @@ namespace MvcTemplate.Components.Mvc.Tests
         [Fact]
         public void Current_GetsLanguage()
         {
-            Thread.CurrentThread.CurrentUICulture = languages["en"].Culture;
+            CultureInfo.CurrentUICulture = languages["en"].Culture;
 
             Language actual = languages.Current;
             Language expected = languages["en"];
