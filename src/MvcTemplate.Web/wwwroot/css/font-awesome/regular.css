@@ -1,13 +1,12 @@
 @font-face {
   font-family: 'Font Awesome 5 Free';
   font-style: normal;
-  font-weight: 900;
+  font-weight: 400;
   font-display: auto;
-  src: url("../FontAwesome/Fonts/fa-solid-900.woff") format("woff");
+  src: url("../font-awesome/fonts/fa-regular-400.woff") format("woff");
 }
 
-.fa,
-.fas {
+.far {
   font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
+  font-weight: 400;
 }

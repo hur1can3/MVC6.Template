@@ -6,11 +6,11 @@ const uglifyjs = require('gulp-uglify');
 const uglifycss = require('gulp-uglifycss');
 
 gulp.task('clean.css', (callback) => {
-    return rimraf('./wwwroot/content/**/*.min.css', callback);
+    return rimraf('./wwwroot/css/**/*.min.css', callback);
 });
 
 gulp.task('clean.js', (callback) => {
-    return rimraf('./wwwroot/scripts/**/*.min.js', callback);
+    return rimraf('./wwwroot/js/**/*.min.js', callback);
 });
 
 gulp.task('clean', gulp.series([
@@ -20,7 +20,7 @@ gulp.task('clean', gulp.series([
 
 gulp.task('less', () => {
     return gulp
-        .src('./wwwroot/content/**/*.less')
+        .src('./wwwroot/css/**/*.less')
         .pipe(less())
         .pipe(gulp.dest(file => {
             return file.base;
@@ -30,14 +30,14 @@ gulp.task('less', () => {
 gulp.task('vendor.private.css', () => {
     return gulp
         .src([
-            './wwwroot/content/rome/*.css',
-            './wwwroot/content/bootstrap/*.css',
-            './wwwroot/content/fontawesome/*.css',
-            './wwwroot/content/mvcgrid/*.css',
-            './wwwroot/content/mvctree/*.css',
-            './wwwroot/content/mvclookup/*.css'
+            './wwwroot/css/rome/*.css',
+            './wwwroot/css/bootstrap/*.css',
+            './wwwroot/css/font-awesome/*.css',
+            './wwwroot/css/mvc-grid/*.css',
+            './wwwroot/css/mvc-tree/*.css',
+            './wwwroot/css/mvc-lookup/*.css'
         ])
-        .pipe(concat('./wwwroot/content/Private/vendor.min.css'))
+        .pipe(concat('./wwwroot/css/private/vendor.min.css'))
         .pipe(uglifycss())
         .pipe(gulp.dest('.'));
 });
@@ -45,16 +45,16 @@ gulp.task('vendor.private.css', () => {
 gulp.task('site.private.css', () => {
     return gulp
         .src([
-            './wwwroot/content/shared/alerts.css',
-            './wwwroot/content/shared/content.css',
-            './wwwroot/content/shared/header.css',
-            './wwwroot/content/shared/navigation.css',
-            './wwwroot/content/shared/overrides.css',
-            './wwwroot/content/shared/table.css',
-            './wwwroot/content/shared/widget-box.css',
-            './wwwroot/content/shared/private.css'
+            './wwwroot/css/shared/alerts.css',
+            './wwwroot/css/shared/content.css',
+            './wwwroot/css/shared/header.css',
+            './wwwroot/css/shared/navigation.css',
+            './wwwroot/css/shared/overrides.css',
+            './wwwroot/css/shared/table.css',
+            './wwwroot/css/shared/widget-box.css',
+            './wwwroot/css/shared/private.css'
         ])
-        .pipe(concat('./wwwroot/content/Private/site.min.css'))
+        .pipe(concat('./wwwroot/css/private/site.min.css'))
         .pipe(uglifycss())
         .pipe(gulp.dest('.'));
 });
@@ -62,10 +62,10 @@ gulp.task('site.private.css', () => {
 gulp.task('vendor.public.css', () => {
     return gulp
         .src([
-            './wwwroot/content/bootstrap/*.css',
-            './wwwroot/content/fontawesome/*.css'
+            './wwwroot/css/bootstrap/*.css',
+            './wwwroot/css/font-awesome/*.css'
         ])
-        .pipe(concat('./wwwroot/content/Public/vendor.min.css'))
+        .pipe(concat('./wwwroot/css/public/vendor.min.css'))
         .pipe(uglifycss())
         .pipe(gulp.dest('.'));
 });
@@ -73,12 +73,12 @@ gulp.task('vendor.public.css', () => {
 gulp.task('site.public.css', () => {
     return gulp
         .src([
-            './wwwroot/content/shared/alerts.css',
-            './wwwroot/content/shared/content.css',
-            './wwwroot/content/shared/overrides.css',
-            './wwwroot/content/shared/public.css'
+            './wwwroot/css/shared/alerts.css',
+            './wwwroot/css/shared/content.css',
+            './wwwroot/css/shared/overrides.css',
+            './wwwroot/css/shared/public.css'
         ])
-        .pipe(concat('./wwwroot/content/Public/site.min.css'))
+        .pipe(concat('./wwwroot/css/public/site.min.css'))
         .pipe(uglifycss())
         .pipe(gulp.dest('.'));
 });
@@ -86,8 +86,8 @@ gulp.task('site.public.css', () => {
 gulp.task('app.css', () => {
     return gulp
         .src([
-            './wwwroot/content/application/**/*.css',
-            '!./wwwroot/content/application/**/*.min.css'
+            './wwwroot/css/application/**/*.css',
+            '!./wwwroot/css/application/**/*.min.css'
         ])
         .pipe(uglifycss())
         .pipe(gulp.dest(file => {
@@ -100,19 +100,19 @@ gulp.task('app.css', () => {
 gulp.task('vendor.private.js', () => {
     return gulp
         .src([
-            './wwwroot/scripts/numbro/numbro.js',
-            './wwwroot/scripts/numbro/**/*.js',
-            './wwwroot/scripts/moment/moment.js',
-            './wwwroot/scripts/moment/**/*.js',
-            './wwwroot/scripts/rome/*.js',
-            './wwwroot/scripts/mvclookup/**/*.js',
-            './wwwroot/scripts/mvcgrid/**/*.js',
-            './wwwroot/scripts/mvctree/*.js',
-            './wwwroot/scripts/bootstrap/*.js',
-            './wwwroot/scripts/wellidate/*.js',
-            './wwwroot/scripts/shared/widgets/*.js'
+            './wwwroot/js/numbro/numbro.js',
+            './wwwroot/js/numbro/**/*.js',
+            './wwwroot/js/moment/moment.js',
+            './wwwroot/js/moment/**/*.js',
+            './wwwroot/js/rome/*.js',
+            './wwwroot/js/mvc-lookup/**/*.js',
+            './wwwroot/js/mvc-grid/**/*.js',
+            './wwwroot/js/mvc-tree/*.js',
+            './wwwroot/js/bootstrap/*.js',
+            './wwwroot/js/wellidate/*.js',
+            './wwwroot/js/shared/widgets/*.js'
         ])
-        .pipe(concat('./wwwroot/scripts/Private/vendor.min.js'))
+        .pipe(concat('./wwwroot/js/private/vendor.min.js'))
         .pipe(uglifyjs({
             output: {
                 comments: /^!/
@@ -124,9 +124,9 @@ gulp.task('vendor.private.js', () => {
 gulp.task('site.private.js', () => {
     return gulp
         .src([
-            './wwwroot/scripts/shared/private.js'
+            './wwwroot/js/shared/private.js'
         ])
-        .pipe(concat('./wwwroot/scripts/Private/site.min.js'))
+        .pipe(concat('./wwwroot/js/private/site.min.js'))
         .pipe(uglifyjs({
             output: {
                 comments: /^!/
@@ -138,12 +138,12 @@ gulp.task('site.private.js', () => {
 gulp.task('vendor.public.js', () => {
     return gulp
         .src([
-            './wwwroot/scripts/bootstrap/*.js',
-            './wwwroot/scripts/wellidate/*.js',
-            './wwwroot/scripts/shared/widgets/validator.js',
-            './wwwroot/scripts/shared/widgets/alerts.js'
+            './wwwroot/js/bootstrap/*.js',
+            './wwwroot/js/wellidate/*.js',
+            './wwwroot/js/shared/widgets/validator.js',
+            './wwwroot/js/shared/widgets/alerts.js'
         ])
-        .pipe(concat('./wwwroot/scripts/Public/vendor.min.js'))
+        .pipe(concat('./wwwroot/js/public/vendor.min.js'))
         .pipe(uglifyjs({
             output: {
                 comments: /^!/
@@ -155,9 +155,9 @@ gulp.task('vendor.public.js', () => {
 gulp.task('site.public.js', () => {
     return gulp
         .src([
-            './wwwroot/scripts/shared/public.js'
+            './wwwroot/js/shared/public.js'
         ])
-        .pipe(concat('./wwwroot/scripts/Public/site.min.js'))
+        .pipe(concat('./wwwroot/js/public/site.min.js'))
         .pipe(uglifyjs({
             output: {
                 comments: /^!/
@@ -169,8 +169,8 @@ gulp.task('site.public.js', () => {
 gulp.task('app.js', () => {
     return gulp
         .src([
-            './wwwroot/scripts/application/**/*.js',
-            '!./wwwroot/scripts/application/**/*.min.js'
+            './wwwroot/js/application/**/*.js',
+            '!./wwwroot/js/application/**/*.min.js'
         ])
         .pipe(uglifyjs({
             output: {
@@ -185,7 +185,7 @@ gulp.task('app.js', () => {
 });
 
 gulp.task('watch', () => {
-    gulp.watch('./wwwroot/content/**/*.less', gulp.series([
+    gulp.watch('./wwwroot/css/**/*.less', gulp.series([
         'less'
     ]));
 });

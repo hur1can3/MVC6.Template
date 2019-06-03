@@ -11,20 +11,20 @@
     <title>@(ViewBag.Title ?? Resource.ForPage(ViewContext.RouteData.Values))</title>
 
     <environment names="Development">
-        <link rel="stylesheet" href="~/Content/Bootstrap/bootstrap.css">
-        <link rel="stylesheet" href="~/Content/FontAwesome/solid.css">
-        <link rel="stylesheet" href="~/Content/FontAwesome/regular.css">
-        <link rel="stylesheet" href="~/Content/FontAwesome/fontawesome.css">
-        <link rel="stylesheet" href="~/Content/Shared/alerts.css">
-        <link rel="stylesheet" href="~/Content/Shared/content.css">
-        <link rel="stylesheet" href="~/Content/Shared/overrides.css">
-        <link rel="stylesheet" href="~/Content/Shared/public.css">
+        <link rel="stylesheet" href="~/css/bootstrap/bootstrap.css">
+        <link rel="stylesheet" href="~/css/font-awesome/solid.css">
+        <link rel="stylesheet" href="~/css/font-awesome/regular.css">
+        <link rel="stylesheet" href="~/css/font-awesome/fontawesome.css">
+        <link rel="stylesheet" href="~/css/shared/alerts.css">
+        <link rel="stylesheet" href="~/css/shared/content.css">
+        <link rel="stylesheet" href="~/css/shared/overrides.css">
+        <link rel="stylesheet" href="~/css/shared/public.css">
         <link rel="stylesheet" action="shared">
         <link rel="stylesheet" action="@action">
     </environment>
     <environment names="Staging,Production">
-        <link asp-append-version="true" rel="stylesheet" href="~/content/public/vendor.min.css">
-        <link asp-append-version="true" rel="stylesheet" href="~/content/public/site.min.css">
+        <link asp-append-version="true" rel="stylesheet" href="~/css/public/vendor.min.css">
+        <link asp-append-version="true" rel="stylesheet" href="~/css/public/site.min.css">
         <link asp-append-version="true" rel="stylesheet" action="shared">
         <link asp-append-version="true" rel="stylesheet" action="@action">
     </environment>
@@ -35,17 +35,17 @@
     </div>
 
     <environment names="Development">
-        <script src="~/Scripts/Bootstrap/bootstrap-native.js"></script>
-        <script src="~/Scripts/Wellidate/wellidate.js"></script>
-        <script src="~/Scripts/Shared/Widgets/alerts.js"></script>
-        <script src="~/Scripts/Shared/Widgets/validator.js"></script>
+        <script src="~/js/bootstrap/bootstrap-native.js"></script>
+        <script src="~/js/wellidate/wellidate.js"></script>
+        <script src="~/js/shared/widgets/alerts.js"></script>
+        <script src="~/js/shared/widgets/validator.js"></script>
         <script action="shared"></script>
         <script action="@action"></script>
-        <script src="~/Scripts/Shared/public.js"></script>
+        <script src="~/js/shared/public.js"></script>
     </environment>
     <environment names="Staging,Production">
-        <script asp-append-version="true" src="~/scripts/public/vendor.min.js"></script>
-        <script asp-append-version="true" src="~/scripts/public/site.min.js"></script>
+        <script asp-append-version="true" src="~/js/public/vendor.min.js"></script>
+        <script asp-append-version="true" src="~/js/public/site.min.js"></script>
     </environment>
 </body>
 </html>

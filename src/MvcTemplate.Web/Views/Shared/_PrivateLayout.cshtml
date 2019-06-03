@@ -11,28 +11,28 @@
     <title>@(ViewBag.Title ?? Resource.ForPage(ViewContext.RouteData.Values))</title>
 
     <environment names="Development">
-        <link rel="stylesheet" href="~/Content/Rome/rome.css">
-        <link rel="stylesheet" href="~/Content/Bootstrap/bootstrap.css">
-        <link rel="stylesheet" href="~/Content/FontAwesome/solid.css">
-        <link rel="stylesheet" href="~/Content/FontAwesome/regular.css">
-        <link rel="stylesheet" href="~/Content/FontAwesome/fontawesome.css">
-        <link rel="stylesheet" href="~/Content/MvcLookup/mvc-lookup.css">
-        <link rel="stylesheet" href="~/Content/MvcGrid/mvc-grid.css">
-        <link rel="stylesheet" href="~/Content/MvcTree/mvc-tree.css">
-        <link rel="stylesheet" href="~/Content/Shared/alerts.css">
-        <link rel="stylesheet" href="~/Content/Shared/content.css">
-        <link rel="stylesheet" href="~/Content/Shared/header.css">
-        <link rel="stylesheet" href="~/Content/Shared/navigation.css">
-        <link rel="stylesheet" href="~/Content/Shared/overrides.css">
-        <link rel="stylesheet" href="~/Content/Shared/private.css">
-        <link rel="stylesheet" href="~/Content/Shared/table.css">
-        <link rel="stylesheet" href="~/Content/Shared/widget-box.css">
+        <link rel="stylesheet" href="~/css/rome/rome.css">
+        <link rel="stylesheet" href="~/css/bootstrap/bootstrap.css">
+        <link rel="stylesheet" href="~/css/font-awesome/solid.css">
+        <link rel="stylesheet" href="~/css/font-awesome/regular.css">
+        <link rel="stylesheet" href="~/css/font-awesome/fontawesome.css">
+        <link rel="stylesheet" href="~/css/mvc-lookup/mvc-lookup.css">
+        <link rel="stylesheet" href="~/css/mvc-grid/mvc-grid.css">
+        <link rel="stylesheet" href="~/css/mvc-tree/mvc-tree.css">
+        <link rel="stylesheet" href="~/css/shared/alerts.css">
+        <link rel="stylesheet" href="~/css/shared/content.css">
+        <link rel="stylesheet" href="~/css/shared/header.css">
+        <link rel="stylesheet" href="~/css/shared/navigation.css">
+        <link rel="stylesheet" href="~/css/shared/overrides.css">
+        <link rel="stylesheet" href="~/css/shared/private.css">
+        <link rel="stylesheet" href="~/css/shared/table.css">
+        <link rel="stylesheet" href="~/css/shared/widget-box.css">
         <link rel="stylesheet" action="shared">
         <link rel="stylesheet" action="@action">
     </environment>
     <environment names="Staging,Production">
-        <link asp-append-version="true" rel="stylesheet" href="~/content/private/vendor.min.css">
-        <link asp-append-version="true" rel="stylesheet" href="~/content/private/site.min.css">
+        <link asp-append-version="true" rel="stylesheet" href="~/css/private/vendor.min.css">
+        <link asp-append-version="true" rel="stylesheet" href="~/css/private/site.min.css">
         <link asp-append-version="true" action="shared" rel="stylesheet">
         <link asp-append-version="true" action="@action" rel="stylesheet">
     </environment>
@@ -60,7 +60,7 @@
                     @foreach (Language language in languages.Supported)
                     {
                         <a class="dropdown-item" href="@Url.Action("Index", "Home", new { area = "", language = language == languages.Default ? "" : language.Abbreviation })">
-                            <img src="@Url.Content($"~/Images/Flags/{language.Abbreviation}.gif")" width="16" height="11" alt="">
+                            <img src="@Url.Content($"~/img/flags/{language.Abbreviation}.gif")" width="16" height="11" alt="">
                             @language.Name
                         </a>
                     }
@@ -136,35 +136,35 @@
     </div>
 
     <environment names="Development">
-        <script src="~/Scripts/Numbro/numbro.js"></script>
-        <script src="~/Scripts/Numbro/Cultures/numbro.en.js"></script>
-        <script src="~/Scripts/Moment/moment.js"></script>
-        <script src="~/Scripts/Moment/Cultures/moment.en.js"></script>
-        <script src="~/Scripts/Rome/rome.standalone.js"></script>
-        <script src="~/Scripts/MvcLookup/mvc-lookup.js"></script>
-        <script src="~/Scripts/MvcLookup/Cultures/mvc-lookup.en.js"></script>
-        <script src="~/Scripts/MvcGrid/mvc-grid.js"></script>
-        <script src="~/Scripts/MvcGrid/Cultures/mvc-grid.en.js"></script>
-        <script src="~/Scripts/MvcTree/mvc-tree.js"></script>
-        <script src="~/Scripts/Bootstrap/bootstrap-native.js"></script>
-        <script src="~/Scripts/Wellidate/wellidate.js"></script>
-        <script src="~/Scripts/Shared/Widgets/alerts.js"></script>
-        <script src="~/Scripts/Shared/Widgets/datepicker.js"></script>
-        <script src="~/Scripts/Shared/Widgets/grid.js"></script>
-        <script src="~/Scripts/Shared/Widgets/header.js"></script>
-        <script src="~/Scripts/Shared/Widgets/tree.js"></script>
-        <script src="~/Scripts/Shared/Widgets/lookup.js"></script>
-        <script src="~/Scripts/Shared/Widgets/navigation.js"></script>
-        <script src="~/Scripts/Shared/Widgets/validator.js"></script>
+        <script src="~/js/numbro/numbro.js"></script>
+        <script src="~/js/numbro/cultures/numbro.en.js"></script>
+        <script src="~/js/moment/moment.js"></script>
+        <script src="~/js/moment/cultures/moment.en.js"></script>
+        <script src="~/js/rome/rome.standalone.js"></script>
+        <script src="~/js/mvc-lookup/mvc-lookup.js"></script>
+        <script src="~/js/mvc-lookup/cultures/mvc-lookup.en.js"></script>
+        <script src="~/js/mvc-grid/mvc-grid.js"></script>
+        <script src="~/js/mvc-grid/cultures/mvc-grid.en.js"></script>
+        <script src="~/js/mvc-tree/mvc-tree.js"></script>
+        <script src="~/js/bootstrap/bootstrap-native.js"></script>
+        <script src="~/js/wellidate/wellidate.js"></script>
+        <script src="~/js/shared/widgets/alerts.js"></script>
+        <script src="~/js/shared/widgets/datepicker.js"></script>
+        <script src="~/js/shared/widgets/grid.js"></script>
+        <script src="~/js/shared/widgets/header.js"></script>
+        <script src="~/js/shared/widgets/tree.js"></script>
+        <script src="~/js/shared/widgets/lookup.js"></script>
+        <script src="~/js/shared/widgets/navigation.js"></script>
+        <script src="~/js/shared/widgets/validator.js"></script>
         <script action="shared"></script>
         <script action="@action"></script>
-        <script src="~/Scripts/Shared/private.js"></script>
+        <script src="~/js/shared/private.js"></script>
     </environment>
     <environment names="Staging,Production">
-        <script asp-append-version="true" src="~/scripts/private/vendor.min.js"></script>
+        <script asp-append-version="true" src="~/js/private/vendor.min.js"></script>
         <script asp-append-version="true" action="shared"></script>
         <script asp-append-version="true" action="@action"></script>
-        <script asp-append-version="true" src="~/scripts/private/site.min.js"></script>
+        <script asp-append-version="true" src="~/js/private/site.min.js"></script>
     </environment>
 </body>
 </html>

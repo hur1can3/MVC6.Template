@@ -43,7 +43,7 @@ namespace MvcTemplate.Components.Mvc
                 Styles[path] = null;
 
                 if (ScriptsAvailable(path))
-                    Styles[path] = new UrlHelper(ViewContext).Content($"~/content/application/{path}");
+                    Styles[path] = new UrlHelper(ViewContext).Content($"~/css/application/{path}");
             }
 
             if (Styles[path] == null)
@@ -54,7 +54,7 @@ namespace MvcTemplate.Components.Mvc
 
         private Boolean ScriptsAvailable(String path)
         {
-            return File.Exists(Path.Combine(Environment.WebRootPath, $"content/application/{path}"));
+            return File.Exists(Path.Combine(Environment.WebRootPath, $"css/application/{path}"));
         }
         private String FormPath()
         {

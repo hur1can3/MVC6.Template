@@ -1,10 +1,10 @@
-﻿/src/MvcTemplate.Web/wwwroot/Scripts/Application/**/*.min.js
-/src/MvcTemplate.Web/wwwroot/Scripts/Private/
-/src/MvcTemplate.Web/wwwroot/Scripts/Public/
+﻿/src/MvcTemplate.Web/wwwroot/js/application/**/*.min.js
+/src/MvcTemplate.Web/wwwroot/js/private/
+/src/MvcTemplate.Web/wwwroot/js/public/
 
-/src/MvcTemplate.Web/wwwroot/Content/Application/**/*.min.css
-/src/MvcTemplate.Web/wwwroot/Content/Private/
-/src/MvcTemplate.Web/wwwroot/Content/Public/
+/src/MvcTemplate.Web/wwwroot/css/application/**/*.min.css
+/src/MvcTemplate.Web/wwwroot/css/private/
+/src/MvcTemplate.Web/wwwroot/css/public/
 /src/MvcTemplate.Web/Logs/
 node_modules/
 .vscode/

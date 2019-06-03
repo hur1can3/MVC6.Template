@@ -22,15 +22,15 @@
     <Content Update="package-lock.json" CopyToPublishDirectory="Never" />
     <Content Update="Resources\**\*.json" CopyToOutputDirectory="Always" />
 
-    <Content Update="wwwroot\Content\**" CopyToPublishDirectory="Never" />
-    <Content Update="wwwroot\Scripts\**" CopyToPublishDirectory="Never" />
-    <Content Update="wwwroot\Content\**\*.woff" CopyToPublishDirectory="Always" />
-    <Content Update="wwwroot\Scripts\Public\**" CopyToPublishDirectory="Always" />
-    <Content Update="wwwroot\Content\Public\**" CopyToPublishDirectory="Always" />
-    <Content Update="wwwroot\Scripts\Private\**" CopyToPublishDirectory="Always" />
-    <Content Update="wwwroot\Content\Private\**" CopyToPublishDirectory="Always" />
-    <Content Update="wwwroot\Scripts\Application\**\*.min.js" CopyToPublishDirectory="Always" />
-    <Content Update="wwwroot\Content\Application\**\*.min.css" CopyToPublishDirectory="Always" />
+    <Content Update="wwwroot\js\**" CopyToPublishDirectory="Never" />
+    <Content Update="wwwroot\css\**" CopyToPublishDirectory="Never" />
+    <Content Update="wwwroot\js\public\**" CopyToPublishDirectory="Always" />
+    <Content Update="wwwroot\js\private\**" CopyToPublishDirectory="Always" />
+    <Content Update="wwwroot\css\**\*.woff" CopyToPublishDirectory="Always" />
+    <Content Update="wwwroot\css\public\**" CopyToPublishDirectory="Always" />
+    <Content Update="wwwroot\css\private\**" CopyToPublishDirectory="Always" />
+    <Content Update="wwwroot\js\application\**\*.min.js" CopyToPublishDirectory="Always" />
+    <Content Update="wwwroot\css\application\**\*.min.css" CopyToPublishDirectory="Always" />
   </ItemGroup>
 
   <ItemGroup>
