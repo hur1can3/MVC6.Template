@@ -1,5 +1,6 @@
 ﻿using MvcTemplate.Resources;
 using System;
+using System.Globalization;
 using Xunit;
 
 namespace MvcTemplate.Components.Mvc.Tests
@@ -54,6 +55,8 @@ namespace MvcTemplate.Components.Mvc.Tests
         [InlineData("12.561")]
         public void IsValid_GreaterOrEqualValue(Object value)
         {
+            CultureInfo.CurrentCulture = new CultureInfo("en-US");
+
             Assert.True(attribute.IsValid(value));
         }
 
