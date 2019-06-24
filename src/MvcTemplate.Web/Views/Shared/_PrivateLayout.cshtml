@@ -42,7 +42,7 @@
 
     <div class="header">
         <div class="btn">
-            <a asp-action="Edit" asp-controller="Profile" asp-route-area="">
+            <a asp-action="Edit" asp-controller="Profile" asp-area="">
                 <span class="fa fa-user"></span>
                 <span class="text">@Resource.ForAction("Profile")</span>
             </a>
@@ -68,7 +68,7 @@
             </div>
         }
         <div class="btn">
-            <a asp-action="Logout" asp-controller="Auth" asp-route-area="">
+            <a asp-action="Logout" asp-controller="Auth" asp-area="">
                 <span class="fa fa-share"></span>
                 <span class="text">@Resource.ForAction("Logout")</span>
             </a>
@@ -100,7 +100,7 @@
                     }
                     else if (node.Action != null)
                     {
-                        <a asp-action="@node.Action" asp-controller="@node.Controller" asp-route-area="@node.Area">
+                        <a asp-action="@node.Action" asp-controller="@node.Controller" asp-area="@node.Area">
                             <span class="icon @node.IconClass"></span>
                             <span class="text">@Resource.ForSiteMap(node.Area, node.Controller, node.Action)</span>
                         </a>
