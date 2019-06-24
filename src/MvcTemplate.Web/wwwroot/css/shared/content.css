@@ -27,6 +27,7 @@
 }
 .control-label .require {
   display: inline-block;
+  text-align: right;
   min-width: 0.75em;
   color: #dc3545;
 }
