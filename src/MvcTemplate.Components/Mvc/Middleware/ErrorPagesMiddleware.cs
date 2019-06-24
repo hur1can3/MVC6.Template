@@ -54,6 +54,8 @@ namespace MvcTemplate.Components.Mvc
                     context.Request.Path = path;
                 }
 
+                context.Request.Method = "GET";
+
                 await Next(context);
             }
             finally
