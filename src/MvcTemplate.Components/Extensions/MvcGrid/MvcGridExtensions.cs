@@ -21,8 +21,10 @@ namespace MvcTemplate.Components.Extensions
             if (!IsAuthorizedFor(columns.Grid.ViewContext, action))
                 return new GridColumn<T, IHtmlContent>(columns.Grid, model => null);
 
+            UrlHelper url = new UrlHelper(columns.Grid.ViewContext);
+
             return columns
-                .Add(model => GenerateLink(columns.Grid.ViewContext, model, action, iconClass))
+                .Add(model => GenerateLink(model, url, action, iconClass))
                 .Css($"action-cell {action.ToLower()}");
         }
 
@@ -83,11 +85,11 @@ namespace MvcTemplate.Components.Extensions
                 .Sortable();
         }
 
-        private static IHtmlContent GenerateLink<T>(ViewContext context, T model, String action, String iconClass)
+        private static IHtmlContent GenerateLink<T>(T model, UrlHelper url, String action, String iconClass)
         {
             TagBuilder link = new TagBuilder("a");
-            link.AddCssClass($"{iconClass} {action.ToLower()}-action");
-            link.Attributes["href"] = new UrlHelper(context).Action(action, RouteFor(model));
+            link.Attributes["href"] = url.Action(action, RouteFor(model));
+            link.AddCssClass(iconClass);
 
             return link;
         }
