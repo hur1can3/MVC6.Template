@@ -15,7 +15,7 @@
   },
 
   "Data": {
-    "Connection": "Server=(localdb)\\mssqllocaldb;Database=Mvc6Template;Trusted_Connection=True;MultipleActiveResultSets=True"
+    "Connection": "Server=(localdb)\\mssqllocaldb;Database=MvcTemplate;Trusted_Connection=True;MultipleActiveResultSets=True"
   },
 
   "Languages": {
