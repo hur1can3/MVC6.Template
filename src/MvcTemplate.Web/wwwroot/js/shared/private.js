@@ -44,13 +44,13 @@
     var invalidInput = document.querySelector('.input-validation-error[type=text]:not([readonly]):not(.datepicker):not(.datetimepicker)');
 
     if (invalidInput) {
-        invalidInput.setSelectionRange(invalidInput.value.length, invalidInput.value.length);
+        invalidInput.setSelectionRange(0, invalidInput.value.length);
         invalidInput.focus();
     } else {
         var input = document.querySelector('input[type=text]:not([readonly]):not(.datepicker):not(.datetimepicker)');
 
         if (input) {
-            input.setSelectionRange(input.value.length, input.value.length);
+            input.setSelectionRange(0, input.value.length);
             input.focus();
         }
     }
