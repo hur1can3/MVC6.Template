@@ -10,9 +10,9 @@ namespace MvcTemplate.Components.Mvc
 {
     public class SiteMap : ISiteMap
     {
+        private List<SiteMapNode> Tree { get; }
+        private List<SiteMapNode> Nodes { get; }
         private IAuthorization Authorization { get; }
-        private IEnumerable<SiteMapNode> Tree { get; }
-        private IEnumerable<SiteMapNode> Nodes { get; }
 
         public SiteMap(String map, IAuthorization authorization)
         {
@@ -28,7 +28,7 @@ namespace MvcTemplate.Components.Mvc
             String area = context.RouteData.Values["area"] as String;
             String action = context.RouteData.Values["action"] as String;
             String controller = context.RouteData.Values["controller"] as String;
-            IEnumerable<SiteMapNode> nodes = SetState(Tree, area, controller, action);
+            List<SiteMapNode> nodes = SetState(Tree, area, controller, action);
 
             return Authorize(account, nodes);
         }
@@ -61,7 +61,7 @@ namespace MvcTemplate.Components.Mvc
             return breadcrumb;
         }
 
-        private IEnumerable<SiteMapNode> SetState(IEnumerable<SiteMapNode> nodes, String area, String controller, String action)
+        private List<SiteMapNode> SetState(IEnumerable<SiteMapNode> nodes, String area, String controller, String action)
         {
             List<SiteMapNode> copies = new List<SiteMapNode>();
             foreach (SiteMapNode node in nodes)
@@ -87,7 +87,7 @@ namespace MvcTemplate.Components.Mvc
 
             return copies;
         }
-        private IEnumerable<SiteMapNode> Authorize(Int32? accountId, IEnumerable<SiteMapNode> nodes)
+        private List<SiteMapNode> Authorize(Int32? accountId, IEnumerable<SiteMapNode> nodes)
         {
             List<SiteMapNode> authorized = new List<SiteMapNode>();
             foreach (SiteMapNode node in nodes)
@@ -107,18 +107,19 @@ namespace MvcTemplate.Components.Mvc
         {
             return action == null || Authorization?.IsGrantedFor(accountId, area, controller, action) != false;
         }
-        private IEnumerable<SiteMapNode> Parse(XElement root, SiteMapNode parent = null)
+        private List<SiteMapNode> Parse(XElement root, SiteMapNode parent = null)
         {
             List<SiteMapNode> nodes = new List<SiteMapNode>();
             foreach (XElement element in root.Elements("siteMapNode"))
             {
                 SiteMapNode node = new SiteMapNode();
-
-                node.IsMenu = (Boolean?)element.Attribute("menu") == true;
-                node.Controller = (String)element.Attribute("controller");
                 node.IconClass = (String)element.Attribute("icon");
+                node.IsMenu = (Boolean?)element.Attribute("menu") == true;
+
                 node.Action = (String)element.Attribute("action");
-                node.Area = (String)element.Attribute("area");
+                node.Area = (String)element.Attribute("area") ?? parent?.Area;
+                node.Controller = (String)element.Attribute("controller") ?? (element.Attribute("area") == null ? parent?.Controller : null);
+
                 node.Children = Parse(element, node);
                 node.Parent = parent;
 
@@ -127,7 +128,7 @@ namespace MvcTemplate.Components.Mvc
 
             return nodes;
         }
-        private IEnumerable<SiteMapNode> Flatten(IEnumerable<SiteMapNode> branches)
+        private List<SiteMapNode> Flatten(IEnumerable<SiteMapNode> branches)
         {
             List<SiteMapNode> list = new List<SiteMapNode>();
             foreach (SiteMapNode branch in branches)

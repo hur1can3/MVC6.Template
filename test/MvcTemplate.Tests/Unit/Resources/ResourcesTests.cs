@@ -1,4 +1,5 @@
-﻿using MvcTemplate.Data.Migrations;
+﻿using MvcTemplate.Components.Mvc;
+using MvcTemplate.Data.Migrations;
 using MvcTemplate.Objects;
 using MvcTemplate.Tests;
 using System;
@@ -14,34 +15,23 @@ namespace MvcTemplate.Resources.Tests
         [Fact]
         public void Resources_HasAllPageTitles()
         {
-            IDictionary<String, Object> values = new Dictionary<String, Object>();
-            IEnumerable<XElement> sitemap = XDocument
-                .Load("../../../../../src/MvcTemplate.Web/mvc.sitemap")
-                .Descendants("siteMapNode")
-                .Where(node => node.Attribute("action") != null);
+            XElement sitemap = XDocument.Load("../../../../../src/MvcTemplate.Web/mvc.sitemap").Element("siteMap");
 
-            foreach (XElement node in sitemap)
+            foreach (SiteMapNode node in Flatten(sitemap.Elements()).Where(node => node.Action != null))
             {
-                values["area"] = node.Attribute("area")?.Value;
-                values["action"] = node.Attribute("action").Value;
-                values["controller"] = node.Attribute("controller").Value;
+                String path = $"{node.Area}{node.Controller}{node.Action}";
 
-                String page = $"{values["area"]}{values["controller"]}{values["action"]}";
-
-                Assert.True(!String.IsNullOrEmpty(Resource.ForPage(values)),
-                    $"'{page}' page, does not have a title.");
+                Assert.True(!String.IsNullOrEmpty(Resource.ForPage(path)), $"'{path}' page, does not have a title.");
             }
         }
 
         [Fact]
         public void Resources_HasAllSiteMapTitles()
         {
-            IEnumerable<XElement> sitemap = XDocument
-                .Load("../../../../../src/MvcTemplate.Web/mvc.sitemap")
-                .Descendants("siteMapNode");
+            XElement sitemap = XDocument.Load("../../../../../src/MvcTemplate.Web/mvc.sitemap").Element("siteMap");
 
-            foreach (XElement node in sitemap)
-                Assert.True(!String.IsNullOrEmpty(Resource.ForSiteMap(node.Attribute("area")?.Value, node.Attribute("controller")?.Value, node.Attribute("action")?.Value)),
+            foreach (SiteMapNode node in Flatten(sitemap.Elements()))
+                Assert.True(!String.IsNullOrEmpty(Resource.ForSiteMap(node.Area, node.Controller, node.Action)),
                     $"Sitemap node '{node}' page, does not have a title.");
         }
 
@@ -86,5 +76,28 @@ namespace MvcTemplate.Resources.Tests
                         $"'{permission.Area}{permission.Controller}{permission.Action} permission', does not have a title.");
             }
         }
+
+        #region Test helpers
+
+        private List<SiteMapNode> Flatten(IEnumerable<XElement> elements, SiteMapNode parent = null)
+        {
+            List<SiteMapNode> list = new List<SiteMapNode>();
+            foreach (XElement element in elements)
+            {
+                SiteMapNode node = new SiteMapNode
+                {
+                    Action = (String)element.Attribute("action"),
+                    Area = (String)element.Attribute("area") ?? parent?.Area,
+                    Controller = (String)element.Attribute("controller") ?? (element.Attribute("area") == null ? (String)parent?.Controller : null)
+                };
+
+                list.Add(node);
+                list.AddRange(Flatten(element.Elements(), node));
+            }
+
+            return list;
+        }
+
+        #endregion
     }
 }
