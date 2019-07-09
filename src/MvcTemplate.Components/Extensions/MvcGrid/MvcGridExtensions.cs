@@ -89,6 +89,7 @@ namespace MvcTemplate.Components.Extensions
         {
             TagBuilder link = new TagBuilder("a");
             link.Attributes["href"] = url.Action(action, RouteFor(model));
+            link.Attributes["title"] = Resource.ForAction(action);
             link.AddCssClass(iconClass);
 
             return link;
