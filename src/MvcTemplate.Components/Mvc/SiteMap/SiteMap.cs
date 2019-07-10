@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using MvcTemplate.Components.Extensions;
 using MvcTemplate.Components.Security;
+using MvcTemplate.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +49,7 @@ namespace MvcTemplate.Components.Mvc
             {
                 breadcrumb.Insert(0, new SiteMapNode
                 {
+                    Title = current.Title,
                     IconClass = current.IconClass,
 
                     Controller = current.Controller,
@@ -69,6 +71,7 @@ namespace MvcTemplate.Components.Mvc
                 SiteMapNode copy = new SiteMapNode();
                 copy.IconClass = node.IconClass;
                 copy.IsMenu = node.IsMenu;
+                copy.Title = node.Title;
 
                 copy.Controller = node.Controller;
                 copy.Action = node.Action;
@@ -120,6 +123,7 @@ namespace MvcTemplate.Components.Mvc
                 node.Area = (String)element.Attribute("area") ?? parent?.Area;
                 node.Controller = (String)element.Attribute("controller") ?? (element.Attribute("area") == null ? parent?.Controller : null);
 
+                node.Title = Resource.ForSiteMap(node.Area, node.Controller, node.Action);
                 node.Children = Parse(element, node);
                 node.Parent = parent;
 
