@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.Configuration;
 using MvcTemplate.Objects;
 using System.Collections.Generic;
 
@@ -9,21 +10,25 @@ namespace MvcTemplate.Data.Mapping
         public static void MapObjects()
         {
             Mapper.Reset();
-            Mapper.Initialize(configuration => new ObjectMapper(configuration).Map());
+            Mapper.Initialize(Map());
         }
 
-        private IMapperConfigurationExpression Configuration { get; }
+        private MapperConfigurationExpression Configuration { get; }
 
-        private ObjectMapper(IMapperConfigurationExpression configuration)
+        private ObjectMapper(MapperConfigurationExpression configuration)
         {
             Configuration = configuration;
-            configuration.ValidateInlineMaps = false;
+            Configuration.ValidateInlineMaps = false;
             Configuration.AddConditionalObjectMapper().Conventions.Add(pair => pair.SourceType.Namespace != "Castle.Proxies");
         }
 
-        private void Map()
+        private static MapperConfigurationExpression Map()
         {
-            MapRoles();
+            ObjectMapper mapper = new ObjectMapper(new MapperConfigurationExpression());
+
+            mapper.MapRoles();
+
+            return mapper.Configuration;
         }
 
         #region Administration
