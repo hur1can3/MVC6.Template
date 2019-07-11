@@ -55,7 +55,7 @@ namespace MvcTemplate.Components.Extensions.Tests
             IGridColumn<AllTypesView, IHtmlContent> column = columns.AddAction("Details", "fa fa-info");
             column.ValueFor(new GridRow<AllTypesView>(view, 0)).WriteTo(writer, HtmlEncoder.Default);
 
-            String expected = "<a class=\"fa fa-info\" href=\"/test\" title=\"Details\"></a>";
+            String expected = $"<a class=\"fa fa-info\" href=\"/test\" title=\"{Resource.ForAction("Details")}\"></a>";
             String actual = writer.ToString();
 
             Assert.Equal(expected, actual);
@@ -75,7 +75,7 @@ namespace MvcTemplate.Components.Extensions.Tests
             IGridColumn<AllTypesView, IHtmlContent> column = columns.AddAction("Details", "fa fa-info");
             column.ValueFor(new GridRow<AllTypesView>(view, 0)).WriteTo(writer, HtmlEncoder.Default);
 
-            String expected = "<a class=\"fa fa-info\" href=\"/test\" title=\"Details\"></a>";
+            String expected = $"<a class=\"fa fa-info\" href=\"/test\" title=\"{Resource.ForAction("Details")}\"></a>";
             String actual = writer.ToString();
 
             Assert.Equal(expected, actual);
