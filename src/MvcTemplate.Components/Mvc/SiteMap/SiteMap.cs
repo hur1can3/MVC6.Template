@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.Routing;
 using MvcTemplate.Components.Extensions;
 using MvcTemplate.Components.Security;
 using MvcTemplate.Resources;
@@ -29,12 +31,13 @@ namespace MvcTemplate.Components.Mvc
             String area = context.RouteData.Values["area"] as String;
             String action = context.RouteData.Values["action"] as String;
             String controller = context.RouteData.Values["controller"] as String;
-            List<SiteMapNode> nodes = SetState(Tree, area, controller, action);
+            List<SiteMapNode> nodes = SetState(Tree, context, area, controller, action);
 
             return Authorize(account, nodes);
         }
         public IEnumerable<SiteMapNode> BreadcrumbFor(ViewContext context)
         {
+            UrlHelper url = new UrlHelper(context);
             String area = context.RouteData.Values["area"] as String;
             String action = context.RouteData.Values["action"] as String;
             String controller = context.RouteData.Values["controller"] as String;
@@ -50,6 +53,7 @@ namespace MvcTemplate.Components.Mvc
                 breadcrumb.Insert(0, new SiteMapNode
                 {
                     Title = current.Title,
+                    Url = FormUrl(url, current),
                     IconClass = current.IconClass,
 
                     Controller = current.Controller,
@@ -63,13 +67,16 @@ namespace MvcTemplate.Components.Mvc
             return breadcrumb;
         }
 
-        private List<SiteMapNode> SetState(IEnumerable<SiteMapNode> nodes, String area, String controller, String action)
+        private List<SiteMapNode> SetState(IEnumerable<SiteMapNode> nodes, ViewContext context, String area, String controller, String action)
         {
             List<SiteMapNode> copies = new List<SiteMapNode>();
+            UrlHelper url = new UrlHelper(context);
+
             foreach (SiteMapNode node in nodes)
             {
                 SiteMapNode copy = new SiteMapNode();
                 copy.IconClass = node.IconClass;
+                copy.Url = FormUrl(url, node);
                 copy.IsMenu = node.IsMenu;
                 copy.Title = node.Title;
 
@@ -77,7 +84,7 @@ namespace MvcTemplate.Components.Mvc
                 copy.Action = node.Action;
                 copy.Area = node.Area;
 
-                copy.Children = SetState(node.Children, area, controller, action);
+                copy.Children = SetState(node.Children, context, area, controller, action);
                 copy.HasActiveChildren = copy.Children.Any(child => child.IsActive || child.HasActiveChildren);
                 copy.IsActive =
                     copy.Children.Any(child => child.IsActive && !child.IsMenu) ||
@@ -119,6 +126,7 @@ namespace MvcTemplate.Components.Mvc
                 node.IconClass = (String)element.Attribute("icon");
                 node.IsMenu = (Boolean?)element.Attribute("menu") == true;
 
+                node.Route = ParseRoute(element);
                 node.Action = (String)element.Attribute("action");
                 node.Area = (String)element.Attribute("area") ?? parent?.Area;
                 node.Controller = (String)element.Attribute("controller") ?? (element.Attribute("area") == null ? parent?.Controller : null);
@@ -142,6 +150,27 @@ namespace MvcTemplate.Components.Mvc
             }
 
             return list;
+        }
+        private Dictionary<String, String> ParseRoute(XElement element)
+        {
+            return element
+                .Attributes()
+                .Where(attribute => attribute.Name.LocalName.StartsWith("route-"))
+                .ToDictionary(attribute => attribute.Name.LocalName.Substring(6), attribute => attribute.Value);
+        }
+        private String FormUrl(UrlHelper url, SiteMapNode node)
+        {
+            if (node.Action == null)
+                return "#";
+
+            Dictionary<String, Object> route = new Dictionary<String, Object>();
+            ActionContext context = url.ActionContext;
+            route["area"] = node.Area;
+
+            foreach (KeyValuePair<String, String> item in node.Route)
+                route[item.Key] = context.RouteData.Values[item.Value] ?? (String)context.HttpContext.Request.Query[item.Value];
+
+            return url.Action(node.Action, node.Controller, route);
         }
         private Boolean IsEmpty(SiteMapNode node)
         {

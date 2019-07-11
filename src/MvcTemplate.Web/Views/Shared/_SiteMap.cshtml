@@ -3,14 +3,13 @@
 <ul>
     @foreach (SiteMapNode node in Model)
     {
-        String link = node.Action != null ? Url.Action(node.Action, node.Controller, new { area = node.Area }) : "#";
         String menu = node.HasActiveChildren ? "has-active open" : "";
         menu += node.Children.Any() ? " submenu" : "";
         menu += node.IsActive ? " active" : "";
         menu = menu.Trim();
 
         <li class="@menu">
-            <a href="@link">
+            <a href="@node.Url">
                 <span class="icon @node.IconClass"></span>
                 <span class="text">@node.Title</span>
                 @if (node.Action == null)
