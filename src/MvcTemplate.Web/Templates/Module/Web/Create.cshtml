@@ -24,9 +24,13 @@
                         {
                         <div mvc-lookup-for="@property.Name" url="~/Lookup/@relation" title="@@Resource.ForLookup("@relation")"></div>
                         }
-                        else
+                        else if (property.PropertyType == typeof(String))
                         {
                         <input asp-for="@property.Name" />
+                        }
+                        else
+                        {
+                        <input asp-for="@property.Name" type="text" />
                         }
                     </div>
                     <div class="control-validation col">
