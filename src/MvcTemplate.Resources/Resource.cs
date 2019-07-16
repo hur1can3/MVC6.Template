@@ -126,7 +126,7 @@ namespace MvcTemplate.Resources
             ResourceSet resources = Set(type);
             String language = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
 
-            return resources[language, group, key] ?? resources["", group, key];
+            return key == null ? null : resources[language, group, key] ?? resources["", group, key];
         }
 
         private static String[] SplitCamelCase(String value)

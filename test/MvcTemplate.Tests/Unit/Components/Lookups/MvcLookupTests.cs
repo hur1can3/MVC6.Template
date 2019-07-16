@@ -96,7 +96,7 @@ namespace MvcTemplate.Components.Lookups.Tests
         [Fact]
         public void GetModels_FromUnitOfWork()
         {
-            unitOfWork.Select<Role>().To<RoleView>().Returns(new RoleView[0].AsQueryable());
+            unitOfWork.Select<Role>().To<RoleView>().Returns(Array.Empty<RoleView>().AsQueryable());
 
             Object actual = new MvcLookup<Role, RoleView>(unitOfWork).GetModels();
             Object expected = unitOfWork.Select<Role>().To<RoleView>();

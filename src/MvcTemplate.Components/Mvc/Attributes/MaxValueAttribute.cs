@@ -25,7 +25,7 @@ namespace MvcTemplate.Components.Mvc
             {
                 return value == null || Convert.ToDecimal(value) <= Maximum;
             }
-            catch (Exception)
+            catch
             {
                 return false;
             }

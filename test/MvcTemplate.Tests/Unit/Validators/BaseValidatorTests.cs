@@ -21,6 +21,7 @@ namespace MvcTemplate.Validators.Tests
         }
         public void Dispose()
         {
+            unitOfWork.Dispose();
             validator.Dispose();
         }
 

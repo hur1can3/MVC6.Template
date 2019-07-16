@@ -17,6 +17,7 @@ namespace MvcTemplate.Services.Tests
         }
         public void Dispose()
         {
+            unitOfWork.Dispose();
             service.Dispose();
         }
 

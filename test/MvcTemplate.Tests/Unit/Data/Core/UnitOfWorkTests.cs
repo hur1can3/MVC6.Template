@@ -30,6 +30,7 @@ namespace MvcTemplate.Data.Core.Tests
         {
             unitOfWork.Dispose();
             context.Dispose();
+            logger.Dispose();
         }
 
         #region GetAs<TModel, TDestination>(Int32? id)

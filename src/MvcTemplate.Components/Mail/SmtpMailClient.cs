@@ -20,15 +20,17 @@ namespace MvcTemplate.Components.Mail
         {
             using (SmtpClient client = new SmtpClient(Config["Host"], Int32.Parse(Config["Port"])))
             {
-                client.Credentials = new NetworkCredential(Config["Sender"], Config["Password"]);
-                client.EnableSsl = Boolean.Parse(Config["EnableSsl"]);
+                using (MailMessage mail = new MailMessage(Config["Sender"], email, subject, body))
+                {
+                    client.Credentials = new NetworkCredential(Config["Sender"], Config["Password"]);
+                    client.EnableSsl = Boolean.Parse(Config["EnableSsl"]);
 
-                MailMessage mail = new MailMessage(Config["Sender"], email, subject, body);
-                mail.SubjectEncoding = Encoding.UTF8;
-                mail.BodyEncoding = Encoding.UTF8;
-                mail.IsBodyHtml = true;
+                    mail.SubjectEncoding = Encoding.UTF8;
+                    mail.BodyEncoding = Encoding.UTF8;
+                    mail.IsBodyHtml = true;
 
-                await client.SendMailAsync(mail);
+                    await client.SendMailAsync(mail);
+                }
             }
         }
     }

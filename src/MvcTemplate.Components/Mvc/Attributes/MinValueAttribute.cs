@@ -25,7 +25,7 @@ namespace MvcTemplate.Components.Mvc
             {
                 return value == null || Convert.ToDecimal(value) >= Minimum;
             }
-            catch (Exception)
+            catch
             {
                 return false;
             }

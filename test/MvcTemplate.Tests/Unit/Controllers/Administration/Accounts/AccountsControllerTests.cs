@@ -45,7 +45,7 @@ namespace MvcTemplate.Controllers.Administration.Tests
         [Fact]
         public void Index_ReturnsAccountViews()
         {
-            service.GetViews().Returns(new AccountView[0].AsQueryable());
+            service.GetViews().Returns(Array.Empty<AccountView>().AsQueryable());
 
             Object actual = controller.Index().Model;
             Object expected = service.GetViews();

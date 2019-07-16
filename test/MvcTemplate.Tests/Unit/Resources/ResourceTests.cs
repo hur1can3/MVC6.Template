@@ -46,6 +46,12 @@ namespace MvcTemplate.Resources.Tests
         #region ForAction(String name)
 
         [Fact]
+        public void ForAction_Null_ReturnsNull()
+        {
+            Assert.Null(Resource.ForAction(null));
+        }
+
+        [Fact]
         public void ForAction_IsCaseInsensitive()
         {
             String expected = ResourceFor("Shared/Shared", "Actions", "Create");

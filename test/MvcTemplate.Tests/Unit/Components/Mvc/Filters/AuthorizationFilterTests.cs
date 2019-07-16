@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Routing;
 using MvcTemplate.Components.Security;
 using NSubstitute;
+using System;
 using System.Security.Claims;
 using Xunit;
 
@@ -20,7 +21,7 @@ namespace MvcTemplate.Components.Mvc.Tests
         public AuthorizationFilterTests()
         {
             ActionContext action = new ActionContext(Substitute.For<HttpContext>(), new RouteData(), new ActionDescriptor());
-            context = new ResourceExecutingContext(action, new IFilterMetadata[0], new IValueProviderFactory[0]);
+            context = new ResourceExecutingContext(action, Array.Empty<IFilterMetadata>(), Array.Empty<IValueProviderFactory>());
             authorization = Substitute.For<IAuthorization>();
             filter = new AuthorizationFilter(authorization);
         }

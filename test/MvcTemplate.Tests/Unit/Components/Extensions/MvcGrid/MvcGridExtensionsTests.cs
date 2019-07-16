@@ -23,7 +23,7 @@ namespace MvcTemplate.Components.Extensions.Tests
 
         public MvcGridExtensionsTests()
         {
-            Grid<AllTypesView> grid = new Grid<AllTypesView>(new AllTypesView[0]);
+            Grid<AllTypesView> grid = new Grid<AllTypesView>(Array.Empty<AllTypesView>());
             IHtmlHelper htmlHelper = HtmlHelperFactory.CreateHtmlHelper();
             html = new HtmlGrid<AllTypesView>(htmlHelper, grid);
             columns = new GridColumns<AllTypesView>(grid);
@@ -84,8 +84,8 @@ namespace MvcTemplate.Components.Extensions.Tests
         [Fact]
         public void AddAction_NoId_Throws()
         {
+            IGridColumnsOf<Object> gridColumns = new GridColumns<Object>(new Grid<Object>(Array.Empty<Object>()));
             html.Grid.ViewContext.HttpContext.RequestServices.GetService(typeof(IAuthorization)).ReturnsNull();
-            IGridColumnsOf<Object> gridColumns = new GridColumns<Object>(new Grid<Object>(new Object[0]));
             gridColumns.Grid.ViewContext = html.Grid.ViewContext;
 
             IGridColumn<Object, IHtmlContent> column = gridColumns.AddAction("Delete", "fa fa-times");

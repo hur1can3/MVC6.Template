@@ -8,7 +8,7 @@ using Xunit;
 
 namespace MvcTemplate.Components.Security.Tests
 {
-    public class AuthorizationTests
+    public class AuthorizationTests : IDisposable
     {
         private TestingContext context;
         private Authorization authorization;
@@ -20,6 +20,10 @@ namespace MvcTemplate.Components.Security.Tests
             services.GetService(typeof(IUnitOfWork)).Returns(info => new UnitOfWork(new TestingContext(context)));
 
             authorization = new Authorization(Assembly.GetExecutingAssembly(), services);
+        }
+        public void Dispose()
+        {
+            context.Dispose();
         }
 
         #region IsGrantedFor(Int32? accountId, String area, String controller, String action)
