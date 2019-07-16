@@ -1,11 +1,19 @@
 {
+    "Areas": {
+        "Administration": "Administration"
+    },
+    "Controllers": {
+        "AdministrationAccounts": "Accounts",
+        "AdministrationRoles": "Roles"
+    },
     "Actions": {
         "Copy": "Copy",
         "Create": "Create",
         "Delete": "Delete",
         "Details": "Details",
         "Edit": "Edit",
-        "Home":  "Home",
+        "Home": "Home",
+        "Index":  "Index",
         "Language": "Language",
         "Login": "Login",
         "Logout": "Logout",

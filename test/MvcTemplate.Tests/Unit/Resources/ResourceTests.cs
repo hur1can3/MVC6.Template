@@ -24,6 +24,25 @@ namespace MvcTemplate.Resources.Tests
 
         #endregion
 
+        #region ForArea(String name)
+
+        [Fact]
+        public void ForArea_IsCaseInsensitive()
+        {
+            String expected = ResourceFor("Shared/Shared", "Areas", "Administration");
+            String actual = Resource.ForArea("administration");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ForArea_NotFound_ReturnsNull()
+        {
+            Assert.Null(Resource.ForArea("Null"));
+        }
+
+        #endregion
+
         #region ForAction(String name)
 
         [Fact]
@@ -39,6 +58,25 @@ namespace MvcTemplate.Resources.Tests
         public void ForAction_NotFound_ReturnsNull()
         {
             Assert.Null(Resource.ForAction("Null"));
+        }
+
+        #endregion
+
+        #region ForController(String name)
+
+        [Fact]
+        public void ForController_IsCaseInsensitive()
+        {
+            String expected = ResourceFor("Shared/Shared", "Controllers", "AdministrationRoles");
+            String actual = Resource.ForController("administrationroles");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ForController_NotFound_ReturnsNull()
+        {
+            Assert.Null(Resource.ForController("Null"));
         }
 
         #endregion
@@ -190,69 +228,6 @@ namespace MvcTemplate.Resources.Tests
         public void ForSiteMap_NotFound_ReturnsNull()
         {
             Assert.Null(Resource.ForSiteMap("Test", "Test", "Test"));
-        }
-
-        #endregion
-
-        #region ForPermission(String area)
-
-        [Fact]
-        public void ForPermission_IsCaseInsensitive()
-        {
-            String expected = ResourceFor("Shared/Permission", "Areas", "Administration");
-            String actual = Resource.ForPermission("administration");
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void ForPermission_NotFound_ReturnsNull()
-        {
-            Assert.Null(Resource.ForPermission("Test"));
-        }
-
-        [Fact]
-        public void ForPermission_NullArea_ReturnsNull()
-        {
-            Assert.Null(Resource.ForPermission(null));
-        }
-
-        #endregion
-
-        #region ForPermission(String area, String controller)
-
-        [Fact]
-        public void ForPermission_ReturnsControllerTitle()
-        {
-            String expected = ResourceFor("Shared/Permission", "Controllers", "AdministrationRoles");
-            String actual = Resource.ForPermission("Administration", "Roles");
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void ForPermission_NotFoundController_ReturnsNull()
-        {
-            Assert.Null(Resource.ForPermission("", ""));
-        }
-
-        #endregion
-
-        #region ForPermission(String area, String controller, String action)
-
-        [Fact]
-        public void ForPermission_ReturnsActionTitle()
-        {
-            String expected = ResourceFor("Shared/Permission", "Actions", "AdministrationAccountsIndex");
-            String actual = Resource.ForPermission("administration", "accounts", "index");
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void ForPermission_NotFoundAction_ReturnsNull()
-        {
-            Assert.Null(Resource.ForPermission("", "", ""));
         }
 
         #endregion

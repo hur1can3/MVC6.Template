@@ -40,9 +40,17 @@ namespace MvcTemplate.Resources
             return Resources[type];
         }
 
+        public static String ForArea(String name)
+        {
+            return Localized("Shared", "Areas", name);
+        }
         public static String ForAction(String name)
         {
             return Localized("Shared", "Actions", name);
+        }
+        public static String ForController(String name)
+        {
+            return Localized("Shared", "Controllers", name);
         }
 
         public static String ForLookup(String type)
@@ -76,19 +84,6 @@ namespace MvcTemplate.Resources
         public static String ForSiteMap(String area, String controller, String action)
         {
             return Localized("SiteMap", "Titles", $"{area}{controller}{action}");
-        }
-
-        public static String ForPermission(String area)
-        {
-            return Localized("Permission", "Areas", area ?? "");
-        }
-        public static String ForPermission(String area, String controller)
-        {
-            return Localized("Permission", "Controllers", $"{area}{controller}");
-        }
-        public static String ForPermission(String area, String controller, String action)
-        {
-            return Localized("Permission", "Actions", $"{area}{controller}{action}");
         }
 
         public static String ForProperty<TView, TProperty>(Expression<Func<TView, TProperty>> expression)

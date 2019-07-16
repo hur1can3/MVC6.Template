@@ -44,7 +44,7 @@ namespace MvcTemplate.Resources.Tests
                 configuration.SeedData();
 
                 foreach (Permission permission in context.Set<Permission>().Where(permission => permission.Area != null))
-                    Assert.True(!String.IsNullOrEmpty(Resource.ForPermission(permission.Area)),
+                    Assert.True(!String.IsNullOrEmpty(Resource.ForArea(permission.Area)),
                         $"'{permission.Area}' permission, does not have a title.");
             }
         }
@@ -58,7 +58,7 @@ namespace MvcTemplate.Resources.Tests
                 configuration.SeedData();
 
                 foreach (Permission permission in context.Set<Permission>())
-                    Assert.True(!String.IsNullOrEmpty(Resource.ForPermission(permission.Area, permission.Controller)),
+                    Assert.True(!String.IsNullOrEmpty(Resource.ForController(permission.Area + permission.Controller)),
                         $"'{permission.Area}{permission.Controller}' permission, does not have a title.");
             }
         }
@@ -72,7 +72,7 @@ namespace MvcTemplate.Resources.Tests
                 configuration.SeedData();
 
                 foreach (Permission permission in context.Set<Permission>())
-                    Assert.True(!String.IsNullOrEmpty(Resource.ForPermission(permission.Area, permission.Controller, permission.Action)),
+                    Assert.True(!String.IsNullOrEmpty(Resource.ForAction(permission.Action)),
                         $"'{permission.Area}{permission.Controller}{permission.Action} permission', does not have a title.");
             }
         }
@@ -88,7 +88,7 @@ namespace MvcTemplate.Resources.Tests
                 {
                     Action = (String)element.Attribute("action"),
                     Area = (String)element.Attribute("area") ?? parent?.Area,
-                    Controller = (String)element.Attribute("controller") ?? (element.Attribute("area") == null ? (String)parent?.Controller : null)
+                    Controller = (String)element.Attribute("controller") ?? (element.Attribute("area") == null ? parent?.Controller : null)
                 };
 
                 list.Add(node);

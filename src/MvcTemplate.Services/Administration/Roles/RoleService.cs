@@ -109,9 +109,9 @@ namespace MvcTemplate.Services
                 .Select(permission => new Permission
                 {
                     Id = permission.Id,
-                    Area = Resource.ForPermission(permission.Area),
-                    Controller = Resource.ForPermission(permission.Area, permission.Controller),
-                    Action = Resource.ForPermission(permission.Area, permission.Controller, permission.Action)
+                    Area = Resource.ForArea(permission.Area ?? ""),
+                    Action = Resource.ForAction(permission.Action ?? ""),
+                    Controller = Resource.ForController(permission.Area + permission.Controller)
                 })
                 .OrderBy(permission => permission.Area ?? permission.Controller)
                 .ThenBy(permission => permission.Controller)

@@ -326,9 +326,9 @@ namespace MvcTemplate.Services.Tests
                 .Select(permission => new Permission
                 {
                     Id = permission.Id,
-                    Area = Resource.ForPermission(permission.Area),
-                    Controller = Resource.ForPermission(permission.Area, permission.Controller),
-                    Action = Resource.ForPermission(permission.Area, permission.Controller, permission.Action)
+                    Area = Resource.ForArea(permission.Area ?? ""),
+                    Action = Resource.ForAction(permission.Action ?? ""),
+                    Controller = Resource.ForController(permission.Area + permission.Controller)
                 });
 
             foreach (IGrouping<String, Permission> area in permissions.GroupBy(permission => permission.Area).OrderBy(permission => permission.Key ?? permission.FirstOrDefault().Controller))
