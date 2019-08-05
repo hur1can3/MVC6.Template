@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using MvcTemplate.Components.Mvc;
 using MvcTemplate.Data.Mapping;
 using MvcTemplate.Objects;
+using System;
 using System.Linq;
 using System.Reflection;
 
@@ -10,21 +11,6 @@ namespace MvcTemplate.Data.Core
 {
     public class Context : DbContext
     {
-        #region Administration
-
-        protected DbSet<Role> Role { get; set; }
-        protected DbSet<Account> Account { get; set; }
-        protected DbSet<Permission> Permission { get; set; }
-        protected DbSet<RolePermission> RolePermission { get; set; }
-
-        #endregion
-
-        #region System
-
-        protected DbSet<AuditLog> AuditLog { get; set; }
-
-        #endregion
-
         static Context()
         {
             ObjectMapper.MapObjects();
@@ -39,6 +25,18 @@ namespace MvcTemplate.Data.Core
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            Type[] models = typeof(BaseModel)
+                .Assembly
+                .GetTypes()
+                .Where(type =>
+                    type.IsAbstract == false &&
+                    typeof(BaseModel).IsAssignableFrom(type))
+                .ToArray();
+
+            foreach (Type model in models)
+                if (builder.Model.FindEntityType(model.FullName) == null)
+                    builder.Model.AddEntityType(model);
+
             foreach (IMutableEntityType entity in builder.Model.GetEntityTypes())
                 foreach (PropertyInfo property in entity.ClrType.GetProperties())
                     if (property.GetCustomAttribute<IndexAttribute>(false) is IndexAttribute index)
