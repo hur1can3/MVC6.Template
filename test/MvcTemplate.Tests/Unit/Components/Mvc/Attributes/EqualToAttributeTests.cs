@@ -15,8 +15,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             attribute = new EqualToAttribute("StringField");
         }
 
-        #region EqualToAttribute(String otherPropertyName)
-
         [Fact]
         public void EqualToAttribute_NullProperty_Throws()
         {
@@ -33,10 +31,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             Assert.Equal(expected, actual);
         }
 
-        #endregion
-
-        #region FormatErrorMessage(String name)
-
         [Fact]
         public void FormatErrorMessage_ForProperty()
         {
@@ -47,10 +41,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
-
-        #region GetValidationResult(Object value, ValidationContext context)
 
         [Fact]
         public void GetValidationResult_EqualValue()
@@ -82,7 +72,5 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
     }
 }

@@ -21,8 +21,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             helper.ViewContext = HtmlHelperFactory.CreateHtmlHelper().ViewContext;
         }
 
-        #region Process(TagHelperContext context, TagHelperOutput output)
-
         [Fact]
         public void Process_NoAuthorization_RemovedWrappingTag()
         {
@@ -121,7 +119,5 @@ namespace MvcTemplate.Components.Mvc.Tests
             Assert.Equal("Content", output.Content.GetContent());
             Assert.Null(output.TagName);
         }
-
-        #endregion
     }
 }

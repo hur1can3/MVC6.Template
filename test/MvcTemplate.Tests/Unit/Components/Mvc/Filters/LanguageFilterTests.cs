@@ -12,8 +12,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 {
     public class LanguageFilterTests
     {
-        #region OnResourceExecuting(ResourceExecutingContext context)
-
         [Fact]
         public void OnActionExecuting_SetsCurrentLanguage()
         {
@@ -30,7 +28,5 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
     }
 }

@@ -25,8 +25,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             context = new ClientModelValidationContext(new ActionContext(), metadata, provider, attributes);
         }
 
-        #region AddValidation(ClientModelValidationContext context)
-
         [Fact]
         public void AddValidation_Email()
         {
@@ -37,10 +35,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             Assert.Equal(Validation.For("Email", context.ModelMetadata.PropertyName), attributes["data-val-email"]);
         }
 
-        #endregion
-
-        #region GetErrorMessage(ModelValidationContextBase context)
-
         [Fact]
         public void GetErrorMessage_Email()
         {
@@ -49,7 +43,5 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
     }
 }

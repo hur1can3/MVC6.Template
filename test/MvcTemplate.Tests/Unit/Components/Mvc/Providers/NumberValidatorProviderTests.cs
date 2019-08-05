@@ -9,8 +9,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 {
     public class NumberValidatorProviderTests
     {
-        #region CreateValidators(ClientValidatorProviderContext context)
-
         [Theory]
         [InlineData(typeof(Byte))]
         [InlineData(typeof(Byte?))]
@@ -58,7 +56,5 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Empty(context.Results);
         }
-
-        #endregion
     }
 }

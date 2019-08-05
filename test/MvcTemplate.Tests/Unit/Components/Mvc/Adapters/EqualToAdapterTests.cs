@@ -24,8 +24,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             context = new ClientModelValidationContext(new ActionContext(), metadata, provider, attributes);
         }
 
-        #region AddValidation(ClientModelValidationContext context)
-
         [Fact]
         public void AddValidation_EqualTo()
         {
@@ -37,10 +35,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             Assert.Equal(Validation.For("EqualTo", context.ModelMetadata.PropertyName, adapter.Attribute.OtherPropertyName), attributes["data-val-equalto"]);
         }
 
-        #endregion
-
-        #region GetErrorMessage(ModelValidationContextBase context)
-
         [Fact]
         public void GetErrorMessage_EqualTo()
         {
@@ -49,7 +43,5 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
     }
 }

@@ -36,8 +36,6 @@ namespace MvcTemplate.Controllers.Administration.Tests
             controller.Url = Substitute.For<IUrlHelper>();
         }
 
-        #region Index()
-
         [Fact]
         public void Index_ReturnsRoleViews()
         {
@@ -48,10 +46,6 @@ namespace MvcTemplate.Controllers.Administration.Tests
 
             Assert.Same(expected, actual);
         }
-
-        #endregion
-
-        #region Create()
 
         [Fact]
         public void Create_ReturnsNewRoleView()
@@ -69,10 +63,6 @@ namespace MvcTemplate.Controllers.Administration.Tests
 
             service.Received().SeedPermissions(view);
         }
-
-        #endregion
-
-        #region Create(RoleView role)
 
         [Fact]
         public void Create_ProtectsFromOverpostingId()
@@ -122,10 +112,6 @@ namespace MvcTemplate.Controllers.Administration.Tests
             Assert.Same(expected, actual);
         }
 
-        #endregion
-
-        #region Details(Int32 id)
-
         [Fact]
         public void Details_ReturnsNotEmptyView()
         {
@@ -137,10 +123,6 @@ namespace MvcTemplate.Controllers.Administration.Tests
             Assert.Same(expected, actual);
         }
 
-        #endregion
-
-        #region Edit(Int32 id)
-
         [Fact]
         public void Edit_ReturnsNotEmptyView()
         {
@@ -151,10 +133,6 @@ namespace MvcTemplate.Controllers.Administration.Tests
 
             Assert.Same(expected, actual);
         }
-
-        #endregion
-
-        #region Edit(RoleView role)
 
         [Fact]
         public void Edit_CanNotEdit_SeedsPermissions()
@@ -210,10 +188,6 @@ namespace MvcTemplate.Controllers.Administration.Tests
             Assert.Same(expected, actual);
         }
 
-        #endregion
-
-        #region Delete(Int32 id)
-
         [Fact]
         public void Delete_ReturnsNotEmptyView()
         {
@@ -224,10 +198,6 @@ namespace MvcTemplate.Controllers.Administration.Tests
 
             Assert.Same(expected, actual);
         }
-
-        #endregion
-
-        #region DeleteConfirmed(Int32 id)
 
         [Fact]
         public void DeleteConfirmed_DeletesRole()
@@ -256,7 +226,5 @@ namespace MvcTemplate.Controllers.Administration.Tests
 
             Assert.Same(expected, actual);
         }
-
-        #endregion
     }
 }

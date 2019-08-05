@@ -44,8 +44,6 @@ namespace MvcTemplate.Services.Tests
             context.Dispose();
         }
 
-        #region Get<TView>(Int32 id)
-
         [Fact]
         public void Get_ReturnsViewById()
         {
@@ -59,10 +57,6 @@ namespace MvcTemplate.Services.Tests
             Assert.Equal(expected.Email, actual.Email);
             Assert.Equal(expected.Id, actual.Id);
         }
-
-        #endregion
-
-        #region GetViews()
 
         [Fact]
         public void GetViews_ReturnsAccountViews()
@@ -86,10 +80,6 @@ namespace MvcTemplate.Services.Tests
             }
         }
 
-        #endregion
-
-        #region IsLoggedIn(IPrincipal user)
-
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
@@ -103,10 +93,6 @@ namespace MvcTemplate.Services.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
-
-        #region IsActive(Int32 id)
 
         [Theory]
         [InlineData(true)]
@@ -128,10 +114,6 @@ namespace MvcTemplate.Services.Tests
         {
             Assert.False(service.IsActive(0));
         }
-
-        #endregion
-
-        #region Recover(AccountRecoveryView view)
 
         [Fact]
         public void Recover_NoEmail_ReturnsNull()
@@ -170,10 +152,6 @@ namespace MvcTemplate.Services.Tests
             Assert.NotNull(actual.RecoveryToken);
         }
 
-        #endregion
-
-        #region Reset(AccountResetView view)
-
         [Fact]
         public void Reset_Account()
         {
@@ -194,10 +172,6 @@ namespace MvcTemplate.Services.Tests
             Assert.Equal(expected.Id, actual.Id);
             Assert.Null(actual.RecoveryToken);
         }
-
-        #endregion
-
-        #region Create(AccountCreateView view)
 
         [Fact]
         public void Create_Account()
@@ -220,10 +194,6 @@ namespace MvcTemplate.Services.Tests
             Assert.Null(actual.RecoveryToken);
             Assert.False(actual.IsLocked);
         }
-
-        #endregion
-
-        #region Edit(AccountEditView view)
 
         [Fact]
         public void Edit_Account()
@@ -249,10 +219,6 @@ namespace MvcTemplate.Services.Tests
             Assert.Equal(expected.Email, actual.Email);
             Assert.Equal(expected.Id, actual.Id);
         }
-
-        #endregion
-
-        #region Edit(ClaimsPrincipal user, ProfileEditView view)
 
         [Fact]
         public void Edit_Profile()
@@ -317,10 +283,6 @@ namespace MvcTemplate.Services.Tests
             Assert.Equal(expected.Email.ToLower(), actual.FindFirst(ClaimTypes.Email).Value);
         }
 
-        #endregion
-
-        #region Delete(Int32 id)
-
         [Fact]
         public void Delete_Account()
         {
@@ -328,10 +290,6 @@ namespace MvcTemplate.Services.Tests
 
             Assert.Empty(context.Set<Account>().AsNoTracking());
         }
-
-        #endregion
-
-        #region Login(HttpContext context, String username)
 
         [Fact]
         public async Task Login_Account()
@@ -349,10 +307,6 @@ namespace MvcTemplate.Services.Tests
                 principal.Identity.AuthenticationType == "Password"), null);
         }
 
-        #endregion
-
-        #region Logout(HttpContext context)
-
         [Fact]
         public async Task Logout_Account()
         {
@@ -364,8 +318,6 @@ namespace MvcTemplate.Services.Tests
 
             await authentication.Received().SignOutAsync(httpContext, "Cookies", null);
         }
-
-        #endregion
     }
 }
 

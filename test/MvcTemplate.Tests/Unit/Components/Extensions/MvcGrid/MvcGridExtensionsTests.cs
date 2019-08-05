@@ -29,8 +29,6 @@ namespace MvcTemplate.Components.Extensions.Tests
             columns = new GridColumns<AllTypesView>(grid);
         }
 
-        #region AddAction<T>(this IGridColumnsOf<T> columns, String action, String iconClass)
-
         [Fact]
         public void AddAction_Unauthorized_Empty()
         {
@@ -107,10 +105,6 @@ namespace MvcTemplate.Components.Extensions.Tests
             Assert.Single(columns);
         }
 
-        #endregion
-
-        #region AddDate<T>(this IGridColumnsOf<T> columns, Expression<Func<T, DateTime>> expression)
-
         [Fact]
         public void AddDate_Column()
         {
@@ -125,10 +119,6 @@ namespace MvcTemplate.Components.Extensions.Tests
             Assert.Single(columns);
         }
 
-        #endregion
-
-        #region AddDate<T>(this IGridColumnsOf<T> columns, Expression<Func<T, DateTime?>> expression)
-
         [Fact]
         public void AddDate_Nullable_Column()
         {
@@ -142,10 +132,6 @@ namespace MvcTemplate.Components.Extensions.Tests
             Assert.Equal("{0:d}", actual.Format);
             Assert.Single(columns);
         }
-
-        #endregion
-
-        #region AddBoolean<T>(this IGridColumnsOf<T> columns, Expression<Func<T, Boolean>> expression)
 
         [Fact]
         public void AddBoolean_Column()
@@ -183,10 +169,6 @@ namespace MvcTemplate.Components.Extensions.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
-
-        #region AddBoolean<T>(this IGridColumnsOf<T> columns, Expression<Func<T, Boolean?>> expression)
 
         [Fact]
         public void AddBoolean_Nullable_Column()
@@ -236,10 +218,6 @@ namespace MvcTemplate.Components.Extensions.Tests
             Assert.Equal(expected, actual);
         }
 
-        #endregion
-
-        #region AddDateTime<T>(this IGridColumnsOf<T> columns, Expression<Func<T, DateTime>> expression)
-
         [Fact]
         public void AddDateTime_Column()
         {
@@ -254,10 +232,6 @@ namespace MvcTemplate.Components.Extensions.Tests
             Assert.Single(columns);
         }
 
-        #endregion
-
-        #region AddDateTime<T>(this IGridColumnsOf<T> columns, Expression<Func<T, DateTime?>> expression)
-
         [Fact]
         public void AddDateTime_Nullable_Column()
         {
@@ -271,10 +245,6 @@ namespace MvcTemplate.Components.Extensions.Tests
             Assert.Equal("{0:g}", actual.Format);
             Assert.Single(columns);
         }
-
-        #endregion
-
-        #region AddProperty<T, TProperty>(this IGridColumnsOf<T> columns, Expression<Func<T, TProperty>> expression)
 
         [Fact]
         public void AddProperty_Column()
@@ -463,10 +433,6 @@ namespace MvcTemplate.Components.Extensions.Tests
             AssertCssClassFor(model => model.StringField, "text-left");
         }
 
-        #endregion
-
-        #region ApplyDefaults<T>(this IHtmlGrid<T> grid)
-
         [Theory]
         [InlineData("", "table-hover")]
         [InlineData(" ", "table-hover")]
@@ -491,10 +457,6 @@ namespace MvcTemplate.Components.Extensions.Tests
             Assert.NotEmpty(actual.Columns);
         }
 
-        #endregion
-
-        #region Test helpers
-
         private void AssertCssClassFor<TProperty>(Expression<Func<AllTypesView, TProperty>> property, String cssClasses)
         {
             IGridColumn<AllTypesView, TProperty> column = columns.AddProperty(property);
@@ -504,7 +466,5 @@ namespace MvcTemplate.Components.Extensions.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
     }
 }

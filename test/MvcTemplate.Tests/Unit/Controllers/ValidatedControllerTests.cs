@@ -26,8 +26,6 @@ namespace MvcTemplate.Controllers.Tests
             controller.HttpContext.RequestServices.GetService(typeof(ILanguages)).Returns(Substitute.For<ILanguages>());
         }
 
-        #region ValidatedController(TService service, TValidator validator)
-
         [Fact]
         public void ValidatedController_SetsValidator()
         {
@@ -36,10 +34,6 @@ namespace MvcTemplate.Controllers.Tests
 
             Assert.Same(expected, actual);
         }
-
-        #endregion
-
-        #region OnActionExecuting(ActionExecutingContext context)
 
         [Fact]
         public void OnActionExecuting_SetsServiceCurrentAccountId()
@@ -89,10 +83,6 @@ namespace MvcTemplate.Controllers.Tests
             Assert.Same(expected, actual);
         }
 
-        #endregion
-
-        #region Dispose()
-
         [Fact]
         public void Dispose_Service()
         {
@@ -115,7 +105,5 @@ namespace MvcTemplate.Controllers.Tests
             controller.Dispose();
             controller.Dispose();
         }
-
-        #endregion
     }
 }

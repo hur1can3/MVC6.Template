@@ -10,8 +10,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 {
     public class DateValidatorTests
     {
-        #region AddValidation(ClientModelValidationContext context)
-
         [Fact]
         public void AddValidation_Date()
         {
@@ -26,7 +24,5 @@ namespace MvcTemplate.Components.Mvc.Tests
             Assert.Equal("true", attributes["data-val"]);
             Assert.Equal(Validation.For("Date", "DateTime"), attributes["data-val-date"]);
         }
-
-        #endregion
     }
 }

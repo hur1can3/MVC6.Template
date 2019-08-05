@@ -44,8 +44,6 @@ namespace MvcTemplate.Controllers.Tests
             accountLogin = ObjectsFactory.CreateAccountLoginView();
         }
 
-        #region Recover()
-
         [Fact]
         public void Recover_IsLoggedIn_RedirectsToDefault()
         {
@@ -66,10 +64,6 @@ namespace MvcTemplate.Controllers.Tests
 
             Assert.Null(actual.Model);
         }
-
-        #endregion
-
-        #region Recover(AccountRecoveryView account)
 
         [Fact]
         public async Task Recover_Post_IsLoggedIn_RedirectsToDefault()
@@ -164,10 +158,6 @@ namespace MvcTemplate.Controllers.Tests
             Assert.Same(expected, actual);
         }
 
-        #endregion
-
-        #region Reset(String token)
-
         [Fact]
         public void Reset_IsLoggedIn_RedirectsToDefault()
         {
@@ -201,10 +191,6 @@ namespace MvcTemplate.Controllers.Tests
 
             Assert.Null(actual.Model);
         }
-
-        #endregion
-
-        #region Reset(AccountResetView account)
 
         [Fact]
         public void Reset_Post_IsLoggedIn_RedirectsToDefault()
@@ -267,10 +253,6 @@ namespace MvcTemplate.Controllers.Tests
             Assert.Same(expected, actual);
         }
 
-        #endregion
-
-        #region Login(String returnUrl)
-
         [Fact]
         public void Login_IsLoggedIn_RedirectsToUrl()
         {
@@ -293,10 +275,6 @@ namespace MvcTemplate.Controllers.Tests
 
             Assert.Null(actual.Model);
         }
-
-        #endregion
-
-        #region Login(AccountLoginView account, String returnUrl)
 
         [Fact]
         public async Task Login_Post_IsLoggedIn_RedirectsToUrl()
@@ -349,10 +327,6 @@ namespace MvcTemplate.Controllers.Tests
             Assert.Same(expected, actual);
         }
 
-        #endregion
-
-        #region Logout()
-
         [Fact]
         public async Task Logout_Account()
         {
@@ -369,7 +343,5 @@ namespace MvcTemplate.Controllers.Tests
 
             Assert.Same(expected, actual);
         }
-
-        #endregion
     }
 }

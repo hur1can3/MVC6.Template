@@ -77,8 +77,6 @@ namespace MvcTemplate.Resources.Tests
             }
         }
 
-        #region Test helpers
-
         private List<SiteMapNode> Flatten(IEnumerable<XElement> elements, SiteMapNode parent = null)
         {
             List<SiteMapNode> list = new List<SiteMapNode>();
@@ -97,7 +95,5 @@ namespace MvcTemplate.Resources.Tests
 
             return list;
         }
-
-        #endregion
     }
 }

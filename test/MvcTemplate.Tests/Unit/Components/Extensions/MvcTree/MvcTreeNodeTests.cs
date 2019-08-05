@@ -4,8 +4,6 @@ namespace MvcTemplate.Components.Extensions.Tests
 {
     public class MvcTreeNodeTests
     {
-        #region MvcTreeNode(String title)
-
         [Fact]
         public void MvcTreeNode_SetsTitle()
         {
@@ -16,10 +14,6 @@ namespace MvcTemplate.Components.Extensions.Tests
             Assert.Null(actual.Id);
         }
 
-        #endregion
-
-        #region MvcTreeNode(Int32? id, String title)
-
         [Fact]
         public void MvcTreeNode_SetsIdAndTitle()
         {
@@ -29,7 +23,5 @@ namespace MvcTemplate.Components.Extensions.Tests
             Assert.Empty(actual.Children);
             Assert.Equal(1, actual.Id);
         }
-
-        #endregion
     }
 }

@@ -24,8 +24,6 @@ namespace MvcTemplate.Data.Logging.Tests
             }
         }
 
-        #region LoggableProperty(PropertyEntry entry, Object newValue)
-
         [Fact]
         public void LoggableProperty_IsNotModified()
         {
@@ -61,10 +59,6 @@ namespace MvcTemplate.Data.Logging.Tests
 
             Assert.True(new LoggableProperty(textProperty, "Original").IsModified);
         }
-
-        #endregion
-
-        #region ToString()
 
         [Fact]
         public void ToString_Modified_CurrentValueNull()
@@ -160,7 +154,5 @@ namespace MvcTemplate.Data.Logging.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
     }
 }

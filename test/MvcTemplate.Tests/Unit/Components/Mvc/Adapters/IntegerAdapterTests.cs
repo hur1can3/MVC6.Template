@@ -24,8 +24,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             context = new ClientModelValidationContext(new ActionContext(), metadata, provider, attributes);
         }
 
-        #region AddValidation(ClientModelValidationContext context)
-
         [Fact]
         public void AddValidation_Integer()
         {
@@ -36,10 +34,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             Assert.Equal(Validation.For("Integer", context.ModelMetadata.PropertyName), attributes["data-val-integer"]);
         }
 
-        #endregion
-
-        #region GetErrorMessage(ModelValidationContextBase context)
-
         [Fact]
         public void GetErrorMessage_Integer()
         {
@@ -48,7 +42,5 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
     }
 }

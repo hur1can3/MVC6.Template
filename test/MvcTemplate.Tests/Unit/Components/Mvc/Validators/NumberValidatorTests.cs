@@ -10,8 +10,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 {
     public class NumberValidatorTests
     {
-        #region AddValidation(ClientModelValidationContext context)
-
         [Fact]
         public void AddValidation_Number()
         {
@@ -26,7 +24,5 @@ namespace MvcTemplate.Components.Mvc.Tests
             Assert.Equal("true", attributes["data-val"]);
             Assert.Equal(Validation.For("Numeric", "Int32"), attributes["data-val-number"]);
         }
-
-        #endregion
     }
 }

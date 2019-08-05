@@ -8,8 +8,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 {
     public class TrimmingModelBinderProviderTests
     {
-        #region GetBinder(ModelBinderProviderContext context)
-
         [Fact]
         public void GetBinder_ForLookupFilterReturnsNull()
         {
@@ -42,7 +40,5 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Null(new TrimmingModelBinderProvider().GetBinder(context));
         }
-
-        #endregion
     }
 }

@@ -6,8 +6,6 @@ namespace MvcTemplate.Tests
 {
     public static class ObjectsFactory
     {
-        #region Administration
-
         public static Account CreateAccount(Int32 id = 0)
         {
             return new Account
@@ -155,10 +153,6 @@ namespace MvcTemplate.Tests
             };
         }
 
-        #endregion
-
-        #region Tests
-
         public static TestModel CreateTestModel(Int32 id = 0)
         {
             return new TestModel
@@ -166,7 +160,5 @@ namespace MvcTemplate.Tests
                 Title = $"Title{id}"
             };
         }
-
-        #endregion
     }
 }

@@ -6,8 +6,6 @@ namespace MvcTemplate.Components.Extensions.Tests
 {
     public class ClaimsPrincipalExtensionsTests
     {
-        #region Id(this ClaimsPrincipal principal)
-
         [Fact]
         public void Id_NoClaim_ReturnsNull()
         {
@@ -29,10 +27,6 @@ namespace MvcTemplate.Components.Extensions.Tests
             Assert.Equal(expected, actual);
         }
 
-        #endregion
-
-        #region Email(this ClaimsPrincipal principal)
-
         [Fact]
         public void Email_NoClaim_ReturnsNull()
         {
@@ -52,10 +46,6 @@ namespace MvcTemplate.Components.Extensions.Tests
             Assert.Equal(expected, actual);
         }
 
-        #endregion
-
-        #region Username(this ClaimsPrincipal principal)
-
         [Fact]
         public void Username_NoClaim_ReturnsNull()
         {
@@ -74,10 +64,6 @@ namespace MvcTemplate.Components.Extensions.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
-
-        #region UpdateClaim(this ClaimsPrincipal principal)
 
         [Fact]
         public void UpdateClaim_New()
@@ -107,7 +93,5 @@ namespace MvcTemplate.Components.Extensions.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
     }
 }

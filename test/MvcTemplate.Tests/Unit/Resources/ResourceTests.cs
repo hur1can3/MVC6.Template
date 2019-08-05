@@ -11,8 +11,6 @@ namespace MvcTemplate.Resources.Tests
 {
     public class ResourceTests
     {
-        #region Set(String type)
-
         [Fact]
         public void Set_Same()
         {
@@ -21,10 +19,6 @@ namespace MvcTemplate.Resources.Tests
 
             Assert.Same(expected, actual);
         }
-
-        #endregion
-
-        #region ForArea(String name)
 
         [Fact]
         public void ForArea_IsCaseInsensitive()
@@ -40,10 +34,6 @@ namespace MvcTemplate.Resources.Tests
         {
             Assert.Null(Resource.ForArea("Null"));
         }
-
-        #endregion
-
-        #region ForAction(String name)
 
         [Fact]
         public void ForAction_Null_ReturnsNull()
@@ -66,10 +56,6 @@ namespace MvcTemplate.Resources.Tests
             Assert.Null(Resource.ForAction("Null"));
         }
 
-        #endregion
-
-        #region ForController(String name)
-
         [Fact]
         public void ForController_IsCaseInsensitive()
         {
@@ -84,10 +70,6 @@ namespace MvcTemplate.Resources.Tests
         {
             Assert.Null(Resource.ForController("Null"));
         }
-
-        #endregion
-
-        #region ForLookup(String type)
 
         [Fact]
         public void ForLookup_IsCaseInsensitive()
@@ -104,10 +86,6 @@ namespace MvcTemplate.Resources.Tests
             Assert.Null(Resource.ForLookup("Test"));
         }
 
-        #endregion
-
-        #region ForString(String value)
-
         [Fact]
         public void ForString_IsCaseInsensitive()
         {
@@ -122,10 +100,6 @@ namespace MvcTemplate.Resources.Tests
         {
             Assert.Null(Resource.ForString("Null"));
         }
-
-        #endregion
-
-        #region ForHeader(String model)
 
         [Fact]
         public void ForHeader_IsCaseInsensitive()
@@ -142,10 +116,6 @@ namespace MvcTemplate.Resources.Tests
             Assert.Null(Resource.ForHeader("Test"));
         }
 
-        #endregion
-
-        #region ForPage(String path)
-
         [Fact]
         public void ForPage_Path_IsCaseInsensitive()
         {
@@ -160,10 +130,6 @@ namespace MvcTemplate.Resources.Tests
         {
             Assert.Null(Resource.ForPage("Test"));
         }
-
-        #endregion
-
-        #region ForPage(IDictionary<String, Object> values)
 
         [Fact]
         public void ForPage_IsCaseInsensitive()
@@ -208,10 +174,6 @@ namespace MvcTemplate.Resources.Tests
             Assert.Null(Resource.ForPage(values));
         }
 
-        #endregion
-
-        #region ForSiteMap(String area, String controller, String action)
-
         [Fact]
         public void ForSiteMap_IsCaseInsensitive()
         {
@@ -235,10 +197,6 @@ namespace MvcTemplate.Resources.Tests
         {
             Assert.Null(Resource.ForSiteMap("Test", "Test", "Test"));
         }
-
-        #endregion
-
-        #region ForProperty<TModel, TProperty>(Expression<Func<TModel, TProperty>> expression)
 
         [Fact]
         public void ForProperty_NotMemberLambdaExpression_ReturnNull()
@@ -276,10 +234,6 @@ namespace MvcTemplate.Resources.Tests
             Assert.Null(Resource.ForProperty<TestView, String>(test => test.Title));
         }
 
-        #endregion
-
-        #region ForProperty(String view, String name)
-
         [Fact]
         public void ForProperty_View()
         {
@@ -288,10 +242,6 @@ namespace MvcTemplate.Resources.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
-
-        #region ForProperty(Type view, String name)
 
         [Fact]
         public void ForProperty_IsCaseInsensitive()
@@ -337,10 +287,6 @@ namespace MvcTemplate.Resources.Tests
         {
             Assert.Null(Resource.ForProperty(typeof(RoleView), null));
         }
-
-        #endregion
-
-        #region ForProperty(Expression expression)
 
         [Fact]
         public void ForProperty_NotMemberExpression_ReturnNull()
@@ -388,17 +334,11 @@ namespace MvcTemplate.Resources.Tests
             Assert.Null(Resource.ForProperty(lambda.Body));
         }
 
-        #endregion
-
-        #region Test helpers
-
         private String ResourceFor(String path, String group, String key)
         {
             String resource = File.ReadAllText(Path.Combine("Resources", $"{path}.json"));
 
             return JsonConvert.DeserializeObject<Dictionary<String, Dictionary<String, String>>>(resource)[group][key];
         }
-
-        #endregion
     }
 }

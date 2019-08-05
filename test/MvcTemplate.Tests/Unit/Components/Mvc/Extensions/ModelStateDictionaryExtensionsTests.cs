@@ -7,8 +7,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 {
     public class ModelStateDictionaryExtensionsTests
     {
-        #region Errors(this ModelStateDictionary modelState)
-
         [Fact]
         public void Errors_FromModelState()
         {
@@ -31,7 +29,5 @@ namespace MvcTemplate.Components.Mvc.Tests
             Assert.Equal(5, actual.Count);
             Assert.Null(actual["Empty"]);
         }
-
-        #endregion
     }
 }

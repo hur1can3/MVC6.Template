@@ -6,8 +6,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 {
     public class SecureHeadersMiddlewareTests
     {
-        #region Invoke(HttpContext context)
-
         [Fact]
         public async Task Invoke_AddsSecureHeaders()
         {
@@ -23,7 +21,5 @@ namespace MvcTemplate.Components.Mvc.Tests
             Assert.Equal("deny", actual["X-Frame-Options"]);
             Assert.Equal(4, actual.Keys.Count);
         }
-
-        #endregion
     }
 }

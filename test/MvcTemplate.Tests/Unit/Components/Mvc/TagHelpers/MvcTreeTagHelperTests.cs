@@ -29,8 +29,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             output = new TagHelperOutput("div", new TagHelperAttributeList(), (useCachedResult, encoder) => null);
         }
 
-        #region Process(TagHelperContext context, TagHelperOutput output)
-
         [Fact]
         public void Process_AddsDataForAttribute()
         {
@@ -129,7 +127,5 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
     }
 }

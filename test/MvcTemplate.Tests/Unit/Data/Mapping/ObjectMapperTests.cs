@@ -12,8 +12,6 @@ namespace MvcTemplate.Data.Mapping.Tests
             ObjectMapper.MapObjects();
         }
 
-        #region MapRoles()
-
         [Fact]
         public void MapRoles_Role_RoleView()
         {
@@ -37,7 +35,5 @@ namespace MvcTemplate.Data.Mapping.Tests
             Assert.Equal(expected.Id, actual.Id);
             Assert.Empty(actual.Permissions);
         }
-
-        #endregion
     }
 }

@@ -24,27 +24,17 @@ namespace MvcTemplate.Data.Migrations.Tests
             context.Dispose();
         }
 
-        #region Roles
-
         [Fact]
         public void RolesTable_HasSysAdmin()
         {
             Assert.Single(context.Set<Role>(), role => role.Title == "Sys_Admin");
         }
 
-        #endregion
-
-        #region Accounts
-
         [Fact]
         public void AccountsTable_HasAdmin()
         {
             Assert.Single(context.Set<Account>(), account => account.Username == "admin" && account.Role.Title == "Sys_Admin");
         }
-
-        #endregion
-
-        #region Permissions
 
         [Theory]
         [InlineData("Administration", "Accounts", "Index")]
@@ -74,10 +64,6 @@ namespace MvcTemplate.Data.Migrations.Tests
             Assert.Equal(expected, actual);
         }
 
-        #endregion
-
-        #region RolePermissions
-
         [Fact]
         public void RolesPermissionsTable_HasAllSysAdminPermissions()
         {
@@ -94,7 +80,5 @@ namespace MvcTemplate.Data.Migrations.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
     }
 }

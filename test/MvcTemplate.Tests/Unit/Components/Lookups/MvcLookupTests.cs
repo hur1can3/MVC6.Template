@@ -21,8 +21,6 @@ namespace MvcTemplate.Components.Lookups.Tests
             lookup = new MvcLookup<Role, RoleView>(unitOfWork);
         }
 
-        #region GetColumnHeader(PropertyInfo property)
-
         [Fact]
         public void GetColumnHeader_ReturnsPropertyTitle()
         {
@@ -41,10 +39,6 @@ namespace MvcTemplate.Components.Lookups.Tests
 
             Assert.Empty(actual);
         }
-
-        #endregion
-
-        #region GetColumnCssClass(PropertyInfo property)
 
         [Theory]
         [InlineData("EnumField", "text-left")]
@@ -89,10 +83,6 @@ namespace MvcTemplate.Components.Lookups.Tests
             Assert.Equal(expected, actual);
         }
 
-        #endregion
-
-        #region GetModels()
-
         [Fact]
         public void GetModels_FromUnitOfWork()
         {
@@ -103,7 +93,5 @@ namespace MvcTemplate.Components.Lookups.Tests
 
             Assert.Same(expected, actual);
         }
-
-        #endregion
     }
 }

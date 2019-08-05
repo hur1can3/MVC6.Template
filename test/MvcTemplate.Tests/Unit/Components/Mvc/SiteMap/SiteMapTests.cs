@@ -31,8 +31,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             route = context.RouteData.Values;
         }
 
-        #region For(ViewContext context)
-
         [Fact]
         public void For_NoAuthorization_ReturnsAllNodes()
         {
@@ -227,10 +225,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             Assert.Equal(Resource.ForSiteMap("Administration", "Accounts", "Index"), actual[0].Title);
         }
 
-        #endregion
-
-        #region BreadcrumbFor(ViewContext context)
-
         [Fact]
         public void BreadcrumbFor_IsCaseInsensitive()
         {
@@ -274,10 +268,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             Assert.Empty(siteMap.BreadcrumbFor(context));
         }
 
-        #endregion
-
-        #region Test helpers
-
         private static String CreateSiteMap()
         {
             return @"<siteMap>
@@ -299,7 +289,5 @@ namespace MvcTemplate.Components.Mvc.Tests
                 </siteMapNode>
             </siteMap>";
         }
-
-        #endregion
     }
 }

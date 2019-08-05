@@ -40,8 +40,6 @@ namespace MvcTemplate.Controllers.Administration.Tests
             controller.Url = Substitute.For<IUrlHelper>();
         }
 
-        #region Index()
-
         [Fact]
         public void Index_ReturnsAccountViews()
         {
@@ -53,10 +51,6 @@ namespace MvcTemplate.Controllers.Administration.Tests
             Assert.Same(expected, actual);
         }
 
-        #endregion
-
-        #region Create()
-
         [Fact]
         public void Create_ReturnsEmptyView()
         {
@@ -64,10 +58,6 @@ namespace MvcTemplate.Controllers.Administration.Tests
 
             Assert.Null(actual.Model);
         }
-
-        #endregion
-
-        #region Create(AccountCreateView account)
 
         [Fact]
         public void Create_ProtectsFromOverpostingId()
@@ -119,10 +109,6 @@ namespace MvcTemplate.Controllers.Administration.Tests
             Assert.Same(expected, actual);
         }
 
-        #endregion
-
-        #region Details(Int32 id)
-
         [Fact]
         public void Details_ReturnsNotEmptyView()
         {
@@ -134,10 +120,6 @@ namespace MvcTemplate.Controllers.Administration.Tests
             Assert.Same(expected, actual);
         }
 
-        #endregion
-
-        #region Edit(Int32 id)
-
         [Fact]
         public void Edit_ReturnsNotEmptyView()
         {
@@ -148,10 +130,6 @@ namespace MvcTemplate.Controllers.Administration.Tests
 
             Assert.Same(expected, actual);
         }
-
-        #endregion
-
-        #region Edit(AccountEditView account)
 
         [Fact]
         public void Edit_CanNotEdit_ReturnsSameView()
@@ -196,7 +174,5 @@ namespace MvcTemplate.Controllers.Administration.Tests
 
             Assert.Same(expected, actual);
         }
-
-        #endregion
     }
 }

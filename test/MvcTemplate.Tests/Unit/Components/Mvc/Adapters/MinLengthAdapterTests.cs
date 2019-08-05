@@ -11,8 +11,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 {
     public class MinLengthAdapterTests
     {
-        #region GetErrorMessage(ModelValidationContextBase context)
-
         [Fact]
         public void GetErrorMessage_MinLength()
         {
@@ -27,7 +25,5 @@ namespace MvcTemplate.Components.Mvc.Tests
             Assert.Equal(Validation.For("MinLength"), adapter.Attribute.ErrorMessage);
             Assert.Equal(expected, actual);
         }
-
-        #endregion
     }
 }

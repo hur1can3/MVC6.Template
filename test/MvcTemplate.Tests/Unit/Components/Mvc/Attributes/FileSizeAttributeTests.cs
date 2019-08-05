@@ -15,8 +15,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             attribute = new FileSizeAttribute(12.25);
         }
 
-        #region FileSizeAttribute(Double maximumMB)
-
         [Fact]
         public void FileSizeAttribute_SetsMaximumMB()
         {
@@ -25,10 +23,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
-
-        #region FormatErrorMessage(String name)
 
         [Fact]
         public void FormatErrorMessage_ForName()
@@ -40,10 +34,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
-
-        #region IsValid(Object value)
 
         [Fact]
         public void IsValid_Null()
@@ -98,7 +88,5 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.False(attribute.IsValid(files));
         }
-
-        #endregion
     }
 }

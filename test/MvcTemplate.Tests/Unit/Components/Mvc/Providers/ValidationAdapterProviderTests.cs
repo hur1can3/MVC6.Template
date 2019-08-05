@@ -12,8 +12,6 @@ namespace MvcTemplate.Components.Mvc.Providers.Tests
             provider = new ValidationAdapterProvider();
         }
 
-        #region GetAttributeAdapter(ValidationAttribute attribute, IStringLocalizer localizer)
-
         [Fact]
         public void GetAttributeAdapter_Required()
         {
@@ -85,7 +83,5 @@ namespace MvcTemplate.Components.Mvc.Providers.Tests
         {
             Assert.IsType<RangeAdapter>(provider.GetAttributeAdapter(new RangeAttribute(4, 77), null));
         }
-
-        #endregion
     }
 }

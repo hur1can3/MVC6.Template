@@ -15,8 +15,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             ModelMessagesProvider.Set(messages);
         }
 
-        #region Set(ModelBindingMessageProvider messages)
-
         [Fact]
         public void ModelMessagesProvider_SetsAttemptedValueIsInvalidAccessor()
         {
@@ -43,7 +41,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Equal(expected, actual);
         }
-
 
         [Fact]
         public void ModelMessagesProvider_SetsValueMustNotBeNullAccessor()
@@ -80,7 +77,5 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
     }
 }

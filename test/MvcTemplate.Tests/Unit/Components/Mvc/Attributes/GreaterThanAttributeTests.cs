@@ -13,8 +13,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             attribute = new GreaterThanAttribute(12.56);
         }
 
-        #region GreaterThanAttribute(Double minimum)
-
         [Fact]
         public void GreaterThanAttribute_SetsMinimum()
         {
@@ -23,10 +21,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
-
-        #region FormatErrorMessage(String name)
 
         [Fact]
         public void FormatErrorMessage_ForName()
@@ -38,10 +32,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
-
-        #region IsValid(Object value)
 
         [Fact]
         public void IsValid_Null()
@@ -71,7 +61,5 @@ namespace MvcTemplate.Components.Mvc.Tests
         {
             Assert.False(attribute.IsValid("12.60M"));
         }
-
-        #endregion
     }
 }

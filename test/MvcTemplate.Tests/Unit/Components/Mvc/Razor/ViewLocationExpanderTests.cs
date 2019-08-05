@@ -11,8 +11,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 {
     public class ViewLocationExpanderTests
     {
-        #region ExpandViewLocations(ViewLocationExpanderContext context, IEnumerable<String> locations)
-
         [Fact]
         public void ExpandViewLocations_Area_ReturnsAreaLocations()
         {
@@ -38,16 +36,10 @@ namespace MvcTemplate.Components.Mvc.Tests
             Assert.Equal(expected, actual);
         }
 
-        #endregion
-
-        #region PopulateValues(ViewLocationExpanderContext context)
-
         [Fact]
         public void PopulateValues_DoesNothing()
         {
             new ViewLocationExpander().PopulateValues(null);
         }
-
-        #endregion
     }
 }

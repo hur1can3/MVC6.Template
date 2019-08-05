@@ -5,8 +5,6 @@ namespace MvcTemplate.Objects.Tests
 {
     public class RoleViewTests
     {
-        #region RoleView()
-
         [Fact]
         public void RoleView_CreatesEmpty()
         {
@@ -15,7 +13,5 @@ namespace MvcTemplate.Objects.Tests
             Assert.Empty(actual.SelectedIds);
             Assert.Empty(actual.Nodes);
         }
-
-        #endregion
     }
 }

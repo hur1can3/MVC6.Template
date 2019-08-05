@@ -13,8 +13,6 @@ namespace MvcTemplate.Components.Notifications.Tests
             alerts = new Alerts();
         }
 
-        #region Merge(Alerts alerts)
-
         [Fact]
         public void Merge_DoesNotMergeItself()
         {
@@ -43,10 +41,6 @@ namespace MvcTemplate.Components.Notifications.Tests
             Assert.Equal(expected, actual);
         }
 
-        #endregion
-
-        #region AddInfo(String message, Int32 timeout = 0)
-
         [Fact]
         public void AddInfo_Message()
         {
@@ -59,10 +53,6 @@ namespace MvcTemplate.Components.Notifications.Tests
             Assert.Equal(1, actual.Timeout);
             Assert.Null(actual.Id);
         }
-
-        #endregion
-
-        #region AddError(String message, Int32 timeout = 0)
 
         [Fact]
         public void AddError_Message()
@@ -77,10 +67,6 @@ namespace MvcTemplate.Components.Notifications.Tests
             Assert.Null(actual.Id);
         }
 
-        #endregion
-
-        #region AddSuccess(String message, Int32 timeout = 0)
-
         [Fact]
         public void AddSuccess_Message()
         {
@@ -94,10 +80,6 @@ namespace MvcTemplate.Components.Notifications.Tests
             Assert.Null(actual.Id);
         }
 
-        #endregion
-
-        #region AddWarning(String message, Int32 timeout = 0)
-
         [Fact]
         public void AddWarning_Message()
         {
@@ -110,7 +92,5 @@ namespace MvcTemplate.Components.Notifications.Tests
             Assert.Equal(1, actual.Timeout);
             Assert.Null(actual.Id);
         }
-
-        #endregion
     }
 }

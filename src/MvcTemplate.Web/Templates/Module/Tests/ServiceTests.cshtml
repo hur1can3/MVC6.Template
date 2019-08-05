@@ -32,8 +32,6 @@ namespace MvcTemplate.Services.Tests
             context.Dispose();
         }
 
-        #region Get<TView>(String id)
-
         [Fact]
         public void Get_ReturnsViewById()
         {
@@ -52,10 +50,6 @@ namespace MvcTemplate.Services.Tests
                 }
             }
         }
-
-        #endregion
-
-        #region GetViews()
 
         [Fact]
         public void GetViews_Returns@(Model.ModelShortName)Views()
@@ -79,10 +73,6 @@ namespace MvcTemplate.Services.Tests
             @:Assert.True(false, "Not all properties tested");
             }
         }
-
-        #endregion
-
-        #region Create(@Model.View view)
 
         [Fact]
         public void Create_@(Model.ModelShortName)()
@@ -108,10 +98,6 @@ namespace MvcTemplate.Services.Tests
             }
         }
 
-        #endregion
-
-        #region Edit(@Model.View view)
-
         [Fact]
         public void Edit_@(Model.ModelShortName)()
         {
@@ -136,10 +122,6 @@ namespace MvcTemplate.Services.Tests
             }
         }
 
-        #endregion
-
-        #region Delete(String id)
-
         [Fact]
         public void Delete_@(Model.ModelShortName)()
         {
@@ -147,7 +129,5 @@ namespace MvcTemplate.Services.Tests
 
             Assert.Empty(context.Set<@Model.Model>());
         }
-
-        #endregion
     }
 }

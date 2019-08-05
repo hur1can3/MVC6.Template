@@ -25,8 +25,6 @@ namespace MvcTemplate.Validators.Tests
             validator.Dispose();
         }
 
-        #region BaseValidator(IUnitOfWork unitOfWork)
-
         [Fact]
         public void BaseValidator_CreatesEmptyModelState()
         {
@@ -38,10 +36,6 @@ namespace MvcTemplate.Validators.Tests
         {
             Assert.Empty(validator.Alerts);
         }
-
-        #endregion
-
-        #region IsSpecified<TView>(TView view, Expression<Func<TView, Object>> property)
 
         [Fact]
         public void IsSpecified_Null_ReturnsFalse()
@@ -79,10 +73,6 @@ namespace MvcTemplate.Validators.Tests
             Assert.Empty(validator.Alerts);
         }
 
-        #endregion
-
-        #region Dispose()
-
         [Fact]
         public void Dispose_UnitOfWork()
         {
@@ -97,7 +87,5 @@ namespace MvcTemplate.Validators.Tests
             validator.Dispose();
             validator.Dispose();
         }
-
-        #endregion
     }
 }

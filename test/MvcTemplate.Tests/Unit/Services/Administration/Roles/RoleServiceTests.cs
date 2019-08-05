@@ -33,8 +33,6 @@ namespace MvcTemplate.Services.Tests
             service.Dispose();
         }
 
-        #region SeedPermissions(RoleView view)
-
         [Fact]
         public void SeedPermissions_FirstDepth()
         {
@@ -115,10 +113,6 @@ namespace MvcTemplate.Services.Tests
             Assert.Empty(leafs.Where(leaf => leaf.Id == null));
         }
 
-        #endregion
-
-        #region GetViews()
-
         [Fact]
         public void GetViews_ReturnsRoleViews()
         {
@@ -138,10 +132,6 @@ namespace MvcTemplate.Services.Tests
                 Assert.Equal(expected[i].Id, actual[i].Id);
             }
         }
-
-        #endregion
-
-        #region GetView(Int32 id)
 
         [Fact]
         public void GetView_NoRole_ReturnsNull()
@@ -184,10 +174,6 @@ namespace MvcTemplate.Services.Tests
             service.Received().SeedPermissions(view);
         }
 
-        #endregion
-
-        #region Create(RoleView view)
-
         [Fact]
         public void Create_Role()
         {
@@ -220,10 +206,6 @@ namespace MvcTemplate.Services.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
-
-        #region Edit(RoleView view)
 
         [Fact]
         public void Edit_Role()
@@ -261,10 +243,6 @@ namespace MvcTemplate.Services.Tests
             Assert.Equal(expected, actual);
         }
 
-        #endregion
-
-        #region Delete(Int32 id)
-
         [Fact]
         public void Delete_NullsAccountRoles()
         {
@@ -287,10 +265,6 @@ namespace MvcTemplate.Services.Tests
 
             Assert.Empty(context.Set<Role>().AsNoTracking());
         }
-
-        #endregion
-
-        #region Test helpers
 
         private void SetUpData()
         {
@@ -369,7 +343,5 @@ namespace MvcTemplate.Services.Tests
 
             return branches;
         }
-
-        #endregion
     }
 }

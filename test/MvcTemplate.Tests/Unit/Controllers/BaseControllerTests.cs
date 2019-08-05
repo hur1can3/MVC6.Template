@@ -39,17 +39,11 @@ namespace MvcTemplate.Controllers.Tests
             areaName = controller.RouteData.Values["area"] as String;
         }
 
-        #region BaseController()
-
         [Fact]
         public void BaseController_CreatesEmptyAlerts()
         {
             Assert.Empty(controller.Alerts);
         }
-
-        #endregion
-
-        #region NotFoundView()
 
         [Fact]
         public void NotFoundView_ReturnsNotFoundView()
@@ -59,10 +53,6 @@ namespace MvcTemplate.Controllers.Tests
             Assert.Equal("~/Views/Home/NotFound.cshtml", actual.ViewName);
             Assert.Equal(StatusCodes.Status404NotFound, controller.Response.StatusCode);
         }
-
-        #endregion
-
-        #region NotEmptyView(Object model)
 
         [Fact]
         public void NotEmptyView_NullModel_ReturnsNotFoundView()
@@ -81,10 +71,6 @@ namespace MvcTemplate.Controllers.Tests
 
             Assert.Same(expected, actual);
         }
-
-        #endregion
-
-        #region RedirectToLocal(String url)
 
         [Fact]
         public void RedirectToLocal_NotLocalUrl_RedirectsToDefault()
@@ -108,10 +94,6 @@ namespace MvcTemplate.Controllers.Tests
             Assert.Equal(expected, actual);
         }
 
-        #endregion
-
-        #region RedirectToDefault()
-
         [Fact]
         public void RedirectToDefault_Route()
         {
@@ -122,10 +104,6 @@ namespace MvcTemplate.Controllers.Tests
             Assert.Equal("Index", actual.ActionName);
             Assert.Single(actual.RouteValues);
         }
-
-        #endregion
-
-        #region RedirectToAction(String action, String controller, Object route)
 
         [Fact]
         public void RedirectToAction_Action_Controller_Route_NotAuthorized_RedirectsToDefault()
@@ -176,10 +154,6 @@ namespace MvcTemplate.Controllers.Tests
             Assert.Equal(2, actual.RouteValues.Count);
         }
 
-        #endregion
-
-        #region IsAuthorizedFor(String action, String controller, String area)
-
         [Fact]
         public void IsAuthorizedFor_NoAuthorization_ReturnsTrue()
         {
@@ -200,10 +174,6 @@ namespace MvcTemplate.Controllers.Tests
             Assert.True(controller.IsAuthorizedFor("Action", "Controller", "Area"));
             Assert.Same(authorization, controller.Authorization);
         }
-
-        #endregion
-
-        #region OnActionExecuting(ActionExecutingContext context)
 
         [Fact]
         public void OnActionExecuting_SetsAuthorization()
@@ -232,10 +202,6 @@ namespace MvcTemplate.Controllers.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
-
-        #region OnActionExecuted(ActionExecutedContext context)
 
         [Fact]
         public void OnActionExecuted_JsonResult_NoAlerts()
@@ -281,7 +247,5 @@ namespace MvcTemplate.Controllers.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
     }
 }

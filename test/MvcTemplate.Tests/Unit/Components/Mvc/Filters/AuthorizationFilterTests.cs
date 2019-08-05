@@ -26,8 +26,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             filter = new AuthorizationFilter(authorization);
         }
 
-        #region OnResourceExecuting(ResourceExecutingContext context)
-
         [Fact]
         public void OnResourceExecuting_NotAuthenticated_SetsNullResult()
         {
@@ -66,7 +64,5 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Null(context.Result);
         }
-
-        #endregion
     }
 }

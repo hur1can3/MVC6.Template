@@ -32,8 +32,6 @@ namespace MvcTemplate.Data.Logging.Tests
             logger.Dispose();
         }
 
-        #region Log(IEnumerable<EntityEntry<BaseModel>> entries)
-
         [Fact]
         public void Log_Added()
         {
@@ -130,10 +128,6 @@ namespace MvcTemplate.Data.Logging.Tests
             Assert.Empty(context.Set<AuditLog>());
         }
 
-        #endregion
-
-        #region Log(LoggableEntity entity)
-
         [Fact]
         public void Log_Entity()
         {
@@ -162,10 +156,6 @@ namespace MvcTemplate.Data.Logging.Tests
             Assert.Empty(context.Set<AuditLog>());
         }
 
-        #endregion
-
-        #region Save()
-
         [Theory]
         [InlineData(1)]
         [InlineData(null)]
@@ -188,10 +178,6 @@ namespace MvcTemplate.Data.Logging.Tests
             Assert.Equal(expected.Id(), actual.EntityId);
         }
 
-        #endregion
-
-        #region Dispose()
-
         [Fact]
         public void Dispose_Context()
         {
@@ -209,7 +195,5 @@ namespace MvcTemplate.Data.Logging.Tests
             logger.Dispose();
             logger.Dispose();
         }
-
-        #endregion
     }
 }

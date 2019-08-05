@@ -33,8 +33,6 @@ namespace MvcTemplate.Data.Core.Tests
             logger.Dispose();
         }
 
-        #region GetAs<TModel, TDestination>(Int32? id)
-
         [Fact]
         public void GetAs_Null_ReturnsDestinationDefault()
         {
@@ -54,10 +52,6 @@ namespace MvcTemplate.Data.Core.Tests
             Assert.Equal(expected.Title, actual.Title);
             Assert.Equal(expected.Id, actual.Id);
         }
-
-        #endregion
-
-        #region Get<TModel>(Int32? id)
 
         [Fact]
         public void Get_Null_ReturnsNull()
@@ -85,10 +79,6 @@ namespace MvcTemplate.Data.Core.Tests
             Assert.Null(unitOfWork.Get<TestModel>(0));
         }
 
-        #endregion
-
-        #region To<TDestination>(Object source)
-
         [Fact]
         public void To_ConvertsSourceToDestination()
         {
@@ -99,10 +89,6 @@ namespace MvcTemplate.Data.Core.Tests
             Assert.Equal(expected.Title, actual.Title);
             Assert.Equal(expected.Id, actual.Id);
         }
-
-        #endregion
-
-        #region Select<TModel>()
 
         [Fact]
         public void Select_FromSet()
@@ -115,10 +101,6 @@ namespace MvcTemplate.Data.Core.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
-
-        #region InsertRange<TModel>(IEnumerable<TModel> models)
 
         [Fact]
         public void InsertRange_AddsModelsToDbSet()
@@ -135,10 +117,6 @@ namespace MvcTemplate.Data.Core.Tests
             testingContext.Received().AddRange(models);
         }
 
-        #endregion
-
-        #region Insert<TModel>(TModel model)
-
         [Fact]
         public void Insert_AddsModelToDbSet()
         {
@@ -150,10 +128,6 @@ namespace MvcTemplate.Data.Core.Tests
             Assert.Equal(EntityState.Added, context.Entry(model).State);
             Assert.Same(expected, actual);
         }
-
-        #endregion
-
-        #region Update<TModel>(TModel model)
 
         [Theory]
         [InlineData(EntityState.Added, EntityState.Modified)]
@@ -174,10 +148,6 @@ namespace MvcTemplate.Data.Core.Tests
             Assert.False(actual.Property(prop => prop.CreationDate).IsModified);
         }
 
-        #endregion
-
-        #region DeleteRange<TModel>(IEnumerable<TModel> models)
-
         [Fact]
         public void DeleteRange_Models()
         {
@@ -192,10 +162,6 @@ namespace MvcTemplate.Data.Core.Tests
             Assert.Empty(context.Set<TestModel>());
         }
 
-        #endregion
-
-        #region Delete<TModel>(TModel model)
-
         [Fact]
         public void Delete_Model()
         {
@@ -208,10 +174,6 @@ namespace MvcTemplate.Data.Core.Tests
             Assert.Empty(context.Set<TestModel>());
         }
 
-        #endregion
-
-        #region Delete<TModel>(Int32 id)
-
         [Fact]
         public void Delete_ModelById()
         {
@@ -223,10 +185,6 @@ namespace MvcTemplate.Data.Core.Tests
 
             Assert.Empty(context.Set<TestModel>());
         }
-
-        #endregion
-
-        #region Commit()
 
         [Fact]
         public void Commit_SavesChanges()
@@ -258,10 +216,6 @@ namespace MvcTemplate.Data.Core.Tests
             Assert.NotNull(exception);
         }
 
-        #endregion
-
-        #region Dispose()
-
         [Fact]
         public void Dispose_Logger()
         {
@@ -286,7 +240,5 @@ namespace MvcTemplate.Data.Core.Tests
             unitOfWork.Dispose();
             unitOfWork.Dispose();
         }
-
-        #endregion
     }
 }

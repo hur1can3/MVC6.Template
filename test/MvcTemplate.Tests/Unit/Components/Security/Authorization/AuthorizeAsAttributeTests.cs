@@ -5,8 +5,6 @@ namespace MvcTemplate.Components.Security.Tests
 {
     public class AuthorizeAsAttributeTests
     {
-        #region AuthorizeAsAttribute(String action)
-
         [Fact]
         public void AuthorizeAsAttribute_NullAction_Throws()
         {
@@ -22,7 +20,5 @@ namespace MvcTemplate.Components.Security.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
     }
 }

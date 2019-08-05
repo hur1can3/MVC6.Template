@@ -10,8 +10,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 {
     public class FormLabelTagHelperTests
     {
-        #region Process(TagHelperContext context, TagHelperOutput output)
-
         [Theory]
         [InlineData(typeof(String), true, null, "*")]
         [InlineData(typeof(String), true, true, "*")]
@@ -39,7 +37,5 @@ namespace MvcTemplate.Components.Mvc.Tests
             Assert.Equal("Test", output.Attributes["for"].Value);
             Assert.Equal($"<span class=\"require\">{require}</span>", output.Content.GetContent());
         }
-
-        #endregion
     }
 }

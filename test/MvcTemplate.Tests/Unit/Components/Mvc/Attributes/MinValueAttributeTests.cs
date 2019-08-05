@@ -14,8 +14,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             attribute = new MinValueAttribute(12.56);
         }
 
-        #region MinValueAttribute(Double minimum)
-
         [Fact]
         public void MinValueAttribute_SetsMinimum()
         {
@@ -24,10 +22,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
-
-        #region FormatErrorMessage(String name)
 
         [Fact]
         public void FormatErrorMessage_ForName()
@@ -39,10 +33,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
-
-        #region IsValid(Object value)
 
         [Fact]
         public void IsValid_Null()
@@ -71,7 +61,5 @@ namespace MvcTemplate.Components.Mvc.Tests
         {
             Assert.False(attribute.IsValid("12.56M"));
         }
-
-        #endregion
     }
 }

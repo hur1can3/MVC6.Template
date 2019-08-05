@@ -26,8 +26,6 @@ namespace MvcTemplate.Components.Security.Tests
             context.Dispose();
         }
 
-        #region IsGrantedFor(Int32? accountId, String area, String controller, String action)
-
         [Fact]
         public void IsGrantedFor_AuthorizesControllerByIgnoringCase()
         {
@@ -360,10 +358,6 @@ namespace MvcTemplate.Components.Security.Tests
             Assert.True(authorization.IsGrantedFor(accountId, null, "Authorized", "Action"));
         }
 
-        #endregion
-
-        #region Refresh()
-
         [Fact]
         public void Refresh_Permissions()
         {
@@ -376,10 +370,6 @@ namespace MvcTemplate.Components.Security.Tests
 
             Assert.False(authorization.IsGrantedFor(accountId, "Area", "Authorized", "Action"));
         }
-
-        #endregion
-
-        #region Test helpers
 
         private Int32 CreateAccountWithPermissionFor(String area, String controller, String action, Boolean isLocked = false)
         {
@@ -400,7 +390,5 @@ namespace MvcTemplate.Components.Security.Tests
 
             return account.Id;
         }
-
-        #endregion
     }
 }

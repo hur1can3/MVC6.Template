@@ -6,11 +6,7 @@ namespace MvcTemplate.Tests
 {
     public class TestingContext : Context
     {
-        #region Tests
-
         protected DbSet<TestModel> TestModel { get; set; }
-
-        #endregion
 
         private String DatabaseName { get; }
 

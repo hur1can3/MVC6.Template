@@ -23,8 +23,6 @@ namespace MvcTemplate.Controllers.Tests
             controller.HttpContext.RequestServices.GetService(typeof(ILanguages)).Returns(Substitute.For<ILanguages>());
         }
 
-        #region ServicedController(TService service)
-
         [Fact]
         public void ServicedController_SetsService()
         {
@@ -33,10 +31,6 @@ namespace MvcTemplate.Controllers.Tests
 
             Assert.Same(expected, actual);
         }
-
-        #endregion
-
-        #region OnActionExecuting(ActionExecutingContext context)
 
         [Fact]
         public void OnActionExecuting_SetsServiceCurrentAccountId()
@@ -50,10 +44,6 @@ namespace MvcTemplate.Controllers.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
-
-        #region Dispose()
 
         [Fact]
         public void Dispose_Service()
@@ -69,7 +59,5 @@ namespace MvcTemplate.Controllers.Tests
             controller.Dispose();
             controller.Dispose();
         }
-
-        #endregion
     }
 }

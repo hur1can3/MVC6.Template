@@ -23,8 +23,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             context = new ModelValidationContextBase(new ActionContext(), metadata, provider);
         }
 
-        #region GetErrorMessage(ModelValidationContextBase context)
-
         [Fact]
         public void GetErrorMessage_StringLength()
         {
@@ -48,7 +46,5 @@ namespace MvcTemplate.Components.Mvc.Tests
             Assert.Equal(Validation.For("StringLengthRange"), adapter.Attribute.ErrorMessage);
             Assert.Equal(expected, actual);
         }
-
-        #endregion
     }
 }

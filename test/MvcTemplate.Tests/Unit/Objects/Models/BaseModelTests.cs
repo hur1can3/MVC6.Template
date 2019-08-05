@@ -13,8 +13,6 @@ namespace MvcTemplate.Objects.Tests
             model = Substitute.For<BaseModel>();
         }
 
-        #region CreationDate
-
         [Fact]
         public void CreationDate_ReturnsSameValue()
         {
@@ -23,7 +21,5 @@ namespace MvcTemplate.Objects.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
     }
 }

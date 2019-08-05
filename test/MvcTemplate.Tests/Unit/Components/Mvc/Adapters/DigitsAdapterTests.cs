@@ -24,8 +24,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             context = new ClientModelValidationContext(new ActionContext(), metadata, provider, attributes);
         }
 
-        #region AddValidation(ClientModelValidationContext context)
-
         [Fact]
         public void AddValidation_Digits()
         {
@@ -36,10 +34,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             Assert.Equal(Validation.For("Digits", context.ModelMetadata.PropertyName), attributes["data-val-digits"]);
         }
 
-        #endregion
-
-        #region GetErrorMessage(ModelValidationContextBase context)
-
         [Fact]
         public void GetErrorMessage_Digits()
         {
@@ -48,7 +42,5 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
     }
 }

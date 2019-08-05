@@ -36,8 +36,6 @@ namespace MvcTemplate.Validators.Tests
             context.Dispose();
         }
 
-        #region CanRecover(AccountRecoveryView view)
-
         [Fact]
         public void CanRecover_InvalidState_ReturnsFalse()
         {
@@ -53,10 +51,6 @@ namespace MvcTemplate.Validators.Tests
             Assert.Empty(validator.ModelState);
             Assert.Empty(validator.Alerts);
         }
-
-        #endregion
-
-        #region CanReset(AccountResetView view)
 
         [Fact]
         public void CanReset_InvalidState_ReturnsFalse()
@@ -90,10 +84,6 @@ namespace MvcTemplate.Validators.Tests
             Assert.Empty(validator.ModelState);
             Assert.Empty(validator.Alerts);
         }
-
-        #endregion
-
-        #region CanLogin(AccountLoginView view)
 
         [Fact]
         public void CanLogin_InvalidState_ReturnsFalse()
@@ -174,10 +164,6 @@ namespace MvcTemplate.Validators.Tests
             Assert.Empty(validator.Alerts);
         }
 
-        #endregion
-
-        #region CanCreate(AccountCreateView view)
-
         [Fact]
         public void CanCreate_InvalidState_ReturnsFalse()
         {
@@ -219,10 +205,6 @@ namespace MvcTemplate.Validators.Tests
             Assert.Empty(validator.ModelState);
             Assert.Empty(validator.Alerts);
         }
-
-        #endregion
-
-        #region CanEdit(AccountEditView view)
 
         [Fact]
         public void CanEdit_Account_InvalidState_ReturnsFalse()
@@ -291,10 +273,6 @@ namespace MvcTemplate.Validators.Tests
             Assert.Empty(validator.ModelState);
             Assert.Empty(validator.Alerts);
         }
-
-        #endregion
-
-        #region CanEdit(ProfileEditView view)
 
         [Fact]
         public void CanEdit_Profile_InvalidState_ReturnsFalse()
@@ -377,10 +355,6 @@ namespace MvcTemplate.Validators.Tests
             Assert.Empty(validator.Alerts);
         }
 
-        #endregion
-
-        #region CanDelete(ProfileDeleteView view)
-
         [Fact]
         public void CanDelete_InvalidState_ReturnsFalse()
         {
@@ -409,7 +383,5 @@ namespace MvcTemplate.Validators.Tests
             Assert.Empty(validator.ModelState);
             Assert.Empty(validator.Alerts);
         }
-
-        #endregion
     }
 }

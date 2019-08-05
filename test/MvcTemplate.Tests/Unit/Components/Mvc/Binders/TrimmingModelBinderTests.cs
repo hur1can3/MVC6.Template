@@ -21,8 +21,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             context.ValueProvider = Substitute.For<IValueProvider>();
         }
 
-        #region BindModelAsync(ModelBindingContext context)
-
         [Fact]
         public async Task BindModelAsync_NoValue()
         {
@@ -93,7 +91,5 @@ namespace MvcTemplate.Components.Mvc.Tests
             Assert.Equal(expected.IsModelSet, actual.IsModelSet);
             Assert.Equal(expected.Model, actual.Model);
         }
-
-        #endregion
     }
 }

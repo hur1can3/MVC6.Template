@@ -9,8 +9,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 {
     public class DateValidatorProviderTests
     {
-        #region CreateValidators(ClientValidatorProviderContext context)
-
         [Theory]
         [InlineData(typeof(DateTime))]
         [InlineData(typeof(DateTime?))]
@@ -38,7 +36,5 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Empty(context.Results);
         }
-
-        #endregion
     }
 }

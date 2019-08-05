@@ -9,8 +9,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 {
     public class AjaxOnlyAttributeTests
     {
-        #region IsValidForRequest(RouteContext context, ActionDescriptor action)
-
         [Theory]
         [InlineData("", false)]
         [InlineData("XMLHttpRequest", true)]
@@ -24,7 +22,5 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
     }
 }

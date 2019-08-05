@@ -10,8 +10,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 {
     public class FormInputTagHelperTests
     {
-        #region Process(TagHelperContext context, TagHelperOutput output)
-
         [Fact]
         public void Process_Boolean()
         {
@@ -80,7 +78,5 @@ namespace MvcTemplate.Components.Mvc.Tests
             Assert.Equal("off", output.Attributes["autocomplete"].Value);
             Assert.Equal("form-control", output.Attributes["class"].Value);
         }
-
-        #endregion
     }
 }

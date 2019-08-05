@@ -29,8 +29,6 @@ namespace MvcTemplate.Data.Core.Tests
             context.Dispose();
         }
 
-        #region ElementType
-
         [Fact]
         public void ElementType_IsModelType()
         {
@@ -39,10 +37,6 @@ namespace MvcTemplate.Data.Core.Tests
 
             Assert.Same(expected, actual);
         }
-
-        #endregion
-
-        #region Expression
 
         [Fact]
         public void Expression_IsSetsExpression()
@@ -60,10 +54,6 @@ namespace MvcTemplate.Data.Core.Tests
             Assert.Same(expected, actual);
         }
 
-        #endregion
-
-        #region Provider
-
         [Fact]
         public void Provider_IsSetsProvider()
         {
@@ -73,10 +63,6 @@ namespace MvcTemplate.Data.Core.Tests
             Assert.Same(expected, actual);
         }
 
-        #endregion
-
-        #region Select<TResult>(Expression<Func<TModel, TResult>> selector)
-
         [Fact]
         public void Select_Selects()
         {
@@ -85,10 +71,6 @@ namespace MvcTemplate.Data.Core.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
-
-        #region Where(Expression<Func<TModel, Boolean>> predicate)
 
         [Theory]
         [InlineData(true)]
@@ -101,10 +83,6 @@ namespace MvcTemplate.Data.Core.Tests
             Assert.Equal(expected, actual);
         }
 
-        #endregion
-
-        #region To<TView>()
-
         [Fact]
         public void To_ProjectsSet()
         {
@@ -113,10 +91,6 @@ namespace MvcTemplate.Data.Core.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
-
-        #region GetEnumerator()
 
         [Fact]
         public void GetEnumerator_ReturnsSetEnumerator()
@@ -135,7 +109,5 @@ namespace MvcTemplate.Data.Core.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
     }
 }

@@ -32,8 +32,6 @@ namespace @Model.ControllerTestsNamespace
             controller.ControllerContext.RouteData = new RouteData();
         }
 
-        #region Index()
-
         [Fact]
         public void Index_Returns@(Model.ModelShortName)Views()
         {
@@ -45,10 +43,6 @@ namespace @Model.ControllerTestsNamespace
             Assert.Same(expected, actual);
         }
 
-        #endregion
-
-        #region Create()
-
         [Fact]
         public void Create_ReturnsEmptyView()
         {
@@ -56,10 +50,6 @@ namespace @Model.ControllerTestsNamespace
 
             Assert.Null(actual.Model);
         }
-
-        #endregion
-
-        #region Create(@Model.View @Model.ModelVarName)
 
         [Fact]
         public void Create_ProtectsFromOverpostingId()
@@ -99,10 +89,6 @@ namespace @Model.ControllerTestsNamespace
             Assert.Same(expected, actual);
         }
 
-        #endregion
-
-        #region Details(String id)
-
         [Fact]
         public void Details_ReturnsNotEmptyView()
         {
@@ -114,10 +100,6 @@ namespace @Model.ControllerTestsNamespace
             Assert.Same(expected, actual);
         }
 
-        #endregion
-
-        #region Edit(String id)
-
         [Fact]
         public void Edit_ReturnsNotEmptyView()
         {
@@ -128,10 +110,6 @@ namespace @Model.ControllerTestsNamespace
 
             Assert.Same(expected, actual);
         }
-
-        #endregion
-
-        #region Edit(@Model.View @Model.ModelVarName)
 
         [Fact]
         public void Edit_CanNotEdit_ReturnsSameView()
@@ -165,10 +143,6 @@ namespace @Model.ControllerTestsNamespace
             Assert.Same(expected, actual);
         }
 
-        #endregion
-
-        #region Delete(String id)
-
         [Fact]
         public void Delete_ReturnsNotEmptyView()
         {
@@ -179,10 +153,6 @@ namespace @Model.ControllerTestsNamespace
 
             Assert.Same(expected, actual);
         }
-
-        #endregion
-
-        #region DeleteConfirmed(String id)
 
         [Fact]
         public void DeleteConfirmed_Deletes@(Model.ModelShortName)()
@@ -200,7 +170,5 @@ namespace @Model.ControllerTestsNamespace
 
             Assert.Same(expected, actual);
         }
-
-        #endregion
     }
 }

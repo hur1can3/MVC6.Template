@@ -25,8 +25,6 @@ namespace MvcTemplate.Controllers.Tests
             filter = new LookupFilter();
         }
 
-        #region GetData(MvcLookup lookup, LookupFilter filter)
-
         [Fact]
         public void GetData_SetsFilter()
         {
@@ -49,10 +47,6 @@ namespace MvcTemplate.Controllers.Tests
             Assert.Same(expected, actual);
         }
 
-        #endregion
-
-        #region Role(LookupFilter filter)
-
         [Fact]
         public void Role_ReturnsRolesData()
         {
@@ -61,10 +55,6 @@ namespace MvcTemplate.Controllers.Tests
 
             Assert.Same(expected, actual);
         }
-
-        #endregion
-
-        #region Dispose()
 
         [Fact]
         public void Dispose_UnitOfWork()
@@ -81,10 +71,6 @@ namespace MvcTemplate.Controllers.Tests
             controller.Dispose();
         }
 
-        #endregion
-
-        #region Test helpers
-
         private JsonResult GetData<TLookup>(LookupController lookupController) where TLookup : MvcLookup
         {
             lookupController.When(sub => sub.GetData(Arg.Any<TLookup>(), filter)).DoNotCallBase();
@@ -92,7 +78,5 @@ namespace MvcTemplate.Controllers.Tests
 
             return lookupController.GetData(null, filter);
         }
-
-        #endregion
     }
 }

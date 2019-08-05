@@ -21,8 +21,6 @@ namespace MvcTemplate.Services.Tests
             service.Dispose();
         }
 
-        #region Dispose()
-
         [Fact]
         public void Dispose_UnitOfWork()
         {
@@ -37,7 +35,5 @@ namespace MvcTemplate.Services.Tests
             service.Dispose();
             service.Dispose();
         }
-
-        #endregion
     }
 }

@@ -13,8 +13,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             attribute = new IntegerAttribute();
         }
 
-        #region IntegerAttribute()
-
         [Fact]
         public void IntegerAttribute_SetsErrorMessage()
         {
@@ -25,10 +23,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
-
-        #region IsValid(Object value)
 
         [Fact]
         public void IsValid_Null()
@@ -53,7 +47,5 @@ namespace MvcTemplate.Components.Mvc.Tests
         {
             Assert.True(attribute.IsValid("+92233720368547758074878484887777"));
         }
-
-        #endregion
     }
 }

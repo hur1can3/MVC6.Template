@@ -31,8 +31,6 @@ namespace MvcTemplate.Data.Mapping
             return mapper.Configuration;
         }
 
-        #region Administration
-
         private void MapRoles()
         {
             Configuration.CreateMap<Role, RoleView>()
@@ -40,7 +38,5 @@ namespace MvcTemplate.Data.Mapping
             Configuration.CreateMap<RoleView, Role>()
                 .ForMember(role => role.Permissions, member => member.MapFrom(role => new List<RolePermission>()));
         }
-
-        #endregion
     }
 }

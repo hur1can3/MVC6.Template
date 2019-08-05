@@ -25,8 +25,6 @@ namespace MvcTemplate.Controllers.Tests
             ReturnCurrentAccountId(controller, 1);
         }
 
-        #region Index()
-
         [Fact]
         public void Index_NotActive_RedirectsToLogout()
         {
@@ -48,10 +46,6 @@ namespace MvcTemplate.Controllers.Tests
             Assert.Null(actual.Model);
         }
 
-        #endregion
-
-        #region Error()
-
         [Fact]
         public void Error_ReturnsEmptyView()
         {
@@ -60,10 +54,6 @@ namespace MvcTemplate.Controllers.Tests
             Assert.Equal(StatusCodes.Status500InternalServerError, controller.Response.StatusCode);
             Assert.Null(actual.Model);
         }
-
-        #endregion
-
-        #region NotFound()
 
         [Fact]
         public void NotFound_NotActive_RedirectsToLogout()
@@ -91,7 +81,5 @@ namespace MvcTemplate.Controllers.Tests
             Assert.Equal(StatusCodes.Status404NotFound, controller.Response.StatusCode);
             Assert.Null(actual.Model);
         }
-
-        #endregion
     }
 }

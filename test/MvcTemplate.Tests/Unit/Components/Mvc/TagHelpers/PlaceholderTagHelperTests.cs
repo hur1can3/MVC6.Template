@@ -10,8 +10,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 {
     public class PlaceholderTagHelperTests
     {
-        #region Process(TagHelperContext context, TagHelperOutput output)
-
         [Fact]
         public void Process_Placeholder()
         {
@@ -27,7 +25,5 @@ namespace MvcTemplate.Components.Mvc.Tests
             Assert.Empty(output.Content.GetContent());
             Assert.Equal("Test", output.Attributes["placeholder"].Value);
         }
-
-        #endregion
     }
 }

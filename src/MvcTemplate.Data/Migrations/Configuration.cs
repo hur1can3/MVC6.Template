@@ -33,8 +33,6 @@ namespace MvcTemplate.Data.Migrations
             SeedAccounts();
         }
 
-        #region Administration
-
         private void SeedPermissions()
         {
             List<Permission> permissions = new List<Permission>
@@ -112,8 +110,6 @@ namespace MvcTemplate.Data.Migrations
 
             UnitOfWork.Commit();
         }
-
-        #endregion
 
         public void Dispose()
         {

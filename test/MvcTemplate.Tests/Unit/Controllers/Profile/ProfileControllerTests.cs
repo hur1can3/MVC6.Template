@@ -40,8 +40,6 @@ namespace MvcTemplate.Controllers.Tests
             ReturnCurrentAccountId(controller, 1);
         }
 
-        #region Edit()
-
         [Fact]
         public void Edit_NotActive_RedirectsToLogout()
         {
@@ -64,10 +62,6 @@ namespace MvcTemplate.Controllers.Tests
 
             Assert.Same(expected, actual);
         }
-
-        #endregion
-
-        #region Edit(ProfileEditView profile)
 
         [Fact]
         public void Edit_ProtectsFromOverpostingId()
@@ -136,10 +130,6 @@ namespace MvcTemplate.Controllers.Tests
             Assert.Equal(expected, actual);
         }
 
-        #endregion
-
-        #region Delete()
-
         [Fact]
         public void Delete_NotActive_RedirectsToLogout()
         {
@@ -174,10 +164,6 @@ namespace MvcTemplate.Controllers.Tests
 
             Assert.Null(actual.Model);
         }
-
-        #endregion
-
-        #region DeleteConfirmed(ProfileDeleteView profile)
 
         [Fact]
         public void DeleteConfirmed_ProtectsFromOverpostingId()
@@ -257,7 +243,5 @@ namespace MvcTemplate.Controllers.Tests
 
             Assert.Same(expected, actual);
         }
-
-        #endregion
     }
 }

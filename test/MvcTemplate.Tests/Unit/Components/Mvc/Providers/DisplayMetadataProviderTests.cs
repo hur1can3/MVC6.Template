@@ -9,8 +9,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 {
     public class DisplayMetadataProviderTests
     {
-        #region CreateDisplayMetadata(DisplayMetadataProviderContext context)
-
         [Fact]
         public void CreateDisplayMetadata_SetsDisplayName()
         {
@@ -39,7 +37,5 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Null(context.DisplayMetadata.DisplayName);
         }
-
-        #endregion
     }
 }

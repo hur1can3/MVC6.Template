@@ -28,8 +28,6 @@ namespace MvcTemplate.Validators.Tests
             validator.Dispose();
         }
 
-        #region CanCreate(RoleView view)
-
         [Fact]
         public void CanCreate_InvalidState_ReturnsFalse()
         {
@@ -59,10 +57,6 @@ namespace MvcTemplate.Validators.Tests
             Assert.Empty(validator.Alerts);
         }
 
-        #endregion
-
-        #region CanEdit(RoleView view)
-
         [Fact]
         public void CanEdit_InvalidState_ReturnsFalse()
         {
@@ -91,7 +85,5 @@ namespace MvcTemplate.Validators.Tests
             Assert.Empty(validator.ModelState);
             Assert.Empty(validator.Alerts);
         }
-
-        #endregion
     }
 }

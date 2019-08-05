@@ -16,8 +16,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             attribute = new AcceptFilesAttribute(".docx,.xlsx");
         }
 
-        #region AcceptFilesAttribute(String extensions)
-
         [Fact]
         public void AcceptFilesAttribute_SetsExtensions()
         {
@@ -26,10 +24,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
-
-        #region FormatErrorMessage(String name)
 
         [Fact]
         public void FormatErrorMessage_ForProperty()
@@ -41,10 +35,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
-
-        #region IsValid(Object value)
 
         [Fact]
         public void IsValid_Null()
@@ -134,7 +124,5 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.True(attribute.IsValid(files));
         }
-
-        #endregion
     }
 }

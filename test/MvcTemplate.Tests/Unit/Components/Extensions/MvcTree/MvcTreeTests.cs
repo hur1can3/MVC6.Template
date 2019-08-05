@@ -4,8 +4,6 @@ namespace MvcTemplate.Components.Extensions.Tests
 {
     public class MvcTreeTests
     {
-        #region MvcTree()
-
         [Fact]
         public void MvcTree_CreatesEmpty()
         {
@@ -14,7 +12,5 @@ namespace MvcTemplate.Components.Extensions.Tests
             Assert.Empty(actual.Nodes);
             Assert.Empty(actual.SelectedIds);
         }
-
-        #endregion
     }
 }

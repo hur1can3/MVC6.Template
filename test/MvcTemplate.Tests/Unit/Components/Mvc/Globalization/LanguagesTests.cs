@@ -28,8 +28,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             });
         }
 
-        #region Default
-
         [Fact]
         public void Default_Language()
         {
@@ -40,10 +38,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Same(expected, actual);
         }
-
-        #endregion
-
-        #region Current
 
         [Fact]
         public void Current_GetsLanguage()
@@ -69,10 +63,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             Assert.Same(expectedCulture, actualCulture);
         }
 
-        #endregion
-
-        #region Supported
-
         [Fact]
         public void Supported_Languages()
         {
@@ -86,10 +76,6 @@ namespace MvcTemplate.Components.Mvc.Tests
             Assert.Equal("English", actual[0].Name);
         }
 
-        #endregion
-
-        #region this[String abbreviation]
-
         [Fact]
         public void Indexer_ReturnsLanguage()
         {
@@ -99,7 +85,5 @@ namespace MvcTemplate.Components.Mvc.Tests
             Assert.Equal("en", actual.Abbreviation);
             Assert.Equal("English", actual.Name);
         }
-
-        #endregion
     }
 }

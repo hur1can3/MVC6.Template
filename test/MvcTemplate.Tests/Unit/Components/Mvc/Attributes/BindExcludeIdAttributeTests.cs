@@ -8,8 +8,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 {
     public class BindExcludeIdAttributeTests
     {
-        #region PropertyFilter
-
         [Theory]
         [InlineData("id", true)]
         [InlineData("iD", true)]
@@ -26,7 +24,5 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
     }
 }

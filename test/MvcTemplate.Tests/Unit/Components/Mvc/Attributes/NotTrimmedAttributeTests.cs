@@ -11,8 +11,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 {
     public class NotTrimmedAttributeTests
     {
-        #region NotTrimmedAttribute()
-
         [Fact]
         public void NotTrimmedAttribute_SetsBinderType()
         {
@@ -21,10 +19,6 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
-
-        #region BindModelAsync(ModelBindingContext context)
 
         [Fact]
         public async void BindModelAsync_DoesNotTrimValue()
@@ -51,7 +45,5 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             Assert.Equal(expected, actual);
         }
-
-        #endregion
     }
 }

@@ -12,8 +12,6 @@ namespace MvcTemplate.Components.Security.Tests
             crypter = new BCrypter();
         }
 
-        #region Hash(String value)
-
         [Fact]
         public void Hash_Value()
         {
@@ -23,10 +21,6 @@ namespace MvcTemplate.Components.Security.Tests
             Assert.True(BCrypt.Net.BCrypt.Verify(value, hash));
         }
 
-        #endregion
-
-        #region HashPassword(String value)
-
         [Fact]
         public void HashPassword_Value()
         {
@@ -35,10 +29,6 @@ namespace MvcTemplate.Components.Security.Tests
 
             Assert.True(BCrypt.Net.BCrypt.Verify(value, hash));
         }
-
-        #endregion
-
-        #region Verify(String value, String hash)
 
         [Fact]
         public void Verify_NullValue_ReturnsFalse()
@@ -58,10 +48,6 @@ namespace MvcTemplate.Components.Security.Tests
             Assert.True(crypter.Verify("Test", "$2a$04$tXfDH9cZGOqFbCV8CF1ik.kW8R7.UKpEi5G7P4K842As1DI1bwDxm"));
         }
 
-        #endregion
-
-        #region VerifyPassword(String value, String passhash)
-
         [Fact]
         public void VerifyPassword_NullValue_ReturnsFalse()
         {
@@ -79,7 +65,5 @@ namespace MvcTemplate.Components.Security.Tests
         {
             Assert.True(crypter.VerifyPassword("Test", "$2a$13$g7QgmyFicKkyI4kiHM8XQ.LfBdpdcLUbw1tkr9.owCN5qY9eCj8Lq"));
         }
-
-        #endregion
     }
 }

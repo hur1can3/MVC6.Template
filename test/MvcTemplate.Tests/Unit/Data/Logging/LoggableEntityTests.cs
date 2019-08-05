@@ -31,8 +31,6 @@ namespace MvcTemplate.Data.Logging.Tests
             context.Dispose();
         }
 
-        #region LoggableEntity(EntityEntry<BaseModel> entry)
-
         [Fact]
         public void LoggableEntity_CreatesPropertiesForAddedEntity()
         {
@@ -114,10 +112,6 @@ namespace MvcTemplate.Data.Logging.Tests
             Assert.Equal(expected, actual);
         }
 
-        #endregion
-
-        #region ToString()
-
         [Fact]
         public void ToString_FormsEntityChanges()
         {
@@ -132,10 +126,6 @@ namespace MvcTemplate.Data.Logging.Tests
             Assert.Equal(expected, actual);
         }
 
-        #endregion
-
-        #region Test helpers
-
         private void AsssertProperties(PropertyValues newValues)
         {
             LoggableProperty[] actual = new LoggableEntity(entry).Properties.ToArray();
@@ -148,7 +138,5 @@ namespace MvcTemplate.Data.Logging.Tests
                 Assert.Equal(expected[i].ToString(), actual[i].ToString());
             }
         }
-
-        #endregion
     }
 }
