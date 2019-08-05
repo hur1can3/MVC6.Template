@@ -91,7 +91,9 @@ namespace MvcTemplate.Data.Migrations
 
             modelBuilder.Entity("MvcTemplate.Objects.Permission", b =>
                 {
-                    b.Property<int>("Id");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Action")
                         .IsRequired()

@@ -44,7 +44,6 @@ namespace MvcTemplate.Data.Core
                     if (property.GetCustomAttribute<IndexAttribute>(false) is IndexAttribute index)
                         builder.Entity(entity.ClrType).HasIndex(property.Name).IsUnique(index.IsUnique);
 
-            builder.Entity<Permission>().Property(model => model.Id).ValueGeneratedNever();
             foreach (IMutableForeignKey key in builder.Model.GetEntityTypes().SelectMany(entity => entity.GetForeignKeys()))
                 key.DeleteBehavior = DeleteBehavior.Restrict;
         }

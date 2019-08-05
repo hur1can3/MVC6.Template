@@ -30,7 +30,8 @@ namespace MvcTemplate.Data.Migrations
                 name: "Permission",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CreationDate = table.Column<DateTime>(nullable: false),
                     Area = table.Column<string>(maxLength: 64, nullable: true),
                     Controller = table.Column<string>(maxLength: 64, nullable: false),

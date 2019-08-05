@@ -3,6 +3,7 @@ using MvcTemplate.Data.Core;
 using MvcTemplate.Data.Logging;
 using MvcTemplate.Objects;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MvcTemplate.Data.Migrations
@@ -36,46 +37,28 @@ namespace MvcTemplate.Data.Migrations
 
         private void SeedPermissions()
         {
-            Permission[] permissions =
+            List<Permission> permissions = new List<Permission>
             {
-                new Permission { Id = 1, Area = "Administration", Controller = "Accounts", Action = "Index" },
-                new Permission { Id = 2, Area = "Administration", Controller = "Accounts", Action = "Create" },
-                new Permission { Id = 3, Area = "Administration", Controller = "Accounts", Action = "Details" },
-                new Permission { Id = 4, Area = "Administration", Controller = "Accounts", Action = "Edit" },
+                new Permission { Area = "Administration", Controller = "Accounts", Action = "Index" },
+                new Permission { Area = "Administration", Controller = "Accounts", Action = "Create" },
+                new Permission { Area = "Administration", Controller = "Accounts", Action = "Details" },
+                new Permission { Area = "Administration", Controller = "Accounts", Action = "Edit" },
 
-                new Permission { Id = 5, Area = "Administration", Controller = "Roles", Action = "Index" },
-                new Permission { Id = 6, Area = "Administration", Controller = "Roles", Action = "Create" },
-                new Permission { Id = 7, Area = "Administration", Controller = "Roles", Action = "Details" },
-                new Permission { Id = 8, Area = "Administration", Controller = "Roles", Action = "Edit" },
-                new Permission { Id = 9, Area = "Administration", Controller = "Roles", Action = "Delete" }
+                new Permission { Area = "Administration", Controller = "Roles", Action = "Index" },
+                new Permission { Area = "Administration", Controller = "Roles", Action = "Create" },
+                new Permission { Area = "Administration", Controller = "Roles", Action = "Details" },
+                new Permission { Area = "Administration", Controller = "Roles", Action = "Edit" },
+                new Permission { Area = "Administration", Controller = "Roles", Action = "Delete" }
             };
 
-            Permission[] currentPermissions = UnitOfWork.Select<Permission>().ToArray();
-            foreach (Permission permission in currentPermissions)
-            {
-                if (permissions.All(perm => perm.Id != permission.Id))
+            foreach (Permission permission in UnitOfWork.Select<Permission>().ToArray())
+                if (permissions.RemoveAll(p => p.Area == permission.Area && p.Controller == permission.Controller && p.Action == permission.Action) == 0)
                 {
                     UnitOfWork.DeleteRange(UnitOfWork.Select<RolePermission>().Where(role => role.PermissionId == permission.Id));
                     UnitOfWork.Delete(permission);
                 }
-            }
 
-            foreach (Permission permission in permissions)
-            {
-                if (currentPermissions.SingleOrDefault(perm => perm.Id == permission.Id) is Permission currentPermission)
-                {
-                    currentPermission.Controller = permission.Controller;
-                    currentPermission.Action = permission.Action;
-                    currentPermission.Area = permission.Area;
-
-                    UnitOfWork.Update(currentPermission);
-                }
-                else
-                {
-                    UnitOfWork.Insert(permission);
-                }
-            }
-
+            UnitOfWork.InsertRange(permissions);
             UnitOfWork.Commit();
         }
 
@@ -83,23 +66,16 @@ namespace MvcTemplate.Data.Migrations
         {
             if (!UnitOfWork.Select<Role>().Any(role => role.Title == "Sys_Admin"))
             {
-                UnitOfWork.Insert(new Role { Title = "Sys_Admin" });
+                UnitOfWork.Insert(new Role { Title = "Sys_Admin", Permissions = new List<RolePermission>() });
                 UnitOfWork.Commit();
             }
 
-            Int32 admin = UnitOfWork.Select<Role>().Single(role => role.Title == "Sys_Admin").Id;
-            RolePermission[] currentPermissions = UnitOfWork
-                .Select<RolePermission>()
-                .Where(rolePermission => rolePermission.RoleId == admin)
-                .ToArray();
+            Role admin = UnitOfWork.Select<Role>().Single(role => role.Title == "Sys_Admin");
+            Int32[] permissions = admin.Permissions.Select(role => role.PermissionId).ToArray();
 
             foreach (Permission permission in UnitOfWork.Select<Permission>())
-                if (currentPermissions.All(rolePermission => rolePermission.PermissionId != permission.Id))
-                    UnitOfWork.Insert(new RolePermission
-                    {
-                        RoleId = admin,
-                        PermissionId = permission.Id
-                    });
+                if (!permissions.Contains(permission.Id))
+                    UnitOfWork.Insert(new RolePermission { RoleId = admin.Id, PermissionId = permission.Id });
 
             UnitOfWork.Commit();
         }

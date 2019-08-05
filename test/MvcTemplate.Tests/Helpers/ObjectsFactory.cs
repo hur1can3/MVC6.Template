@@ -138,8 +138,6 @@ namespace MvcTemplate.Tests
         {
             return new Permission
             {
-                Id = id,
-
                 Area = $"Area{id}",
                 Action = $"Action{id}",
                 Controller = $"Controller{id}"
