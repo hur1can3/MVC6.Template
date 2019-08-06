@@ -60,7 +60,7 @@ namespace MvcTemplate.Controllers.Tests
         {
             service.IsLoggedIn(controller.User).Returns(false);
 
-            ViewResult actual = controller.Recover() as ViewResult;
+            ViewResult actual = Assert.IsType<ViewResult>(controller.Recover());
 
             Assert.Null(actual.Model);
         }
@@ -83,7 +83,7 @@ namespace MvcTemplate.Controllers.Tests
             service.IsLoggedIn(controller.User).Returns(false);
             validator.CanRecover(accountRecovery).Returns(false);
 
-            Object actual = (await controller.Recover(accountRecovery) as ViewResult).Model;
+            Object actual = Assert.IsType<ViewResult>(await controller.Recover(accountRecovery)).Model;
             Object expected = accountRecovery;
 
             Assert.Same(expected, actual);
@@ -187,7 +187,7 @@ namespace MvcTemplate.Controllers.Tests
             service.IsLoggedIn(controller.User).Returns(false);
             validator.CanReset(Arg.Any<AccountResetView>()).Returns(true);
 
-            ViewResult actual = controller.Reset("") as ViewResult;
+            ViewResult actual = Assert.IsType<ViewResult>(controller.Reset(""));
 
             Assert.Null(actual.Model);
         }
@@ -271,7 +271,7 @@ namespace MvcTemplate.Controllers.Tests
         {
             service.IsLoggedIn(controller.User).Returns(false);
 
-            ViewResult actual = controller.Login("/") as ViewResult;
+            ViewResult actual = Assert.IsType<ViewResult>(controller.Login("/"));
 
             Assert.Null(actual.Model);
         }
@@ -296,7 +296,7 @@ namespace MvcTemplate.Controllers.Tests
 
             ActionResult result = await controller.Login(accountLogin, null);
 
-            Object actual = (result as ViewResult).Model;
+            Object actual = Assert.IsType<ViewResult>(result).Model;
             Object expected = accountLogin;
 
             Assert.Same(expected, actual);

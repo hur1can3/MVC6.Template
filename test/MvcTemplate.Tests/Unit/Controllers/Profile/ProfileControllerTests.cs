@@ -57,7 +57,7 @@ namespace MvcTemplate.Controllers.Tests
             service.Get<ProfileEditView>(controller.CurrentAccountId).Returns(profileEdit);
             service.IsActive(controller.CurrentAccountId).Returns(true);
 
-            Object actual = (controller.Edit() as ViewResult).Model;
+            Object actual = Assert.IsType<ViewResult>(controller.Edit()).Model;
             Object expected = profileEdit;
 
             Assert.Same(expected, actual);
@@ -86,7 +86,7 @@ namespace MvcTemplate.Controllers.Tests
             service.IsActive(controller.CurrentAccountId).Returns(true);
             validator.CanEdit(profileEdit).Returns(false);
 
-            Object actual = (controller.Edit(profileEdit) as ViewResult).Model;
+            Object actual = Assert.IsType<ViewResult>(controller.Edit(profileEdit)).Model;
             Object expected = profileEdit;
 
             Assert.Same(expected, actual);
@@ -160,7 +160,7 @@ namespace MvcTemplate.Controllers.Tests
         {
             service.IsActive(controller.CurrentAccountId).Returns(true);
 
-            ViewResult actual = controller.Delete() as ViewResult;
+            ViewResult actual = Assert.IsType<ViewResult>(controller.Delete());
 
             Assert.Null(actual.Model);
         }
@@ -203,7 +203,7 @@ namespace MvcTemplate.Controllers.Tests
             service.IsActive(controller.CurrentAccountId).Returns(true);
             validator.CanDelete(profileDelete).Returns(false);
 
-            ViewResult actual = controller.DeleteConfirmed(profileDelete) as ViewResult;
+            ViewResult actual = Assert.IsType<ViewResult>(controller.DeleteConfirmed(profileDelete));
 
             Assert.Null(actual.Model);
         }

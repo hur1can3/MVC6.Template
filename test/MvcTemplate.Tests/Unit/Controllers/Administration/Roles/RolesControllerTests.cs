@@ -50,7 +50,7 @@ namespace MvcTemplate.Controllers.Administration.Tests
         [Fact]
         public void Create_ReturnsNewRoleView()
         {
-            RoleView actual = controller.Create().Model as RoleView;
+            RoleView actual = Assert.IsType<RoleView>(controller.Create().Model);
 
             Assert.NotNull(actual.Permissions);
             Assert.Null(actual.Title);
@@ -59,7 +59,7 @@ namespace MvcTemplate.Controllers.Administration.Tests
         [Fact]
         public void Create_SeedsPermissions()
         {
-            RoleView view = controller.Create().Model as RoleView;
+            RoleView view = Assert.IsType<RoleView>(controller.Create().Model);
 
             service.Received().SeedPermissions(view);
         }
@@ -85,7 +85,7 @@ namespace MvcTemplate.Controllers.Administration.Tests
         {
             validator.CanCreate(role).Returns(false);
 
-            Object actual = (controller.Create(role) as ViewResult).Model;
+            Object actual = Assert.IsType<ViewResult>(controller.Create(role)).Model;
             Object expected = role;
 
             Assert.Same(expected, actual);
@@ -149,7 +149,7 @@ namespace MvcTemplate.Controllers.Administration.Tests
         {
             validator.CanEdit(role).Returns(false);
 
-            Object actual = (controller.Edit(role) as ViewResult).Model;
+            Object actual = Assert.IsType<ViewResult>(controller.Edit(role)).Model;
             Object expected = role;
 
             Assert.Same(expected, actual);

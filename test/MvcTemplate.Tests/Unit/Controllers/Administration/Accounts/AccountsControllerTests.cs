@@ -70,7 +70,7 @@ namespace MvcTemplate.Controllers.Administration.Tests
         {
             validator.CanCreate(accountCreate).Returns(false);
 
-            Object actual = (controller.Create(accountCreate) as ViewResult).Model;
+            Object actual = Assert.IsType<ViewResult>(controller.Create(accountCreate)).Model;
             Object expected = accountCreate;
 
             Assert.Same(expected, actual);
@@ -136,7 +136,7 @@ namespace MvcTemplate.Controllers.Administration.Tests
         {
             validator.CanEdit(accountEdit).Returns(false);
 
-            Object actual = (controller.Edit(accountEdit) as ViewResult).Model;
+            Object actual = Assert.IsType<ViewResult>(controller.Edit(accountEdit)).Model;
             Object expected = accountEdit;
 
             Assert.Same(expected, actual);

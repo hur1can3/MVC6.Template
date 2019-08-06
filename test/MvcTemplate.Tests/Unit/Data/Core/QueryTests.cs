@@ -57,8 +57,8 @@ namespace MvcTemplate.Data.Core.Tests
         [Fact]
         public void Provider_IsSetsProvider()
         {
-            Object expected = (context.Set<TestModel>() as IQueryable).Provider;
-            Object actual = (select as IQueryable).Provider;
+            Object expected = ((IQueryable)context.Set<TestModel>()).Provider;
+            Object actual = ((IQueryable)select).Provider;
 
             Assert.Same(expected, actual);
         }

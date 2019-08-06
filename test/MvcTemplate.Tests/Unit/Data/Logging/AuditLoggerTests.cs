@@ -53,7 +53,7 @@ namespace MvcTemplate.Data.Logging.Tests
         [Fact]
         public void Log_Modified()
         {
-            (entry.Entity as TestModel).Title += "Test";
+            Assert.IsType<TestModel>(entry.Entity).Title += "Test";
             entry.State = EntityState.Modified;
 
             logger.Log(new[] { entry });

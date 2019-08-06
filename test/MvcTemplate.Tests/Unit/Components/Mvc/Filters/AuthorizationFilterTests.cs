@@ -43,7 +43,7 @@ namespace MvcTemplate.Components.Mvc.Tests
 
             filter.OnResourceExecuting(context);
 
-            ViewResult actual = context.Result as ViewResult;
+            ViewResult actual = Assert.IsType<ViewResult>(context.Result);
 
             Assert.Equal("~/Views/Home/NotFound.cshtml", actual.ViewName);
             Assert.Equal(StatusCodes.Status404NotFound, actual.StatusCode);

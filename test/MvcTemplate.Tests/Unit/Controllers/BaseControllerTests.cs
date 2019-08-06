@@ -67,7 +67,7 @@ namespace MvcTemplate.Controllers.Tests
         public void NotEmptyView_ReturnsModelView()
         {
             Object expected = new Object();
-            Object actual = (controller.NotEmptyView(expected) as ViewResult).Model;
+            Object actual = Assert.IsType<ViewResult>(controller.NotEmptyView(expected)).Model;
 
             Assert.Same(expected, actual);
         }
@@ -88,7 +88,7 @@ namespace MvcTemplate.Controllers.Tests
         {
             controller.Url.IsLocalUrl("/").Returns(true);
 
-            String actual = (controller.RedirectToLocal("/") as RedirectResult).Url;
+            String actual = Assert.IsType<RedirectResult>(controller.RedirectToLocal("/")).Url;
             String expected = "/";
 
             Assert.Equal(expected, actual);

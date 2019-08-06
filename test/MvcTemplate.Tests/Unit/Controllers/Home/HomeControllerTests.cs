@@ -41,7 +41,7 @@ namespace MvcTemplate.Controllers.Tests
         {
             service.IsActive(controller.CurrentAccountId).Returns(true);
 
-            ViewResult actual = controller.Index() as ViewResult;
+            ViewResult actual = Assert.IsType<ViewResult>(controller.Index());
 
             Assert.Null(actual.Model);
         }
@@ -49,7 +49,7 @@ namespace MvcTemplate.Controllers.Tests
         [Fact]
         public void Error_ReturnsEmptyView()
         {
-            ViewResult actual = controller.Error() as ViewResult;
+            ViewResult actual = Assert.IsType<ViewResult>(controller.Error());
 
             Assert.Equal(StatusCodes.Status500InternalServerError, controller.Response.StatusCode);
             Assert.Null(actual.Model);
@@ -76,7 +76,7 @@ namespace MvcTemplate.Controllers.Tests
             service.IsActive(controller.CurrentAccountId).Returns(isActive);
             service.IsLoggedIn(controller.User).Returns(isLoggedIn);
 
-            ViewResult actual = controller.NotFound() as ViewResult;
+            ViewResult actual = Assert.IsType<ViewResult>(controller.NotFound());
 
             Assert.Equal(StatusCodes.Status404NotFound, controller.Response.StatusCode);
             Assert.Null(actual.Model);
