@@ -32,8 +32,10 @@ namespace MvcTemplate.Web.Templates
 
         public String Area { get; }
 
-        public PropertyInfo[] Properties { get; set; }
-        public PropertyInfo[] AllProperties { get; set; }
+        public PropertyInfo[] ViewProperties { get; set; }
+        public PropertyInfo[] ModelProperties { get; set; }
+        public PropertyInfo[] AllViewProperties { get; set; }
+        public PropertyInfo[] AllModelProperties { get; set; }
         public Dictionary<PropertyInfo, String> Relations { get; set; }
 
         public ModuleModel(String model, String controller, String area)
@@ -60,17 +62,20 @@ namespace MvcTemplate.Web.Templates
 
             Area = area;
 
-            Type type = typeof(BaseModel).Assembly.GetType($"MvcTemplate.Objects.{model}") ?? typeof(BaseModel);
-            PropertyInfo[] properties = type.GetProperties();
+            Type modelType = typeof(BaseModel).Assembly.GetType($"MvcTemplate.Objects.{Model}") ?? typeof(BaseModel);
+            Type viewType = typeof(BaseView).Assembly.GetType($"MvcTemplate.Objects.{View}") ?? typeof(BaseModel);
+            PropertyInfo[] modelProperties = modelType.GetProperties();
 
-            AllProperties = properties.Where(property => property.PropertyType.Namespace == "System").ToArray();
-            Properties = AllProperties.Where(property => property.DeclaringType.Name == model).ToArray();
-            Relations = Properties
+            AllModelProperties = modelProperties.Where(property => property.PropertyType.Namespace == "System").ToArray();
+            ViewProperties = viewType.GetProperties().Where(property => property.DeclaringType.Name == View).ToArray();
+            ModelProperties = AllModelProperties.Where(property => property.DeclaringType.Name == Model).ToArray();
+            AllViewProperties = viewType.GetProperties();
+            Relations = AllViewProperties
                 .ToDictionary(
                     property => property,
-                    property => properties.SingleOrDefault(relation =>
+                    property => modelProperties.SingleOrDefault(relation =>
                         property.Name.EndsWith("Id") &&
-                        relation.PropertyType.Assembly == type.Assembly &&
+                        relation.PropertyType.Assembly == modelType.Assembly &&
                         relation.Name == property.Name.Remove(property.Name.Length - 2))?.PropertyType.Name);
         }
     }

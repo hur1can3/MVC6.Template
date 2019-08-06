@@ -1,8 +1,9 @@
-﻿using MvcTemplate.Objects;
+using MvcTemplate.Objects;
 using MvcTemplate.Tests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Xunit;
 
 namespace MvcTemplate.Data.Migrations.Tests
@@ -41,7 +42,6 @@ namespace MvcTemplate.Data.Migrations.Tests
         [InlineData("Administration", "Accounts", "Create")]
         [InlineData("Administration", "Accounts", "Details")]
         [InlineData("Administration", "Accounts", "Edit")]
-
         [InlineData("Administration", "Roles", "Index")]
         [InlineData("Administration", "Roles", "Create")]
         [InlineData("Administration", "Roles", "Details")]
@@ -59,7 +59,10 @@ namespace MvcTemplate.Data.Migrations.Tests
         public void PermissionsTable_HasExactNumberOfPermissions()
         {
             Int32 actual = context.Set<Permission>().Count();
-            Int32 expected = 9;
+            Int32 expected = GetType()
+                .GetMethod(nameof(PermissionsTable_HasPermission))
+                .GetCustomAttributes<InlineDataAttribute>()
+                .Count();
 
             Assert.Equal(expected, actual);
         }

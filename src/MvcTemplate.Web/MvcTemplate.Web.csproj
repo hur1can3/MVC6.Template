@@ -9,7 +9,6 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <DebugType Condition="'$(Configuration)'=='Debug'">portable</DebugType>
     <DebugSymbols Condition="'$(Configuration)'=='Debug'">true</DebugSymbols>
-    <CopyLocalLockFileAssemblies Condition="'$(Configuration)'=='Debug'">true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
   <ItemGroup>
@@ -49,7 +48,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.2.1" />
-    <PackageReference Include="Genny" Version="2.2.1" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Genny" Version="2.3.0" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Humanizer.Core" Version="2.6.2" Condition="'$(Configuration)'=='Debug'" />
   </ItemGroup>
 
@@ -63,7 +62,7 @@
   </Target>
 
   <ItemGroup>
-    <DotNetCliToolReference Include="Genny" Version="2.2.1" />
+    <DotNetCliToolReference Include="Genny" Version="2.3.0" />
   </ItemGroup>
 
 </Project>
