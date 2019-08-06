@@ -68,10 +68,6 @@ hr {
     background-color: rgba(0, 0, 0, 0.02);
 }
 
-.form-control:disabled, .form-control[readonly] {
-    background-color: #eeeeee;
-}
-
 .btn-primary:not(:disabled):not(.disabled) {
     background: linear-gradient(#84b2ca, #67a0be);
     border: 1px solid #5997b8;
@@ -172,6 +168,13 @@ hr {
 /* mvc.lookup */
 .mvc-lookup-dialog th {
     text-align: center !important;
+}
+
+.mvc-lookup-readonly .mvc-lookup-browser:focus,
+.mvc-lookup-readonly.mvc-lookup-focus .mvc-lookup-control {
+    box-shadow: 0 0 0 0.2rem rgba(154, 149, 150, 0.25);
+    border-color: #ced4da;
+    outline: none;
 }
 
 .mvc-lookup-browser:focus,
