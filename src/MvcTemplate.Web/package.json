@@ -10,5 +10,12 @@
     "gulp-uglifycss": "1.1.0",
     "lodash.merge": "4.6.2",
     "rimraf": "2.6.3"
+  },
+  "dependencies": {
+    "@bevacqua/rome": "^3.0.3",
+    "bootstrap.native": "2.0.26",
+    "moment": "2.24.0",
+    "numbro": "2.1.2",
+    "wellidate": "1.0.0"
   }
 }
