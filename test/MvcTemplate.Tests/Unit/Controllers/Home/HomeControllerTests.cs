@@ -24,6 +24,11 @@ namespace MvcTemplate.Controllers.Tests
 
             ReturnCurrentAccountId(controller, 1);
         }
+        public override void Dispose()
+        {
+            controller.Dispose();
+            service.Dispose();
+        }
 
         [Fact]
         public void Index_NotActive_RedirectsToLogout()

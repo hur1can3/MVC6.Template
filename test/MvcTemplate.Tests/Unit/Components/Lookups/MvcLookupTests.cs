@@ -10,7 +10,7 @@ using Xunit;
 
 namespace MvcTemplate.Components.Lookups.Tests
 {
-    public class MvcLookupTests
+    public class MvcLookupTests : IDisposable
     {
         private IUnitOfWork unitOfWork;
         private MvcLookup<Role, RoleView> lookup;
@@ -19,6 +19,10 @@ namespace MvcTemplate.Components.Lookups.Tests
         {
             unitOfWork = Substitute.For<IUnitOfWork>();
             lookup = new MvcLookup<Role, RoleView>(unitOfWork);
+        }
+        public void Dispose()
+        {
+            unitOfWork.Dispose();
         }
 
         [Fact]

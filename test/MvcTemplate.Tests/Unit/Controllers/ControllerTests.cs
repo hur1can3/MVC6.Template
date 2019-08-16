@@ -8,8 +8,10 @@ using Xunit;
 
 namespace MvcTemplate.Controllers.Tests
 {
-    public abstract class ControllerTests
+    public abstract class ControllerTests : IDisposable
     {
+        public abstract void Dispose();
+
         protected void ReturnCurrentAccountId(BaseController controller, Int32 id)
         {
             controller.When(sub => { Int32 get = sub.CurrentAccountId; }).DoNotCallBase();

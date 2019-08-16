@@ -38,6 +38,10 @@ namespace MvcTemplate.Controllers.Tests
             controllerName = controller.RouteData.Values["controller"] as String;
             areaName = controller.RouteData.Values["area"] as String;
         }
+        public override void Dispose()
+        {
+            controller.Dispose();
+        }
 
         [Fact]
         public void BaseController_CreatesEmptyAlerts()

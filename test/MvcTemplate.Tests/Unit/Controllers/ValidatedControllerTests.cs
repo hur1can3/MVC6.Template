@@ -25,6 +25,12 @@ namespace MvcTemplate.Controllers.Tests
             controller.ControllerContext.HttpContext = Substitute.For<HttpContext>();
             controller.HttpContext.RequestServices.GetService(typeof(ILanguages)).Returns(Substitute.For<ILanguages>());
         }
+        public override void Dispose()
+        {
+            controller.Dispose();
+            validator.Dispose();
+            service.Dispose();
+        }
 
         [Fact]
         public void ValidatedController_SetsValidator()

@@ -9,7 +9,7 @@ using Xunit;
 
 namespace MvcTemplate.Controllers.Tests
 {
-    public class LookupControllerTests
+    public class LookupControllerTests : ControllerTests
     {
         private LookupController controller;
         private IUnitOfWork unitOfWork;
@@ -23,6 +23,10 @@ namespace MvcTemplate.Controllers.Tests
 
             lookup = Substitute.For<MvcLookup>();
             filter = new LookupFilter();
+        }
+        public override void Dispose()
+        {
+            unitOfWork.Dispose();
         }
 
         [Fact]

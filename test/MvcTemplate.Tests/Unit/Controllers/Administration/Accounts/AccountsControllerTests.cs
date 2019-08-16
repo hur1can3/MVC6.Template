@@ -39,6 +39,12 @@ namespace MvcTemplate.Controllers.Administration.Tests
             controller.ControllerContext.RouteData = new RouteData();
             controller.Url = Substitute.For<IUrlHelper>();
         }
+        public override void Dispose()
+        {
+            controller.Dispose();
+            validator.Dispose();
+            service.Dispose();
+        }
 
         [Fact]
         public void Index_ReturnsAccountViews()

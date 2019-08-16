@@ -31,6 +31,12 @@ namespace @Model.ControllerTestsNamespace
             controller = Substitute.ForPartsOf<@Model.Controller>(validator, service);
             controller.ControllerContext.RouteData = new RouteData();
         }
+        public override void Dispose()
+        {
+            controller.Dispose();
+            validator.Dispose();
+            service.Dispose();
+        }
 
         [Fact]
         public void Index_Returns@(Model.ModelShortName)Views()

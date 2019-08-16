@@ -13,14 +13,15 @@ namespace MvcTemplate.Data.Logging.Tests
     public class AuditLoggerTests : IDisposable
     {
         private EntityEntry<BaseModel> entry;
+        private TestingContext dataContext;
         private TestingContext context;
         private AuditLogger logger;
 
         public AuditLoggerTests()
         {
             context = new TestingContext();
+            dataContext = new TestingContext();
             logger = new AuditLogger(context, 1);
-            TestingContext dataContext = new TestingContext();
             TestModel model = ObjectsFactory.CreateTestModel();
 
             entry = dataContext.Entry<BaseModel>(dataContext.Add(model).Entity);
@@ -28,6 +29,7 @@ namespace MvcTemplate.Data.Logging.Tests
         }
         public void Dispose()
         {
+            dataContext.Dispose();
             context.Dispose();
             logger.Dispose();
         }

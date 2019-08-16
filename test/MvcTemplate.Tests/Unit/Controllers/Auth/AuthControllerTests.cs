@@ -43,6 +43,12 @@ namespace MvcTemplate.Controllers.Tests
             accountReset = ObjectsFactory.CreateAccountResetView();
             accountLogin = ObjectsFactory.CreateAccountLoginView();
         }
+        public override void Dispose()
+        {
+            controller.Dispose();
+            validator.Dispose();
+            service.Dispose();
+        }
 
         [Fact]
         public void Recover_IsLoggedIn_RedirectsToDefault()

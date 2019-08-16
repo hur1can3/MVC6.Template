@@ -39,6 +39,12 @@ namespace MvcTemplate.Controllers.Tests
             controller.Url = Substitute.For<IUrlHelper>();
             ReturnCurrentAccountId(controller, 1);
         }
+        public override void Dispose()
+        {
+            controller.Dispose();
+            validator.Dispose();
+            service.Dispose();
+        }
 
         [Fact]
         public void Edit_NotActive_RedirectsToLogout()
