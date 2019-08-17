@@ -77,7 +77,6 @@ namespace MvcTemplate.Services.Tests
         public void Create_@(Model.ModelShortName)()
         {
             @Model.View view = ObjectsFactory.Create@(Model.View)(1);
-            view.Id = 0;
 
             service.Create(view);
 

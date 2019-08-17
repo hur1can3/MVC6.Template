@@ -28,7 +28,7 @@ namespace MvcTemplate.Controllers.Administration
         }
 
         [HttpPost]
-        public ActionResult Create([BindExcludeId] AccountCreateView account)
+        public ActionResult Create(AccountCreateView account)
         {
             if (!Validator.CanCreate(account))
                 return View(account);

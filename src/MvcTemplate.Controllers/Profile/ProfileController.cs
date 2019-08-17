@@ -26,7 +26,7 @@ namespace MvcTemplate.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit([BindExcludeId] ProfileEditView profile)
+        public ActionResult Edit(ProfileEditView profile)
         {
             if (!Service.IsActive(CurrentAccountId))
                 return RedirectToAction("Logout", "Auth");
@@ -54,7 +54,7 @@ namespace MvcTemplate.Controllers
 
         [HttpPost]
         [ActionName("Delete")]
-        public ActionResult DeleteConfirmed([BindExcludeId] ProfileDeleteView profile)
+        public ActionResult DeleteConfirmed(ProfileDeleteView profile)
         {
             if (!Service.IsActive(CurrentAccountId))
                 return RedirectToAction("Logout", "Auth");

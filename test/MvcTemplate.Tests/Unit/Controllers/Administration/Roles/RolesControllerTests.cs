@@ -71,12 +71,6 @@ namespace MvcTemplate.Controllers.Administration.Tests
         }
 
         [Fact]
-        public void Create_ProtectsFromOverpostingId()
-        {
-            ProtectsFromOverpostingId(controller, "Create");
-        }
-
-        [Fact]
         public void Create_CanNotCreate_SeedsPermissions()
         {
             validator.CanCreate(role).Returns(false);

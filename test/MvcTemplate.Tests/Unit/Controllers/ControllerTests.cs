@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MvcTemplate.Components.Mvc;
 using NSubstitute;
 using System;
-using System.Linq;
-using System.Reflection;
-using Xunit;
 
 namespace MvcTemplate.Controllers.Tests
 {
@@ -16,18 +12,6 @@ namespace MvcTemplate.Controllers.Tests
         {
             controller.When(sub => { Int32 get = sub.CurrentAccountId; }).DoNotCallBase();
             controller.CurrentAccountId.Returns(id);
-        }
-
-        protected void ProtectsFromOverpostingId(Controller controller, String postMethod)
-        {
-            MethodInfo methodInfo = controller
-                .GetType()
-                .GetMethods()
-                .First(method =>
-                    method.Name == postMethod &&
-                    method.IsDefined(typeof(HttpPostAttribute), false));
-
-            Assert.True(methodInfo.GetParameters()[0].IsDefined(typeof(BindExcludeIdAttribute), false));
         }
 
         protected ViewResult NotFoundView(BaseController controller)

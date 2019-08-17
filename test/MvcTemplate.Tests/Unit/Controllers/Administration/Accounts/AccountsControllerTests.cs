@@ -66,12 +66,6 @@ namespace MvcTemplate.Controllers.Administration.Tests
         }
 
         [Fact]
-        public void Create_ProtectsFromOverpostingId()
-        {
-            ProtectsFromOverpostingId(controller, "Create");
-        }
-
-        [Fact]
         public void Create_CanNotCreate_ReturnsSameView()
         {
             validator.CanCreate(accountCreate).Returns(false);

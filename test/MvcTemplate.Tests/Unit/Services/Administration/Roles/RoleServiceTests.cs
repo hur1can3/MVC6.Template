@@ -271,16 +271,15 @@ namespace MvcTemplate.Services.Tests
             role = ObjectsFactory.CreateRole();
             foreach (String controller in new[] { "Roles", "Profile" })
                 foreach (String action in new[] { "Edit", "Delete" })
-                {
-                    RolePermission rolePermission = ObjectsFactory.CreateRolePermission(role.Permissions.Count + 1);
-                    rolePermission.Permission.Area = controller == "Roles" ? "Administration" : null;
-                    rolePermission.Permission.Controller = controller;
-                    rolePermission.Permission.Action = action;
-                    rolePermission.RoleId = role.Id;
-                    rolePermission.Role = null;
-
-                    role.Permissions.Add(rolePermission);
-                }
+                    role.Permissions.Add(new RolePermission
+                    {
+                        Permission = new Permission
+                        {
+                            Area = controller == "Roles" ? "Administration" : null,
+                            Controller = controller,
+                            Action = action
+                        }
+                    });
 
             context.Add(role);
             context.SaveChanges();

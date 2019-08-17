@@ -70,12 +70,6 @@ namespace MvcTemplate.Controllers.Tests
         }
 
         [Fact]
-        public void Edit_ProtectsFromOverpostingId()
-        {
-            ProtectsFromOverpostingId(controller, "Edit");
-        }
-
-        [Fact]
         public void Edit_Post_NotActive_RedirectsToLogout()
         {
             service.IsActive(controller.CurrentAccountId).Returns(false);
@@ -169,12 +163,6 @@ namespace MvcTemplate.Controllers.Tests
             ViewResult actual = Assert.IsType<ViewResult>(controller.Delete());
 
             Assert.Null(actual.Model);
-        }
-
-        [Fact]
-        public void DeleteConfirmed_ProtectsFromOverpostingId()
-        {
-            ProtectsFromOverpostingId(controller, "DeleteConfirmed");
         }
 
         [Fact]

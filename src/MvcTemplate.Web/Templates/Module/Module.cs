@@ -210,7 +210,7 @@ namespace MvcTemplate.Web.Templates
             else
             {
                 String fakeView = FakeObjectCreation(model.View, model.AllViewProperties);
-                String fakeModel = FakeObjectCreation(model.Model, model.ModelProperties);
+                String fakeModel = FakeObjectCreation(model.Model, model.AllModelProperties);
                 SyntaxNode last = tree.DescendantNodes().OfType<MethodDeclarationSyntax>().Last();
                 ClassDeclarationSyntax factory = tree.DescendantNodes().OfType<ClassDeclarationSyntax>().First();
                 SyntaxNode modelCreation = CSharpSyntaxTree.ParseText($"{fakeModel}{fakeView}{Environment.NewLine}").GetRoot();

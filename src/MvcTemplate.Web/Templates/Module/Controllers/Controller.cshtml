@@ -32,7 +32,7 @@ namespace @Model.ControllerNamespace
         }
 
         [HttpPost]
-        public ActionResult Create([BindExcludeId] @Model.View @Model.ModelVarName)
+        public ActionResult Create(@Model.View @Model.ModelVarName)
         {
             if (!Validator.CanCreate(@Model.ModelVarName))
                 return View(@Model.ModelVarName);

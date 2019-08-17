@@ -31,7 +31,7 @@ namespace MvcTemplate.Controllers.Administration
         }
 
         [HttpPost]
-        public ActionResult Create([BindExcludeId] RoleView role)
+        public ActionResult Create(RoleView role)
         {
             if (!Validator.CanCreate(role))
             {

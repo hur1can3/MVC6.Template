@@ -43,10 +43,15 @@ namespace MvcTemplate.Data.Core
 
         public void InsertRange<TModel>(IEnumerable<TModel> models) where TModel : BaseModel
         {
+            foreach (TModel model in models)
+                model.Id = 0;
+
             Context.AddRange(models);
         }
         public void Insert<TModel>(TModel model) where TModel : BaseModel
         {
+            model.Id = 0;
+
             Context.Add(model);
         }
         public void Update<TModel>(TModel model) where TModel : BaseModel
