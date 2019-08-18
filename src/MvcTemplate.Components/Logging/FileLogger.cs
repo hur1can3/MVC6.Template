@@ -14,19 +14,18 @@ namespace MvcTemplate.Components.Logging
         private String LogPath { get; }
         private LogLevel Level { get; }
         private String LogDirectory { get; }
-        private Func<Int32?> AccountId { get; }
         private String RollingFileFormat { get; }
+        private IHttpContextAccessor Accessor { get; }
         private static Object LogWriting { get; } = new Object();
 
         public FileLogger(String path, LogLevel logLevel, Int64 rollSize)
         {
-            IHttpContextAccessor accessor = new HttpContextAccessor();
             String file = Path.GetFileNameWithoutExtension(path);
             String extension = Path.GetExtension(path);
             LogDirectory = Path.GetDirectoryName(path);
+            Accessor = new HttpContextAccessor();
 
             RollingFileFormat = $"{file}-{{0:yyyyMMdd-HHmmss}}{extension}";
-            AccountId = () => accessor.HttpContext?.User.Id();
             RollSize = rollSize;
             Level = logLevel;
             LogPath = path;
@@ -46,7 +45,8 @@ namespace MvcTemplate.Components.Logging
                 return;
 
             StringBuilder log = new StringBuilder();
-            log.AppendLine($"{logLevel.ToString().PadRight(11)}: {DateTime.Now:yyyy-MM-dd HH:mm:ss.ffffff} [{AccountId()}]");
+            log.AppendLine($"Id         : {Accessor.HttpContext?.TraceIdentifier}");
+            log.AppendLine($"{logLevel.ToString().PadRight(11)}: {DateTime.Now:yyyy-MM-dd HH:mm:ss.ffffff} [{Accessor.HttpContext?.User.Id()}]");
             log.AppendLine($"Message    : {formatter(state, exception)}");
 
             if (exception != null)
