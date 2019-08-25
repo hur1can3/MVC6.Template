@@ -48,35 +48,6 @@ namespace MvcTemplate.Data.Migrations
                 new Permission { Area = "Administration", Controller = "Roles", Action = "Edit" },
                 new Permission { Area = "Administration", Controller = "Roles", Action = "Delete" },
 
-                new Permission { Area = "Membership", Controller = "Customer", Action = "Index" },
-                new Permission { Area = "Membership", Controller = "Customer", Action = "Create" },
-                new Permission { Area = "Membership", Controller = "Customer", Action = "Edit" },
-                new Permission { Area = "Membership", Controller = "Customer", Action = "Details" },
-                new Permission { Area = "Membership", Controller = "Customer", Action = "Delete" },
-
-                new Permission { Area = "Common", Controller = "Address", Action = "Index" },
-                new Permission { Area = "Common", Controller = "Address", Action = "Create" },
-                new Permission { Area = "Common", Controller = "Address", Action = "Edit" },
-                new Permission { Area = "Common", Controller = "Address", Action = "Details" },
-                new Permission { Area = "Common", Controller = "Address", Action = "Delete" },
-
-                new Permission { Area = "Common", Controller = "Contact", Action = "Index" },
-                new Permission { Area = "Common", Controller = "Contact", Action = "Create" },
-                new Permission { Area = "Common", Controller = "Contact", Action = "Edit" },
-                new Permission { Area = "Common", Controller = "Contact", Action = "Details" },
-                new Permission { Area = "Common", Controller = "Contact", Action = "Delete" },
-
-                new Permission { Area = "Common", Controller = "ContactType", Action = "Index" },
-                new Permission { Area = "Common", Controller = "ContactType", Action = "Create" },
-                new Permission { Area = "Common", Controller = "ContactType", Action = "Edit" },
-                new Permission { Area = "Common", Controller = "ContactType", Action = "Details" },
-                new Permission { Area = "Common", Controller = "ContactType", Action = "Delete" },
-
-                new Permission { Area = "Common", Controller = "AddressType", Action = "Index" },
-                new Permission { Area = "Common", Controller = "AddressType", Action = "Create" },
-                new Permission { Area = "Common", Controller = "AddressType", Action = "Edit" },
-                new Permission { Area = "Common", Controller = "AddressType", Action = "Details" },
-                new Permission { Area = "Common", Controller = "AddressType", Action = "Delete" }
             };
 
             foreach (Permission permission in UnitOfWork.Select<Permission>().ToArray())

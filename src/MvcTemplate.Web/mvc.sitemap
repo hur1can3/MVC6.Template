@@ -18,39 +18,5 @@
                 <siteMapNode icon="fa fa-times" action="Delete" />
             </siteMapNode>
         </siteMapNode>
-        <siteMapNode menu="true" icon="far fa-folder" area="Membership">
-            <siteMapNode menu="true" icon="far fa-folder" controller="Customer" action="Index">
-                <siteMapNode icon="far fa-file" action="Create" />
-                <siteMapNode icon="fa fa-info" action="Details" />
-                <siteMapNode icon="fa fa-pencil-alt" action="Edit" />
-                <siteMapNode icon="fa fa-times" action="Delete" />
-            </siteMapNode>
-        </siteMapNode>
-        <siteMapNode menu="true" icon="far fa-folder" area="Common">
-            <siteMapNode menu="true" icon="far fa-folder" controller="Address" action="Index">
-                <siteMapNode icon="far fa-file" action="Create" />
-                <siteMapNode icon="fa fa-info" action="Details" />
-                <siteMapNode icon="fa fa-pencil-alt" action="Edit" />
-                <siteMapNode icon="fa fa-times" action="Delete" />
-            </siteMapNode>
-            <siteMapNode menu="true" icon="far fa-folder" controller="Contact" action="Index">
-                <siteMapNode icon="far fa-file" action="Create" />
-                <siteMapNode icon="fa fa-info" action="Details" />
-                <siteMapNode icon="fa fa-pencil-alt" action="Edit" />
-                <siteMapNode icon="fa fa-times" action="Delete" />
-            </siteMapNode>
-            <siteMapNode menu="true" icon="far fa-folder" controller="ContactType" action="Index">
-                <siteMapNode icon="far fa-file" action="Create" />
-                <siteMapNode icon="fa fa-info" action="Details" />
-                <siteMapNode icon="fa fa-pencil-alt" action="Edit" />
-                <siteMapNode icon="fa fa-times" action="Delete" />
-            </siteMapNode>
-            <siteMapNode menu="true" icon="far fa-folder" controller="AddressType" action="Index">
-                <siteMapNode icon="far fa-file" action="Create" />
-                <siteMapNode icon="fa fa-info" action="Details" />
-                <siteMapNode icon="fa fa-pencil-alt" action="Edit" />
-                <siteMapNode icon="fa fa-times" action="Delete" />
-            </siteMapNode>
-        </siteMapNode>
     </siteMapNode>
 </siteMap>

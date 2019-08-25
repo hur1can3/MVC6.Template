@@ -1,17 +1,10 @@
 {
     "Areas": {
-        "Administration": "Administration",
-        "Common": "Common",
-        "Membership": "Membership"
-    },
+        "Administration": "Administration"
+       },
     "Controllers": {
         "AdministrationAccounts": "Accounts",
-        "AdministrationRoles": "Roles",
-        "CommonAddress": "Addresses",
-        "CommonAddressType": "Address types",
-        "CommonContact": "Contacts",
-        "CommonContactType": "Contact types",
-        "MembershipCustomer": "Customers"
+        "AdministrationRoles": "Roles"
     },
     "Actions": {
         "Copy": "Copy",
