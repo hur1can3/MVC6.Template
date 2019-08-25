@@ -1,14 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using MvcTemplate.Components.Mvc;
-using MvcTemplate.Data.Mapping;
-using MvcTemplate.Objects;
-using System;
+﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+using MvcTemplate.Components.Mvc;
+using MvcTemplate.Data.Mapping;
+using MvcTemplate.Objects;
+using MvcTemplate.Components.Extensions;
 
 namespace MvcTemplate.Data.Core
 {
@@ -18,12 +20,11 @@ namespace MvcTemplate.Data.Core
         {
             ObjectMapper.MapObjects();
         }
-        protected Context()
+        protected Context() { }
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public Context(DbContextOptions<Context> options, IHttpContextAccessor accessor) : base(options)
         {
-        }
-        public Context(DbContextOptions<Context> options)
-            : base(options)
-        {
+            this._httpContextAccessor = accessor;
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -32,8 +33,8 @@ namespace MvcTemplate.Data.Core
                 .Assembly
                 .GetTypes()
                 .Where(type =>
-                    type.IsAbstract == false &&
-                    typeof(BaseModel).IsAssignableFrom(type))
+                   type.IsAbstract == false &&
+                   typeof(BaseModel).IsAssignableFrom(type))
                 .ToArray();
 
             foreach (Type model in models)
@@ -86,6 +87,15 @@ namespace MvcTemplate.Data.Core
             builder.UseLazyLoadingProxies();
         }
 
+        public Int32? GetCurrentAccountId()
+        {
+            return _httpContextAccessor?.HttpContext?.User?.Id();
+        }
+
+        public string GetCurrentUserName()
+        {
+            return _httpContextAccessor?.HttpContext?.User?.Username();
+        }
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
         {
             OnBeforeSaving();
@@ -100,17 +110,74 @@ namespace MvcTemplate.Data.Core
 
         private void OnBeforeSaving()
         {
+            DateTime utcNow = DateTime.UtcNow;
+            int? currentAccountId = GetCurrentAccountId();
+            string userName = GetCurrentUserName();
             foreach (var entry in ChangeTracker.Entries())
             {
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.CurrentValues[nameof(BaseSoftDeleteModel.IsDeleted)] = false;
+                        if (entry is ICreatable)
+                        {
+                            entry.CurrentValues[nameof(BaseModel.CreationDate)] = utcNow;
+                            entry.CurrentValues[nameof(BaseModel.CreatedByAccountId)] = currentAccountId;
+                        }
+
+                        if (entry is IActivatable)
+                        {
+                            entry.CurrentValues[nameof(BaseActiveModel.ActivationDate)] = utcNow;
+                            entry.CurrentValues[nameof(BaseActiveModel.ActivatedByAccountId)] = currentAccountId;
+                        }
+
+                        if (entry is IRecordable)
+                        {
+                            var startDate = entry.CurrentValues.GetValue<DateTime?>(nameof(BaseRecordModel.RecordActiveStartDate));
+                            if (startDate == null)
+                            {
+                                entry.CurrentValues[nameof(BaseRecordModel.RecordActiveStartDate)] = false;
+                            }
+                        }
                         break;
 
                     case EntityState.Deleted:
-                        entry.State = EntityState.Modified;
-                        entry.CurrentValues[nameof(BaseSoftDeleteModel.IsDeleted)] = true;
+                        if (entry is IDeletable)
+                        {
+                            entry.State = EntityState.Modified;
+                            entry.CurrentValues[nameof(BaseSoftDeleteModel.IsDeleted)] = true;
+                            entry.CurrentValues[nameof(BaseSoftDeleteModel.DeletionDate)] = utcNow;
+                            entry.CurrentValues[nameof(BaseSoftDeleteModel.DeletedByAccountId)] = currentAccountId;
+
+                        }
+
+                        if (entry is IActivatable)
+                        {
+                            entry.CurrentValues[nameof(BaseActiveModel.IsActive)] = false;
+                        }
+
+                        if (entry is IRecordable)
+                        {
+                            var endDate = entry.CurrentValues.GetValue<DateTime?>(nameof(BaseRecordModel.RecordActiveEndDate));
+                            if (endDate == null)
+                            {
+                                entry.CurrentValues[nameof(BaseRecordModel.RecordActiveEndDate)] = false;
+                            }
+                        }
+
+                        break;
+
+                    case EntityState.Modified:
+                        if (entry is IModifiable)
+                        {
+                            entry.CurrentValues[nameof(BaseModel.ModificationDate)] = utcNow;
+                            entry.CurrentValues[nameof(BaseModel.ModifiedByAccountId)] = currentAccountId;
+
+                        }
+                        if (entry is IActivatable)
+                        {
+                            entry.CurrentValues[nameof(BaseActiveModel.ActivationDate)] = utcNow;
+                            entry.CurrentValues[nameof(BaseActiveModel.ActivatedByAccountId)] = currentAccountId;
+                        }
                         break;
                 }
             }

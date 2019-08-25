@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace MvcTemplate.Data.Core
 {
-    public class BContextFactory : IDesignTimeDbContextFactory<Context>
+    public class ContextFactory : IDesignTimeDbContextFactory<Context>
     {
         public Context CreateDbContext(string[] args)
         {
@@ -11,7 +11,7 @@ namespace MvcTemplate.Data.Core
             //optionsBuilder.UseSqlite("Data Source=MvcTemplate.db");
             optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=MvcTemplate;Trusted_Connection=True;MultipleActiveResultSets=True");
 
-            return new Context(optionsBuilder.Options);
+            return new Context(optionsBuilder.Options, null);
         }
     }
 }
