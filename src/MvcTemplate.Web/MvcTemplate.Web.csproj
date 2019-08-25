@@ -38,7 +38,7 @@
 
   <ItemGroup>
     <PackageReference Include="NonFactors.Grid.Mvc6" Version="5.0.0" />
-    <PackageReference Include="NonFactors.Lookup.Mvc6" Version="3.3.0" />
+    <PackageReference Include="NonFactors.Lookup.Mvc6" Version="4.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Server.IIS" Version="2.2.6" />
     <PackageReference Include="Microsoft.AspNetCore.HttpsPolicy" Version="2.2.0" />
