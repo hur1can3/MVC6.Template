@@ -14,6 +14,14 @@ Remove-Item -Path "../artifacts" -Recurse -ErrorAction SilentlyContinue
 Remove-Item -Path "../coverage" -Recurse -ErrorAction SilentlyContinue
 Remove-Item -Path "../testResults" -Recurse -ErrorAction SilentlyContinue
 
+if (-not $SkipClient) {
+  # Lint, test and build client
+  Push-Location -Path "$webProjectFolder"
+  npm install
+  Stop-OnError
+  Pop-Location
+}
+
 # Build solution
 Push-Location -Path "../"
 dotnet format --check
@@ -53,6 +61,7 @@ if (-not $SkipTest) {
 if (-not $SkipPublish) {
   # Package build
   Push-Location -Path "$webProjectFolder"
+  npm install
   dotnet publish --configuration "$Configuration" --no-build --output "../../artifacts"
   Stop-OnError
   Pop-Location

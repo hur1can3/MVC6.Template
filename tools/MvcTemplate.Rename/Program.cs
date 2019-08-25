@@ -47,6 +47,8 @@ namespace MvcTemplate.Rename
                     extension == ".gitignore" ||
                     extension == ".sln" ||
                     extension == ".csproj" ||
+                    extension == ".ps1" ||
+                    extension == ".cmd" ||
                     extension == ".json")
                 {
                     String content = File.ReadAllText(files[i]);
