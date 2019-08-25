@@ -11,6 +11,7 @@ using NSubstitute;
 using System;
 using System.Linq;
 using Xunit;
+using System.Threading.Tasks;
 
 namespace @Model.ControllerTestsNamespace
 {
@@ -50,123 +51,123 @@ namespace @Model.ControllerTestsNamespace
         }
 
         [Fact]
-        public void Create_ReturnsEmptyView()
+        public async Task Create_ReturnsEmptyView()
         {
-            ViewResult actual = controller.Create();
+            ViewResult actual = await controller.Create();
 
             Assert.Null(actual.Model);
         }
 
         [Fact]
-        public void Create_CanNotCreate_ReturnsSameView()
+        public async Task Create_CanNotCreate_ReturnsSameView()
         {
             validator.CanCreate(@Model.ModelVarName).Returns(false);
 
-            Object actual = Assert.IsType<ViewResult>(controller.Create(@Model.ModelVarName)).Model;
+            Object actual = Assert.IsType<ViewResult>(await controller.Create(@Model.ModelVarName)).Model;
             Object expected = @Model.ModelVarName;
 
             Assert.Same(expected, actual);
         }
 
         [Fact]
-        public void Create_@(Model.ModelShortName)()
+        public async Task Create_@(Model.ModelShortName)()
         {
             validator.CanCreate(@Model.ModelVarName).Returns(true);
 
-            controller.Create(@Model.ModelVarName);
+            await controller.Create(@Model.ModelVarName);
 
             service.Received().Create(@Model.ModelVarName);
         }
 
         [Fact]
-        public void Create_RedirectsToIndex()
+        public async Task Create_RedirectsToIndex()
         {
             validator.CanCreate(@Model.ModelVarName).Returns(true);
 
             Object expected = RedirectToAction(controller, "Index");
-            Object actual = controller.Create(@Model.ModelVarName);
+            Object actual = await controller.Create(@Model.ModelVarName);
 
             Assert.Same(expected, actual);
         }
 
         [Fact]
-        public void Details_ReturnsNotEmptyView()
+        public async Task Details_ReturnsNotEmptyView()
         {
-            service.Get<@Model.View>(@(Model.ModelVarName).Id).Returns(@Model.ModelVarName);
+            await service.Get<@Model.View>(@(Model.ModelVarName).Id).Returns(@Model.ModelVarName);
 
             Object expected = NotEmptyView(controller, @Model.ModelVarName);
-            Object actual = controller.Details(@(Model.ModelVarName).Id);
+            Object actual = await controller.Details(@(Model.ModelVarName).Id);
 
             Assert.Same(expected, actual);
         }
 
         [Fact]
-        public void Edit_ReturnsNotEmptyView()
+        public async Task Edit_ReturnsNotEmptyView()
         {
-            service.Get<@Model.View>(@(Model.ModelVarName).Id).Returns(@Model.ModelVarName);
+            await service.Get<@Model.View>(@(Model.ModelVarName).Id).Returns(@Model.ModelVarName);
 
             Object expected = NotEmptyView(controller, @Model.ModelVarName);
-            Object actual = controller.Edit(@(Model.ModelVarName).Id);
+            Object actual = await controller.Edit(@(Model.ModelVarName).Id);
 
             Assert.Same(expected, actual);
         }
 
         [Fact]
-        public void Edit_CanNotEdit_ReturnsSameView()
+        public async Task Edit_CanNotEdit_ReturnsSameView()
         {
             validator.CanEdit(@Model.ModelVarName).Returns(false);
 
-            Object actual = Assert.IsType<ViewResult>(controller.Edit(@Model.ModelVarName)).Model;
+            Object actual = Assert.IsType<ViewResult>(await controller.Edit(@Model.ModelVarName)).Model;
             Object expected = @Model.ModelVarName;
 
             Assert.Same(expected, actual);
         }
 
         [Fact]
-        public void Edit_@(Model.ModelShortName)()
+        public async Task Edit_@(Model.ModelShortName)()
         {
             validator.CanEdit(@Model.ModelVarName).Returns(true);
 
-            controller.Edit(@Model.ModelVarName);
+            await controller.Edit(@Model.ModelVarName);
 
             service.Received().Edit(@Model.ModelVarName);
         }
 
         [Fact]
-        public void Edit_RedirectsToIndex()
+        public async Task Edit_RedirectsToIndex()
         {
             validator.CanEdit(@Model.ModelVarName).Returns(true);
 
             Object expected = RedirectToAction(controller, "Index");
-            Object actual = controller.Edit(@Model.ModelVarName);
+            Object actual = await controller.Edit(@Model.ModelVarName);
 
             Assert.Same(expected, actual);
         }
 
         [Fact]
-        public void Delete_ReturnsNotEmptyView()
+        public async Task Delete_ReturnsNotEmptyView()
         {
-            service.Get<@Model.View>(@(Model.ModelVarName).Id).Returns(@Model.ModelVarName);
+            await service.Get<@Model.View>(@(Model.ModelVarName).Id).Returns(@Model.ModelVarName);
 
             Object expected = NotEmptyView(controller, @Model.ModelVarName);
-            Object actual = controller.Delete(@(Model.ModelVarName).Id);
+            Object actual = await controller.Delete(@(Model.ModelVarName).Id);
 
             Assert.Same(expected, actual);
         }
 
         [Fact]
-        public void DeleteConfirmed_Deletes@(Model.ModelShortName)()
+        public async Task DeleteConfirmed_Deletes@(Model.ModelShortName)()
         {
-            controller.DeleteConfirmed(@(Model.ModelVarName).Id);
+            await controller.DeleteConfirmed(@(Model.ModelVarName).Id);
 
             service.Received().Delete(@(Model.ModelVarName).Id);
         }
 
         [Fact]
-        public void Delete_RedirectsToIndex()
+        public async Task Delete_RedirectsToIndex()
         {
             Object expected = RedirectToAction(controller, "Index");
-            Object actual = controller.DeleteConfirmed(@(Model.ModelVarName).Id);
+            Object actual = await controller.DeleteConfirmed(@(Model.ModelVarName).Id);
 
             Assert.Same(expected, actual);
         }

@@ -3,6 +3,7 @@ using MvcTemplate.Data.Core;
 using MvcTemplate.Objects;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MvcTemplate.Services
 {
@@ -13,10 +14,11 @@ namespace MvcTemplate.Services
         {
         }
 
-        public TView Get<TView>(Int32 id) where TView : BaseView
+        public async Task<TView> Get<TView>(Int32 id) where TView : BaseView
         {
-            return UnitOfWork.GetAs<@Model.Model, TView>(id);
+            return await UnitOfWork.GetAsAsync<@Model.Model, TView>(id);
         }
+
         public IQueryable<@Model.View> GetViews()
         {
             return UnitOfWork
@@ -25,24 +27,24 @@ namespace MvcTemplate.Services
                 .OrderByDescending(@Model.ModelVarName => @(Model.ModelVarName).Id);
         }
 
-        public void Create(@Model.View view)
+        public async Task Create(@Model.View view)
         {
             @Model.Model @Model.ModelVarName = UnitOfWork.To<@Model.Model>(view);
 
-            UnitOfWork.Insert(@Model.ModelVarName);
-            UnitOfWork.Commit();
+            await UnitOfWork.InsertAsync(@Model.ModelVarName);
+            await UnitOfWork.SaveChangesAsync();
         }
-        public void Edit(@Model.View view)
+        public async Task Edit(@Model.View view)
         {
             @Model.Model @Model.ModelVarName = UnitOfWork.To<@Model.Model>(view);
 
             UnitOfWork.Update(@Model.ModelVarName);
-            UnitOfWork.Commit();
+            await UnitOfWork.SaveChangesAsync();
         }
-        public void Delete(Int32 id)
+        public async Task Delete(Int32 id)
         {
             UnitOfWork.Delete<@Model.Model>(id);
-            UnitOfWork.Commit();
+            await UnitOfWork.SaveChangesAsync();
         }
     }
 }

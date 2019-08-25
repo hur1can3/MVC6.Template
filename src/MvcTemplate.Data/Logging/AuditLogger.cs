@@ -4,6 +4,7 @@ using MvcTemplate.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MvcTemplate.Data.Logging
 {
@@ -59,6 +60,29 @@ namespace MvcTemplate.Data.Logging
                 }
 
                 Context.SaveChanges();
+                Entities.Clear();
+            }
+        }
+
+         public async Task SaveAsync()
+        {
+            if (Entities.Count > 0)
+            {
+                Context.ChangeTracker.AutoDetectChangesEnabled = false;
+
+                foreach (LoggableEntity entity in Entities)
+                {
+                    AuditLog log = new AuditLog();
+                    log.Changes = entity.ToString();
+                    log.EntityName = entity.Name;
+                    log.Action = entity.Action;
+                    log.EntityId = entity.Id();
+                    log.AccountId = AccountId;
+
+                    await Context.AddAsync(log);
+                }
+
+                await Context.SaveChangesAsync();
                 Entities.Clear();
             }
         }

@@ -2,13 +2,22 @@
 
 namespace MvcTemplate.Objects
 {
-    public abstract class BaseView
+    public abstract class BaseView : ICreatable, IModifiable
     {
         public virtual Int32 Id
         {
             get;
             set;
         }
+
+        public virtual DateTime? ModificationDate { get; set; }
+
+        public virtual int? CreatedByAccountId { get; set; }
+        public virtual Account CreatedBy { get; set; }
+
+
+        public virtual int? ModifiedByAccountId { get; set; }
+        public virtual Account ModifiedBy { get; set; }
 
         public virtual DateTime CreationDate
         {

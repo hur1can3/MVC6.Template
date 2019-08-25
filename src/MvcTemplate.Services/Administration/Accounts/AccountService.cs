@@ -53,7 +53,7 @@ namespace MvcTemplate.Services
             account.RecoveryToken = Guid.NewGuid().ToString();
 
             UnitOfWork.Update(account);
-            UnitOfWork.Commit();
+            UnitOfWork.SaveChanges();
 
             return account.RecoveryToken;
         }
@@ -65,7 +65,7 @@ namespace MvcTemplate.Services
             account.RecoveryToken = null;
 
             UnitOfWork.Update(account);
-            UnitOfWork.Commit();
+            UnitOfWork.SaveChanges();
         }
 
         public void Create(AccountCreateView view)
@@ -75,7 +75,7 @@ namespace MvcTemplate.Services
             account.Email = view.Email.ToLower();
 
             UnitOfWork.Insert(account);
-            UnitOfWork.Commit();
+            UnitOfWork.SaveChanges();
         }
         public void Edit(AccountEditView view)
         {
@@ -84,7 +84,7 @@ namespace MvcTemplate.Services
             account.RoleId = view.RoleId;
 
             UnitOfWork.Update(account);
-            UnitOfWork.Commit();
+            UnitOfWork.SaveChanges();
         }
 
         public void Edit(ClaimsPrincipal user, ProfileEditView view)
@@ -97,7 +97,7 @@ namespace MvcTemplate.Services
                 account.Passhash = Hasher.HashPassword(view.NewPassword);
 
             UnitOfWork.Update(account);
-            UnitOfWork.Commit();
+            UnitOfWork.SaveChanges();
 
             user.UpdateClaim(ClaimTypes.Name, account.Username);
             user.UpdateClaim(ClaimTypes.Email, account.Email);
@@ -105,7 +105,7 @@ namespace MvcTemplate.Services
         public void Delete(Int32 id)
         {
             UnitOfWork.Delete<Account>(id);
-            UnitOfWork.Commit();
+            UnitOfWork.SaveChanges();
         }
 
         public async Task Login(HttpContext context, String username)

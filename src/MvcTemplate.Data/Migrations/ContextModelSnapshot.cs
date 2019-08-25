@@ -25,13 +25,21 @@ namespace MvcTemplate.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CreatedByAccountId");
+
                     b.Property<DateTime>("CreationDate");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(256);
 
+                    b.Property<bool>("IsDeleted");
+
                     b.Property<bool>("IsLocked");
+
+                    b.Property<DateTime?>("ModificationDate");
+
+                    b.Property<int?>("ModifiedByAccountId");
 
                     b.Property<string>("Passhash")
                         .IsRequired()
@@ -50,8 +58,12 @@ namespace MvcTemplate.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CreatedByAccountId");
+
                     b.HasIndex("Email")
                         .IsUnique();
+
+                    b.HasIndex("ModifiedByAccountId");
 
                     b.HasIndex("RoleId");
 
@@ -59,6 +71,84 @@ namespace MvcTemplate.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Account");
+                });
+
+            modelBuilder.Entity("MvcTemplate.Objects.Address", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AddressTypeId");
+
+                    b.Property<int?>("CreatedByAccountId");
+
+                    b.Property<DateTime>("CreationDate");
+
+                    b.Property<int?>("CustomerId");
+
+                    b.Property<int?>("DeletedByAccountId");
+
+                    b.Property<DateTime?>("DeletionDate");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("ModificationDate");
+
+                    b.Property<int?>("ModifiedByAccountId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressTypeId");
+
+                    b.HasIndex("CreatedByAccountId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("DeletedByAccountId");
+
+                    b.HasIndex("ModifiedByAccountId");
+
+                    b.ToTable("Address");
+                });
+
+            modelBuilder.Entity("MvcTemplate.Objects.AddressType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Code");
+
+                    b.Property<int?>("CreatedByAccountId");
+
+                    b.Property<DateTime>("CreationDate");
+
+                    b.Property<string>("Description");
+
+                    b.Property<bool>("IObsoletable");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("ModificationDate");
+
+                    b.Property<int?>("ModifiedByAccountId");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int?>("ObsoletedByAccountId");
+
+                    b.Property<DateTime?>("ObsoletionDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedByAccountId");
+
+                    b.HasIndex("ModifiedByAccountId");
+
+                    b.HasIndex("ObsoletedByAccountId");
+
+                    b.ToTable("AddressType");
                 });
 
             modelBuilder.Entity("MvcTemplate.Objects.AuditLog", b =>
@@ -76,6 +166,8 @@ namespace MvcTemplate.Data.Migrations
                     b.Property<string>("Changes")
                         .IsRequired();
 
+                    b.Property<int?>("CreatedByAccountId");
+
                     b.Property<DateTime>("CreationDate");
 
                     b.Property<int>("EntityId");
@@ -84,9 +176,142 @@ namespace MvcTemplate.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(64);
 
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("ModificationDate");
+
+                    b.Property<int?>("ModifiedByAccountId");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("CreatedByAccountId");
+
+                    b.HasIndex("ModifiedByAccountId");
+
                     b.ToTable("AuditLog");
+                });
+
+            modelBuilder.Entity("MvcTemplate.Objects.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ContactTypeId");
+
+                    b.Property<int?>("CreatedByAccountId");
+
+                    b.Property<DateTime>("CreationDate");
+
+                    b.Property<int?>("CustomerId");
+
+                    b.Property<int?>("DeletedByAccountId");
+
+                    b.Property<DateTime?>("DeletionDate");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("ModificationDate");
+
+                    b.Property<int?>("ModifiedByAccountId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContactTypeId");
+
+                    b.HasIndex("CreatedByAccountId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("DeletedByAccountId");
+
+                    b.HasIndex("ModifiedByAccountId");
+
+                    b.ToTable("Contact");
+                });
+
+            modelBuilder.Entity("MvcTemplate.Objects.ContactType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Code");
+
+                    b.Property<int?>("CreatedByAccountId");
+
+                    b.Property<DateTime>("CreationDate");
+
+                    b.Property<string>("Description");
+
+                    b.Property<bool>("IObsoletable");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("ModificationDate");
+
+                    b.Property<int?>("ModifiedByAccountId");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int?>("ObsoletedByAccountId");
+
+                    b.Property<DateTime?>("ObsoletionDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedByAccountId");
+
+                    b.HasIndex("ModifiedByAccountId");
+
+                    b.HasIndex("ObsoletedByAccountId");
+
+                    b.ToTable("ContactType");
+                });
+
+            modelBuilder.Entity("MvcTemplate.Objects.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ActivatedByAccountId");
+
+                    b.Property<int?>("ActivatedById");
+
+                    b.Property<DateTime?>("ActivationDate");
+
+                    b.Property<int?>("CreatedByAccountId");
+
+                    b.Property<DateTime>("CreationDate");
+
+                    b.Property<int?>("DeletedByAccountId");
+
+                    b.Property<DateTime?>("DeletionDate");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("ModificationDate");
+
+                    b.Property<int?>("ModifiedByAccountId");
+
+                    b.Property<long>("Name");
+
+                    b.Property<long>("Number");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ActivatedById");
+
+                    b.HasIndex("CreatedByAccountId");
+
+                    b.HasIndex("DeletedByAccountId");
+
+                    b.HasIndex("ModifiedByAccountId");
+
+                    b.ToTable("Customer");
                 });
 
             modelBuilder.Entity("MvcTemplate.Objects.Permission", b =>
@@ -106,9 +331,21 @@ namespace MvcTemplate.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(64);
 
+                    b.Property<int?>("CreatedByAccountId");
+
                     b.Property<DateTime>("CreationDate");
 
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("ModificationDate");
+
+                    b.Property<int?>("ModifiedByAccountId");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatedByAccountId");
+
+                    b.HasIndex("ModifiedByAccountId");
 
                     b.ToTable("Permission");
                 });
@@ -119,13 +356,25 @@ namespace MvcTemplate.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CreatedByAccountId");
+
                     b.Property<DateTime>("CreationDate");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("ModificationDate");
+
+                    b.Property<int?>("ModifiedByAccountId");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(128);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatedByAccountId");
+
+                    b.HasIndex("ModifiedByAccountId");
 
                     b.HasIndex("Title")
                         .IsUnique();
@@ -139,13 +388,25 @@ namespace MvcTemplate.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CreatedByAccountId");
+
                     b.Property<DateTime>("CreationDate");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("ModificationDate");
+
+                    b.Property<int?>("ModifiedByAccountId");
 
                     b.Property<int>("PermissionId");
 
                     b.Property<int>("RoleId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatedByAccountId");
+
+                    b.HasIndex("ModifiedByAccountId");
 
                     b.HasIndex("PermissionId");
 
@@ -156,14 +417,185 @@ namespace MvcTemplate.Data.Migrations
 
             modelBuilder.Entity("MvcTemplate.Objects.Account", b =>
                 {
+                    b.HasOne("MvcTemplate.Objects.Account", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedByAccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("MvcTemplate.Objects.Account", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedByAccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("MvcTemplate.Objects.Role", "Role")
                         .WithMany("Accounts")
-                        .HasForeignKey("RoleId")
+                        .HasForeignKey("RoleId");
+                });
+
+            modelBuilder.Entity("MvcTemplate.Objects.Address", b =>
+                {
+                    b.HasOne("MvcTemplate.Objects.AddressType", "AddressType")
+                        .WithMany()
+                        .HasForeignKey("AddressTypeId")
                         .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("MvcTemplate.Objects.Account", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedByAccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("MvcTemplate.Objects.Customer")
+                        .WithMany("Addresses")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("MvcTemplate.Objects.Account", "DeletedBy")
+                        .WithMany()
+                        .HasForeignKey("DeletedByAccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("MvcTemplate.Objects.Account", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedByAccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("MvcTemplate.Objects.AddressType", b =>
+                {
+                    b.HasOne("MvcTemplate.Objects.Account", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedByAccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("MvcTemplate.Objects.Account", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedByAccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("MvcTemplate.Objects.Account", "ObsoletedBy")
+                        .WithMany()
+                        .HasForeignKey("ObsoletedByAccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("MvcTemplate.Objects.AuditLog", b =>
+                {
+                    b.HasOne("MvcTemplate.Objects.Account", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedByAccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("MvcTemplate.Objects.Account", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedByAccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("MvcTemplate.Objects.Contact", b =>
+                {
+                    b.HasOne("MvcTemplate.Objects.ContactType", "ContactType")
+                        .WithMany()
+                        .HasForeignKey("ContactTypeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("MvcTemplate.Objects.Account", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedByAccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("MvcTemplate.Objects.Customer")
+                        .WithMany("Contacts")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("MvcTemplate.Objects.Account", "DeletedBy")
+                        .WithMany()
+                        .HasForeignKey("DeletedByAccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("MvcTemplate.Objects.Account", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedByAccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("MvcTemplate.Objects.ContactType", b =>
+                {
+                    b.HasOne("MvcTemplate.Objects.Account", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedByAccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("MvcTemplate.Objects.Account", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedByAccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("MvcTemplate.Objects.Account", "ObsoletedBy")
+                        .WithMany()
+                        .HasForeignKey("ObsoletedByAccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("MvcTemplate.Objects.Customer", b =>
+                {
+                    b.HasOne("MvcTemplate.Objects.Account", "ActivatedBy")
+                        .WithMany()
+                        .HasForeignKey("ActivatedById")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("MvcTemplate.Objects.Account", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedByAccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("MvcTemplate.Objects.Account", "DeletedBy")
+                        .WithMany()
+                        .HasForeignKey("DeletedByAccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("MvcTemplate.Objects.Account", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedByAccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("MvcTemplate.Objects.Permission", b =>
+                {
+                    b.HasOne("MvcTemplate.Objects.Account", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedByAccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("MvcTemplate.Objects.Account", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedByAccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("MvcTemplate.Objects.Role", b =>
+                {
+                    b.HasOne("MvcTemplate.Objects.Account", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedByAccountId");
+
+                    b.HasOne("MvcTemplate.Objects.Account", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedByAccountId");
                 });
 
             modelBuilder.Entity("MvcTemplate.Objects.RolePermission", b =>
                 {
+                    b.HasOne("MvcTemplate.Objects.Account", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedByAccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("MvcTemplate.Objects.Account", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedByAccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("MvcTemplate.Objects.Permission", "Permission")
                         .WithMany()
                         .HasForeignKey("PermissionId")

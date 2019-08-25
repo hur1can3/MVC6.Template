@@ -2,6 +2,7 @@
 using MvcTemplate.Objects;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MvcTemplate.Data.Logging
 {
@@ -9,5 +10,6 @@ namespace MvcTemplate.Data.Logging
     {
         void Log(IEnumerable<EntityEntry<BaseModel>> entries);
         void Save();
+        Task SaveAsync();
     }
 }

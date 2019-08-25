@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using MvcTemplate.Data.Core;
 using MvcTemplate.Data.Logging;
 using MvcTemplate.Objects;
@@ -46,7 +46,37 @@ namespace MvcTemplate.Data.Migrations
                 new Permission { Area = "Administration", Controller = "Roles", Action = "Create" },
                 new Permission { Area = "Administration", Controller = "Roles", Action = "Details" },
                 new Permission { Area = "Administration", Controller = "Roles", Action = "Edit" },
-                new Permission { Area = "Administration", Controller = "Roles", Action = "Delete" }
+                new Permission { Area = "Administration", Controller = "Roles", Action = "Delete" },
+
+                new Permission { Area = "Membership", Controller = "Customer", Action = "Index" },
+                new Permission { Area = "Membership", Controller = "Customer", Action = "Create" },
+                new Permission { Area = "Membership", Controller = "Customer", Action = "Edit" },
+                new Permission { Area = "Membership", Controller = "Customer", Action = "Details" },
+                new Permission { Area = "Membership", Controller = "Customer", Action = "Delete" },
+
+                new Permission { Area = "Common", Controller = "Address", Action = "Index" },
+                new Permission { Area = "Common", Controller = "Address", Action = "Create" },
+                new Permission { Area = "Common", Controller = "Address", Action = "Edit" },
+                new Permission { Area = "Common", Controller = "Address", Action = "Details" },
+                new Permission { Area = "Common", Controller = "Address", Action = "Delete" },
+
+                new Permission { Area = "Common", Controller = "Contact", Action = "Index" },
+                new Permission { Area = "Common", Controller = "Contact", Action = "Create" },
+                new Permission { Area = "Common", Controller = "Contact", Action = "Edit" },
+                new Permission { Area = "Common", Controller = "Contact", Action = "Details" },
+                new Permission { Area = "Common", Controller = "Contact", Action = "Delete" },
+
+                new Permission { Area = "Common", Controller = "ContactType", Action = "Index" },
+                new Permission { Area = "Common", Controller = "ContactType", Action = "Create" },
+                new Permission { Area = "Common", Controller = "ContactType", Action = "Edit" },
+                new Permission { Area = "Common", Controller = "ContactType", Action = "Details" },
+                new Permission { Area = "Common", Controller = "ContactType", Action = "Delete" },
+
+                new Permission { Area = "Common", Controller = "AddressType", Action = "Index" },
+                new Permission { Area = "Common", Controller = "AddressType", Action = "Create" },
+                new Permission { Area = "Common", Controller = "AddressType", Action = "Edit" },
+                new Permission { Area = "Common", Controller = "AddressType", Action = "Details" },
+                new Permission { Area = "Common", Controller = "AddressType", Action = "Delete" }
             };
 
             foreach (Permission permission in UnitOfWork.Select<Permission>().ToArray())
@@ -57,7 +87,7 @@ namespace MvcTemplate.Data.Migrations
                 }
 
             UnitOfWork.InsertRange(permissions);
-            UnitOfWork.Commit();
+            UnitOfWork.SaveChanges();
         }
 
         private void SeedRoles()
@@ -65,7 +95,7 @@ namespace MvcTemplate.Data.Migrations
             if (!UnitOfWork.Select<Role>().Any(role => role.Title == "Sys_Admin"))
             {
                 UnitOfWork.Insert(new Role { Title = "Sys_Admin", Permissions = new List<RolePermission>() });
-                UnitOfWork.Commit();
+                UnitOfWork.SaveChanges();
             }
 
             Role admin = UnitOfWork.Select<Role>().Single(role => role.Title == "Sys_Admin");
@@ -75,7 +105,7 @@ namespace MvcTemplate.Data.Migrations
                 if (!permissions.Contains(permission.Id))
                     UnitOfWork.Insert(new RolePermission { RoleId = admin.Id, PermissionId = permission.Id });
 
-            UnitOfWork.Commit();
+            UnitOfWork.SaveChanges();
         }
 
         private void SeedAccounts()
@@ -108,7 +138,7 @@ namespace MvcTemplate.Data.Migrations
                 }
             }
 
-            UnitOfWork.Commit();
+            UnitOfWork.SaveChanges();
         }
 
         public void Dispose()

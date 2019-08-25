@@ -74,7 +74,7 @@ namespace MvcTemplate.Services
                 });
 
             UnitOfWork.Insert(role);
-            UnitOfWork.Commit();
+            UnitOfWork.SaveChanges();
         }
         public void Edit(RoleView view)
         {
@@ -89,7 +89,7 @@ namespace MvcTemplate.Services
             foreach (Int32 permissionId in permissions)
                 UnitOfWork.Insert(new RolePermission { RoleId = role.Id, PermissionId = permissionId });
 
-            UnitOfWork.Commit();
+            UnitOfWork.SaveChanges();
         }
         public void Delete(Int32 id)
         {
@@ -98,7 +98,7 @@ namespace MvcTemplate.Services
 
             UnitOfWork.DeleteRange(role.Permissions);
             UnitOfWork.Delete(role);
-            UnitOfWork.Commit();
+            UnitOfWork.SaveChanges();
         }
 
         private IEnumerable<Permission> GetAllPermissions()

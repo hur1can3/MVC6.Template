@@ -1,10 +1,17 @@
 {
     "Areas": {
-        "Administration": "Administration"
+        "Administration": "Administration",
+        "Common": "Common",
+        "Membership": "Membership"
     },
     "Controllers": {
         "AdministrationAccounts": "Accounts",
-        "AdministrationRoles": "Roles"
+        "AdministrationRoles": "Roles",
+        "CommonAddress": "Addresses",
+        "CommonAddressType": "Address types",
+        "CommonContact": "Contacts",
+        "CommonContactType": "Contact types",
+        "MembershipCustomer": "Customers"
     },
     "Actions": {
         "Copy": "Copy",
@@ -13,7 +20,7 @@
         "Details": "Details",
         "Edit": "Edit",
         "Home": "Home",
-        "Index":  "Index",
+        "Index": "Index",
         "Language": "Language",
         "Login": "Login",
         "Logout": "Logout",

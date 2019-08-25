@@ -1,9 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MvcTemplate.Objects
 {
-    public abstract class BaseModel
+    public abstract class BaseModel : ICreatable, IModifiable
     {
         [Key]
         public virtual Int32 Id
@@ -11,6 +12,19 @@ namespace MvcTemplate.Objects
             get;
             set;
         }
+        public virtual DateTime? ModificationDate { get; set; }
+
+        public virtual int? CreatedByAccountId { get; set; }
+
+        [ForeignKey(nameof(BaseModel.CreatedByAccountId))]
+
+        public virtual Account CreatedBy { get; set; }
+
+
+        public virtual int? ModifiedByAccountId { get; set; }
+
+        [ForeignKey(nameof(BaseModel.ModifiedByAccountId))]
+        public virtual Account ModifiedBy { get; set; }
 
         public virtual DateTime CreationDate
         {
