@@ -6,7 +6,7 @@ namespace MvcTemplate.Objects
     {
         bool IsDeleted { get; set; }
         DateTime? DeletionDate { get; set; }
-        int? DeletedByAccountId {get;set;}
+        int? DeletedByAccountId { get; set; }
         Account DeletedBy { get; set; }
     }
 }

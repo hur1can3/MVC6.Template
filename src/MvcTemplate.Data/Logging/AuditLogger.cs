@@ -64,7 +64,7 @@ namespace MvcTemplate.Data.Logging
             }
         }
 
-         public async Task SaveAsync()
+        public async Task SaveAsync()
         {
             if (Entities.Count > 0)
             {

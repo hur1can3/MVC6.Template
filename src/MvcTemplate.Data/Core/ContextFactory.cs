@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace MvcTemplate.Data.Core
 {
-   public class BContextFactory : IDesignTimeDbContextFactory<Context>
+    public class BContextFactory : IDesignTimeDbContextFactory<Context>
     {
         public Context CreateDbContext(string[] args)
         {

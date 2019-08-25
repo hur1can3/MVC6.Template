@@ -4,8 +4,8 @@ namespace MvcTemplate.Objects
 {
     public interface ICreatable
     {
-         DateTime CreationDate {get;}
-         int? CreatedByAccountId {get;set;}
-         Account CreatedBy {get;set;}
+        DateTime CreationDate { get; }
+        int? CreatedByAccountId { get; set; }
+        Account CreatedBy { get; set; }
     }
 }

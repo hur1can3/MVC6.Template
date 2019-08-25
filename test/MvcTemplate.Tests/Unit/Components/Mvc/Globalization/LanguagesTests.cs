@@ -11,7 +11,7 @@ namespace MvcTemplate.Components.Mvc.Tests
 
         public LanguagesTests()
         {
-            languages = new Languages("en", new []
+            languages = new Languages("en", new[]
             {
                 new Language
                 {

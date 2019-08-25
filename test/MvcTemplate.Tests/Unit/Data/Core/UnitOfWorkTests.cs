@@ -157,7 +157,7 @@ namespace MvcTemplate.Data.Core.Tests
             context.SaveChanges();
 
             unitOfWork.DeleteRange(models);
-            unitOfWork.Commit();
+            unitOfWork.SaveChanges();
 
             Assert.Empty(context.Set<TestModel>());
         }
@@ -169,7 +169,7 @@ namespace MvcTemplate.Data.Core.Tests
             context.SaveChanges();
 
             unitOfWork.Delete(model);
-            unitOfWork.Commit();
+            unitOfWork.SaveChanges();
 
             Assert.Empty(context.Set<TestModel>());
         }
@@ -181,35 +181,35 @@ namespace MvcTemplate.Data.Core.Tests
             context.SaveChanges();
 
             unitOfWork.Delete<TestModel>(model.Id);
-            unitOfWork.Commit();
+            unitOfWork.SaveChanges();
 
             Assert.Empty(context.Set<TestModel>());
         }
 
         [Fact]
-        public void Commit_SavesChanges()
+        public void SaveChanges_SavesChanges()
         {
             TestingContext testingContext = Substitute.For<TestingContext>();
 
-            new UnitOfWork(testingContext).Commit();
+            new UnitOfWork(testingContext).SaveChanges();
 
             testingContext.Received().SaveChanges();
         }
 
         [Fact]
-        public void Commit_Logs()
+        public void SaveChanges_Logs()
         {
-            unitOfWork.Commit();
+            unitOfWork.SaveChanges();
 
             logger.Received().Log(Arg.Any<IEnumerable<EntityEntry<BaseModel>>>());
             logger.Received().Save();
         }
 
         [Fact]
-        public void Commit_Failed_DoesNotSaveLogs()
+        public void SaveChanges_Failed_DoesNotSaveLogs()
         {
             logger.When(sub => sub.Log(Arg.Any<IEnumerable<EntityEntry<BaseModel>>>())).Do(call => throw new Exception());
-            Exception exception = Record.Exception(() => unitOfWork.Commit());
+            Exception exception = Record.Exception(() => unitOfWork.SaveChanges());
 
             logger.Received().Log(Arg.Any<IEnumerable<EntityEntry<BaseModel>>>());
             logger.DidNotReceive().Save();

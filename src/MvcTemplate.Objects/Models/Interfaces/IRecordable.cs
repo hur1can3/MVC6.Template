@@ -4,7 +4,7 @@ namespace MvcTemplate.Objects
 {
     public interface IRecordable
     {
-         DateTime? RecordActiveStartDate {get;set;}
-         DateTime? RecordActiveEndDate {get;set;}
+        DateTime? RecordActiveStartDate { get; set; }
+        DateTime? RecordActiveEndDate { get; set; }
     }
 }

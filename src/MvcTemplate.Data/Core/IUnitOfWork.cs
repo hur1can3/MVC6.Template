@@ -17,7 +17,7 @@ namespace MvcTemplate.Data.Core
         IQuery<TModel> Select<TModel>() where TModel : BaseModel;
 
         void InsertRange<TModel>(IEnumerable<TModel> models) where TModel : BaseModel;
-                Task InsertRangeAsync<TModel>(IEnumerable<TModel> models) where TModel : BaseModel;
+        Task InsertRangeAsync<TModel>(IEnumerable<TModel> models) where TModel : BaseModel;
 
         void Insert<TModel>(TModel model) where TModel : BaseModel;
         Task InsertAsync<TModel>(TModel model) where TModel : BaseModel;
